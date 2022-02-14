@@ -52,29 +52,31 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * Category Edit Page
+     * SubCategory Edit Page
      */
     public function edit($id){
-        $data = DB::table('categories')->where('id', $id)->first();
-        return view('backend.category.edit', compact('data'));
+        $data = DB::table('subcategories')->where('id', $id)->first();
+        $category = DB::table('categories')->get();
+        return view('backend.subcategory.edit', compact('data', 'category'));
     }
 
 
     /**
-     * Category Update
+     * SubCategory Update
      */
     public function update(Request $request, $id){
         $data = [];
-        $data['category_en'] = $request->category_en;
-        $data['category_ban'] = $request->category_ban;
-        DB::table('categories')->where('id', $id)->update($data);
+        $data['subcategory_en'] = $request->subcategory_en;
+        $data['subcategory_ban'] = $request->subcategory_ban;
+        $data['category_id'] = $request->category_id;
+        DB::table('subcategories')->where('id', $id)->update($data);
 
         $notification = [
-            'message' => 'Category updated successfully',
+            'message' => 'SubCategory updated successfully',
             'alert-type' => 'info',
         ];
 
-        return redirect()->route('categories')->with($notification);
+        return redirect()->route('subcategories')->with($notification);
     }
 
     /**
