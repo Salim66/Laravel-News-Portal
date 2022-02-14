@@ -53,7 +53,7 @@
                         <td> {{ $data->category_en }} | {{ $data->category_ban }} </td>
                         <td>
                             <a href="{{ route('edit.subcategory', $data->id) }}" class="btn btn-info">Edit</a>
-                            <a id="delete" href="{{ route('delete.category', $data->id) }}" class="btn btn-danger">Delete</a>
+                            <a id="delete" href="{{ route('delete.subcategory', $data->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
                     @endforeach
