@@ -28,22 +28,31 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Add Category</h4>
-                <form class="forms-sample" action="{{ route('store.category') }}" method="POST">
+                <h4 class="card-title">Add SubCategory</h4>
+                <form class="forms-sample" action="{{ route('store.subcategory') }}" method="POST">
                     @csrf
                   <div class="form-group">
-                    <label for="exampleInputUsername1">Category English</label>
-                    <input type="text" class="form-control" name="category_en" placeholder="Category English">
-                  @error('category_en')
+                    <label for="exampleInputUsername1">SubCategory English</label>
+                    <input type="text" class="form-control" name="subcategory_en" placeholder="SubCategory English">
+                  @error('subcategory_en')
                       <span class="text-danger">{{ $message }}</span>
                   @enderror
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Category Bangla</label>
-                    <input type="text" class="form-control" name="category_ban" placeholder="Category Bangla">
-                    @error('category_ban')
+                    <label for="exampleInputEmail1">SubCategory Bangla</label>
+                    <input type="text" class="form-control" name="subcategory_ban" placeholder="SubCategory Bangla">
+                    @error('subcategory_ban')
                       <span class="text-danger">{{ $message }}</span>
                     @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Category Select</label>
+                    <select name="category_id" class="form-control" id="exampleSelectGender">
+                      <option disabled selected>- Select -</option>
+                      @foreach($category as $cat)
+                      <option value="{{ $cat->id }}">{{ $cat->category_en }} | {{ $cat->category_ban }}</option>
+                      @endforeach
+                    </select>
                   </div>
 
                   <button type="submit" class="btn btn-primary mr-2">Submit</button>

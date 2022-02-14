@@ -30,10 +30,10 @@
               <div class="card-body">
                 <div class="template-demo">
                     <h4 class="card-title float-left">SubCategory Page</h4>
-                    <a href="{{ route('add.category') }}" class="btn btn-primary btn-fw float-right mb-4">+ Add Category</a>
+                    <a href="{{ route('add.subcategory') }}" class="btn btn-primary btn-fw float-right mb-4">+ Add SubCategory</a>
                 </div>
                 <div class="table-responsive">
-                  <table id="table_id" class="table table-bordered">
+                  <table id="table_id" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th> # </th>
@@ -48,8 +48,8 @@
                     @foreach($all_data as $data)
                       <tr>
                         <td> {{ $loop->index+1 }} </td>
-                        <td> {{ $data->category_en }} </td>
-                        <td> {{ $data->category_ban }} </td>
+                        <td> {{ $data->subcategory_en }} </td>
+                        <td> {{ $data->subcategory_ban }} </td>
                         <td> {{ $data->category_id }} </td>
                         <td>
                             <a href="{{ route('edit.category', $data->id) }}" class="btn btn-info">Edit</a>

@@ -17,32 +17,35 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * Categroy create page
+     * SubCategroy create page
      */
     public function create(){
-        return view('backend.category.create');
+        $category = DB::table('categories')->get();
+        return view('backend.subcategory.create', compact('category'));
     }
 
     /**
-     * Cateogry Store
+     * SubCateogry Store
      */
     public function store(Request $request){
         $this->validate($request, [
-            'category_en' => 'required|unique:categories|max:255',
-            'category_ban' => 'required|unique:categories|max:255',
+            'subcategory_en' => 'required|unique:subcategories|max:255',
+            'subcategory_ban' => 'required|unique:subcategories|max:255',
+            'category_id' => 'required',
         ]);
 
         $data = [];
-        $data['category_en'] = $request->category_en;
-        $data['category_ban'] = $request->category_ban;
-        DB::table('categories')->insert($data);
+        $data['subcategory_en'] = $request->subcategory_en;
+        $data['subcategory_ban'] = $request->subcategory_ban;
+        $data['category_id'] = $request->category_id;
+        DB::table('subcategories')->insert($data);
 
         $notification = [
-            'message' => 'Category added successfully',
+            'message' => 'SubCategory added successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('categories')->with($notification);
+        return redirect()->route('subcategories')->with($notification);
     }
 
     /**

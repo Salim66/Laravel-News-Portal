@@ -33,7 +33,7 @@
                     <a href="{{ route('add.category') }}" class="btn btn-primary btn-fw float-right mb-4">+ Add Category</a>
                 </div>
                 <div class="table-responsive">
-                  <table id="table_id" class="table table-bordered">
+                  <table id="table_id" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th> # </th>
