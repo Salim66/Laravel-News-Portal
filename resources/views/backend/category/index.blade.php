@@ -30,7 +30,7 @@
               <div class="card-body">
                 <h4 class="card-title">Category Page</h4>
                 <div class="template-demo">
-                    <a href="#" class="btn btn-primary btn-fw float-right">+ Add Category</a>
+                    <a href="{{ route('add.category') }}" class="btn btn-primary btn-fw float-right">+ Add Category</a>
                 </div>
                 <div class="table-responsive">
                   <table class="table table-bordered">
@@ -50,8 +50,8 @@
                         <td> {{ $data->category_en }} </td>
                         <td> {{ $data->category_ban }} </td>
                         <td>
-                            <a href="#" class="btn btn-info btn-fw">Edit</a>
-                            <a href="#" class="btn btn-danger btn-fw">Delete</a>
+                            <a href="#" class="btn btn-info">Edit</a>
+                            <a href="#" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
                     @endforeach
