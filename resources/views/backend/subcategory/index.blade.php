@@ -50,7 +50,7 @@
                         <td> {{ $loop->index+1 }} </td>
                         <td> {{ $data->subcategory_en }} </td>
                         <td> {{ $data->subcategory_ban }} </td>
-                        <td> {{ $data->category_id }} </td>
+                        <td> {{ $data->category_en }} | {{ $data->category_ban }} </td>
                         <td>
                             <a href="{{ route('edit.category', $data->id) }}" class="btn btn-info">Edit</a>
                             <a id="delete" href="{{ route('delete.category', $data->id) }}" class="btn btn-danger">Delete</a>

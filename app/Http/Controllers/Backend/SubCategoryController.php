@@ -12,7 +12,10 @@ class SubCategoryController extends Controller
      * SubCategory view
      */
     public function index(){
-        $all_data = DB::table('subcategories')->orderBy('id', 'desc')->get();
+        $all_data = DB::table('subcategories')
+            ->join('categories', 'subcategories.category_id', 'categories.id')
+            ->select('subcategories.*', 'categories.category_en', 'categories.category_ban')
+            ->orderBy('id', 'desc')->get();
         return view('backend.subcategory.index', compact('all_data'));
     }
 
