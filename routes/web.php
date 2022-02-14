@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,9 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
+
+// Admin Logout Route
+Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
+
+// Admin Category All Routes
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
