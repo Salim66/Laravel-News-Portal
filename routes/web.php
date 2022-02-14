@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,14 @@ Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admi
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/add/category', [CategoryController::class, 'create'])->name('add.category');
 Route::post('/store/category', [CategoryController::class, 'store'])->name('store.category');
+Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
+Route::post('/update/category/{id}', [CategoryController::class, 'update'])->name('update.category');
+Route::get('/delete/category/{id}', [CategoryController::class, 'delete'])->name('delete.category');
+
+// Admin Sub Category All Routes
+Route::get('/subcategories', [SubCategoryController::class, 'index'])->name('subcategories');
+Route::get('/add/category', [CategoryController::class, 'create'])->name('add.category');
+Route::post('/store/category', [CategoryController::class, 'store'])->name('store.category');
+Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
+Route::post('/update/category/{id}', [CategoryController::class, 'update'])->name('update.category');
+Route::get('/delete/category/{id}', [CategoryController::class, 'delete'])->name('delete.category');

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Chandlee News Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/vendors/css/vendor.bundle.base.css">
@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+
+    <!-- Datatable -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/datatables.min.css') }}">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -23,6 +26,8 @@
 	<link rel="stylesheet" href="{{ asset('backend/assets/css/toastr.min.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('backend/') }}/assets/images/favicon.png" />
+    <!-- Custom CSS -->
+    <link rel="shortcut icon" href="{{ asset('backend/') }}/assets/css/custom.css" />
   </head>
   <body>
     <div class="container-scroller">
@@ -90,5 +95,13 @@
         }
         @endif
     </script>
+
+    <!-- Datatable -->
+    <script src="{{ asset('backend/assets/js/datatables.min.js') }}"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="{{ asset('backend/assets/js/sweetalert2@11.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+
   </body>
 </html>

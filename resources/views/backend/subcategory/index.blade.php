@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="template-demo">
-                    <h4 class="card-title float-left">Category Page</h4>
+                    <h4 class="card-title float-left">SubCategory Page</h4>
                     <a href="{{ route('add.category') }}" class="btn btn-primary btn-fw float-right mb-4">+ Add Category</a>
                 </div>
                 <div class="table-responsive">
@@ -37,8 +37,9 @@
                     <thead>
                       <tr>
                         <th> # </th>
-                        <th> Category English </th>
-                        <th> Category Bangla </th>
+                        <th> SubCategory English </th>
+                        <th> SubCategory Bangla </th>
+                        <th> Category Name </th>
                         <th> Action </th>
                       </tr>
                     </thead>
@@ -49,6 +50,7 @@
                         <td> {{ $loop->index+1 }} </td>
                         <td> {{ $data->category_en }} </td>
                         <td> {{ $data->category_ban }} </td>
+                        <td> {{ $data->category_id }} </td>
                         <td>
                             <a href="{{ route('edit.category', $data->id) }}" class="btn btn-info">Edit</a>
                             <a id="delete" href="{{ route('delete.category', $data->id) }}" class="btn btn-danger">Delete</a>

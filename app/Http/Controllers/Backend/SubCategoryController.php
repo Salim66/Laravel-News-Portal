@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
-     * Category view
+     * SubCategory view
      */
     public function index(){
-        $all_data = DB::table('categories')->orderBy('id', 'desc')->get();
-        return view('backend.category.index', compact('all_data'));
+        $all_data = DB::table('subcategories')->orderBy('id', 'desc')->get();
+        return view('backend.subcategory.index', compact('all_data'));
     }
 
     /**
