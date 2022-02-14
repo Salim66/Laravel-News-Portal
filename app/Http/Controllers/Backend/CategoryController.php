@@ -37,6 +37,11 @@ class CategoryController extends Controller
         $data['category_ban'] = $request->category_ban;
         DB::table('categories')->insert($data);
 
-        return redirect()->route('categories')->with('success', 'Category Add Successfully');
+        $notification = [
+            'message' => 'Category added successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('categories')->with($notification);
     }
 }

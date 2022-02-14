@@ -19,6 +19,8 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css">
+    <!-- Toastr CSS -->
+	<link rel="stylesheet" href="{{ asset('backend/assets/css/toastr.min.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('backend/') }}/assets/images/favicon.png" />
   </head>
@@ -64,5 +66,29 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('backend/') }}/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    <!-- Toastr JS -->
+	<script src="{{ asset('backend/assets/js/toastr.min.js') }}"></script>
+    <script type="text/javascript">
+        @if(Session::has('message'))
+         let type = "{{ Session::get('alert-type', 'info') }}"
+         switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+              case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+        }
+        @endif
+    </script>
   </body>
 </html>
