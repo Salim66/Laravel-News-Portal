@@ -93,7 +93,7 @@
         <div class="collapse" id="district">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('districts') }}"> District </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> SubDistrict </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('subdistricts') }}"> SubDistrict </a></li>
           </ul>
         </div>
       </li>

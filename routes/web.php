@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SubDistrictController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,3 +52,12 @@ Route::post('/store/district', [DistrictController::class, 'store'])->name('stor
 Route::get('/edit/district/{id}', [DistrictController::class, 'edit'])->name('edit.district');
 Route::post('/update/district/{id}', [DistrictController::class, 'update'])->name('update.district');
 Route::get('/delete/district/{id}', [DistrictController::class, 'delete'])->name('delete.district');
+
+
+// Admin Sub District All Routes
+Route::get('/subdistricts', [SubDistrictController::class, 'index'])->name('subdistricts');
+Route::get('/add/subdistrict', [SubDistrictController::class, 'create'])->name('add.subdistrict');
+Route::post('/store/subdistrict', [SubDistrictController::class, 'store'])->name('store.subdistrict');
+Route::get('/edit/subdistrict/{id}', [SubDistrictController::class, 'edit'])->name('edit.subdistrict');
+Route::post('/update/subdistrict/{id}', [SubDistrictController::class, 'update'])->name('update.subdistrict');
+Route::get('/delete/subdistrict/{id}', [SubDistrictController::class, 'delete'])->name('delete.subdistrict');

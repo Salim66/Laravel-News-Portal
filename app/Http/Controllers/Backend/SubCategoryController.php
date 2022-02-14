@@ -80,7 +80,7 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * Category Delete
+     * SubCategory Delete
      */
     public function delete($id){
         DB::table('subcategories')->where('id', $id)->delete();
