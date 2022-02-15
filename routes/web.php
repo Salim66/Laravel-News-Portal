@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
+use App\Http\Controllers\Backend\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,14 @@ Route::post('/store/subcategory', [SubCategoryController::class, 'store'])->name
 Route::get('/edit/subcategory/{id}', [SubCategoryController::class, 'edit'])->name('edit.subcategory');
 Route::post('/update/subcategory/{id}', [SubCategoryController::class, 'update'])->name('update.subcategory');
 Route::get('/delete/subcategory/{id}', [SubCategoryController::class, 'delete'])->name('delete.subcategory');
+
+// Admin Tags All Routes
+Route::get('/tags', [TagController::class, 'index'])->name('tags');
+Route::get('/add/tag', [TagController::class, 'create'])->name('add.tag');
+Route::post('/store/tag', [TagController::class, 'store'])->name('store.tag');
+Route::get('/edit/tag/{id}', [TagController::class, 'edit'])->name('edit.tag');
+Route::post('/update/tag/{id}', [TagController::class, 'update'])->name('update.tag');
+Route::get('/delete/tag/{id}', [TagController::class, 'delete'])->name('delete.tag');
 
 // Admin District All Routes
 Route::get('/districts', [DistrictController::class, 'index'])->name('districts');
