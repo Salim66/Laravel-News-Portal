@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\Backend\TagController;
@@ -70,3 +71,12 @@ Route::post('/store/subdistrict', [SubDistrictController::class, 'store'])->name
 Route::get('/edit/subdistrict/{id}', [SubDistrictController::class, 'edit'])->name('edit.subdistrict');
 Route::post('/update/subdistrict/{id}', [SubDistrictController::class, 'update'])->name('update.subdistrict');
 Route::get('/delete/subdistrict/{id}', [SubDistrictController::class, 'delete'])->name('delete.subdistrict');
+
+
+// Admin Post All Routes
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/add/post', [PostController::class, 'create'])->name('add.post');
+Route::post('/store/post', [PostController::class, 'store'])->name('store.post');
+Route::get('/edit/post/{id}', [PostController::class, 'edit'])->name('edit.post');
+Route::post('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
+Route::get('/delete/post/{id}', [PostController::class, 'delete'])->name('delete.post');
