@@ -93,13 +93,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Image Upload</label>
-                            <input type="file" name="image" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                              <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                              </span>
-                            </div>
+                            <input type="file" name="image" class="form-control">
                         </div>
                     </div>
                     <div class="row">
