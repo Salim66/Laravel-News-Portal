@@ -105,13 +105,41 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="exampleTextarea1">Details English</label>
-                            <textarea class="form-control" name="details_en" id="exampleTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" name="details_en" id="summernote" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="exampleTextarea1">Details Bangla</label>
-                            <textarea class="form-control" name="details_ban" id="exampleTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" name="details_ban" id="summernote1" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4 class="text-center">Extra Options</h4><br>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" name="headline" class="form-check-input"> Headline <i class="input-helper"></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" name="bigthumbnail" class="form-check-input"> Genarel Big Thumbnail <i class="input-helper"></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" name="first_section" class="form-check-input"> First Section <i class="input-helper"></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" name="first_section_thumbnail" class="form-check-input"> First Section Thumbnail <i class="input-helper"></i></label>
+                            </div>
                         </div>
                     </div>
 
