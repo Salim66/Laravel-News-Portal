@@ -75,8 +75,8 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="exampleSelectGender">SubCategory</label>
-                            <select name="subcategory_id" class="form-control" id="exampleSelectGender">
+                            <label for="exampleSelectGender">SubDistrict</label>
+                            <select name="subdistrict_id" class="form-control" id="exampleSelectGender">
 
                             </select>
                         </div>
@@ -145,5 +145,56 @@
           </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // SubCategory get by categroy
+        $('select[name="category_id"]').change(function(){
+            let category_id = $(this).val();
+            if(category_id){
+                $.ajax({
+                    url: '/get/subcategory/' + category_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="subcategory_id"]').empty();
+                        $.each(data, function(key,value){
+                            $('select[name="subcategory_id"]').append(`
+                            <option value='${value.id}'>${value.subcategory_en} | ${value.subcategory_ban}</option>
+                            `);
+                        });
+                    }
+                });
+            }else {
+                alert('danger');
+            }
+
+        })
+
+        // SubDistrict get by district
+        $('select[name="district_id"]').change(function(){
+            let district_id = $(this).val();
+
+            if(district_id){
+                $.ajax({
+                    url: '/get/subdistrict/' + district_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="subdistrict_id"]').empty();
+                        $.each(data, function(key,value){
+                            $('select[name="subdistrict_id"]').append(`
+                            <option value='${value.id}'>${value.subdistrict_en} | ${value.subdistrict_ban}</option>
+                            `);
+                        });
+                    }
+                });
+            }else {
+                alert('danger');
+            }
+
+        })
+    });
+</script>
 
 @endsection

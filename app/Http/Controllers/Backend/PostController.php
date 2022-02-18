@@ -87,4 +87,23 @@ class PostController extends Controller
 
         return redirect()->route('tags')->with($notification);
     }
+
+
+    /**
+     * Get SubCategroy By Ajax
+     */
+    public function getSubCategory($category_id){
+        $sub = DB::table('subcategories')->where('category_id', $category_id)->get();
+        return response()->json($sub);
+    }
+
+
+    /**
+     * Get SubDistrict By Ajax
+     */
+    public function getSubDistrict($district_id){
+        $sub = DB::table('subdistricts')->where('district_id', $district_id)->get();
+        return response()->json($sub);
+    }
+
 }

@@ -80,3 +80,5 @@ Route::post('/store/post', [PostController::class, 'store'])->name('store.post')
 Route::get('/edit/post/{id}', [PostController::class, 'edit'])->name('edit.post');
 Route::post('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
 Route::get('/delete/post/{id}', [PostController::class, 'delete'])->name('delete.post');
+Route::get('/get/subcategory/{category_id}', [PostController::class, 'getSubCategory']);
+Route::get('/get/subdistrict/{district_id}', [PostController::class, 'getSubDistrict']);
