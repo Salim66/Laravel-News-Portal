@@ -92,7 +92,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Image Upload</label>
+                            <label>Image Upload <small class="text-danger">( Image Length 1000 x 650 )</small></label>
                             <input type="file" name="image" class="form-control">
                         </div>
                     </div>

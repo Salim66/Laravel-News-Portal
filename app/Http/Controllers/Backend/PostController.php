@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class PostController extends Controller
 {
@@ -35,14 +36,15 @@ class PostController extends Controller
             'category_id' => 'required',
             'title_en' => 'required',
             'title_ban' => 'required',
+            'image' => 'required',
         ]);
 
         $data = [];
         $data['title_en'] = $request->title_en;
         $data['title_ban'] = $request->title_ban;
         $data['user_id'] = Auth::id();
-        $data['categroy_id'] = $request->categroy_id;
-        $data['subcategroy_id'] = $request->subcategroy_id;
+        $data['category_id'] = $request->category_id;
+        $data['subcategory_id'] = $request->subcategory_id;
         $data['district_id'] = $request->district_id;
         $data['subdistrict_id'] = $request->subdistrict_id;
         $data['tag_id'] = $request->tag_id;
@@ -55,14 +57,33 @@ class PostController extends Controller
         $data['post_date'] = date('d-m-Y');
         $data['post_month'] = date('F');
 
-        DB::table('tags')->insert($data);
 
-        $notification = [
-            'message' => 'Tag added successfully',
-            'alert-type' => 'success',
-        ];
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(1000, 650)->save('image/postimg/' . $image_one);
 
-        return redirect()->route('tags')->with($notification);
+            $data['image'] = 'image/postimg/' . $image_one;
+
+            DB::table('posts')->insert($data);
+
+            $notification = [
+                'message' => 'Post added successfully',
+                'alert-type' => 'success',
+            ];
+
+            return redirect()->back()->with($notification);
+
+        }else {
+            $notification = [
+                'message' => 'Please insert image',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+
+
     }
 
     /**
