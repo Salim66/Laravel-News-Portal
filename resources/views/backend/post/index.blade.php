@@ -29,16 +29,19 @@
             <div class="card">
               <div class="card-body">
                 <div class="template-demo">
-                    <h4 class="card-title float-left">Tag Page</h4>
-                    <a href="{{ route('add.tag') }}" class="btn btn-primary btn-fw float-right mb-4">+ Add Tag</a>
+                    <h4 class="card-title float-left">Post Page</h4>
+                    <a href="{{ route('add.post') }}" class="btn btn-primary btn-fw float-right mb-4">+ Add Post</a>
                 </div>
                 <div class="table-responsive">
                   <table id="table_id" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th> # </th>
-                        <th> Tag English </th>
-                        <th> Tag Bangla </th>
+                        <th> Post English </th>
+                        <th> Category </th>
+                        <th> District </th>
+                        <th> Image </th>
+                        <th> Post Date </th>
                         <th> Action </th>
                       </tr>
                     </thead>
@@ -47,8 +50,11 @@
                     @foreach($all_data as $data)
                       <tr>
                         <td> {{ $loop->index+1 }} </td>
-                        <td> {{ $data->tag_en }} </td>
-                        <td> {{ $data->tag_ban }} </td>
+                        <td> {{ Str::limit($data->title_en, 15, '...') }} </td>
+                        <td> {{ $data->category_en }} </td>
+                        <td> {{ $data->district_en }} </td>
+                        <td class="text-center"> <img src="{{ $data->image }}" height="70px" width="70px" alt=""> </td>
+                        <td> {{ $data->post_date }} </td>
                         <td>
                             <a href="{{ route('edit.tag', $data->id) }}" class="btn btn-info">Edit</a>
                             <a id="delete" href="{{ route('delete.tag', $data->id) }}" class="btn btn-danger">Delete</a>

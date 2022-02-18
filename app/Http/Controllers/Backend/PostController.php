@@ -14,7 +14,12 @@ class PostController extends Controller
      * Post view
      */
     public function index(){
-        $all_data = DB::table('posts')->orderBy('id', 'desc')->get();
+        $all_data = DB::table('posts')
+            ->join('categories', 'posts.category_id', 'categories.id')
+            ->join('subcategories', 'posts.subcategory_id', 'subcategories.id')
+            ->join('districts', 'posts.district_id', 'districts.id')
+            ->select('posts.*', 'categories.category_en', 'subcategories.subcategory_en', 'districts.district_en')
+            ->orderBy('id', 'desc')->get();
         return view('backend.post.index', compact('all_data'));
     }
 
