@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Add New Post</h4>
-                <form class="forms-sample" action="{{ route('store.post') }}" method="POST">
+                <form class="forms-sample" action="{{ route('store.post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -114,25 +114,25 @@
                         <div class="form-group col-md-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="checkbox" name="headline" class="form-check-input"> Headline <i class="input-helper"></i></label>
+                                <input type="checkbox" name="headline" class="form-check-input" value="1"> Headline <i class="input-helper"></i></label>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="checkbox" name="bigthumbnail" class="form-check-input"> Genarel Big Thumbnail <i class="input-helper"></i></label>
+                                <input type="checkbox" name="bigthumbnail" class="form-check-input" value="1"> Genarel Big Thumbnail <i class="input-helper"></i></label>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="checkbox" name="first_section" class="form-check-input"> First Section <i class="input-helper"></i></label>
+                                <input type="checkbox" name="first_section" class="form-check-input" value="1"> First Section <i class="input-helper"></i></label>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="checkbox" name="first_section_thumbnail" class="form-check-input"> First Section Thumbnail <i class="input-helper"></i></label>
+                                <input type="checkbox" name="first_section_thumbnail" class="form-check-input" value="1"> First Section Thumbnail <i class="input-helper"></i></label>
                             </div>
                         </div>
                     </div>

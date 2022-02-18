@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -31,13 +32,29 @@ class PostController extends Controller
      */
     public function store(Request $request){
         $this->validate($request, [
-            'tag_en' => 'required|unique:tags|max:255',
-            'tag_ban' => 'required|unique:tags|max:255',
+            'category_id' => 'required',
+            'title_en' => 'required',
+            'title_ban' => 'required',
         ]);
 
         $data = [];
-        $data['tag_en'] = $request->tag_en;
-        $data['tag_ban'] = $request->tag_ban;
+        $data['title_en'] = $request->title_en;
+        $data['title_ban'] = $request->title_ban;
+        $data['user_id'] = Auth::id();
+        $data['categroy_id'] = $request->categroy_id;
+        $data['subcategroy_id'] = $request->subcategroy_id;
+        $data['district_id'] = $request->district_id;
+        $data['subdistrict_id'] = $request->subdistrict_id;
+        $data['tag_id'] = $request->tag_id;
+        $data['details_en'] = $request->details_en;
+        $data['details_ban'] = $request->details_ban;
+        $data['headline'] = $request->headline;
+        $data['bigthumbnail'] = $request->bigthumbnail;
+        $data['first_section'] = $request->first_section;
+        $data['first_section_thumbnail'] = $request->first_section_thumbnail;
+        $data['post_date'] = date('d-m-Y');
+        $data['post_month'] = date('F');
+
         DB::table('tags')->insert($data);
 
         $notification = [
