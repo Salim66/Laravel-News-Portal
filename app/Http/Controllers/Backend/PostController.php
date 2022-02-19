@@ -167,14 +167,20 @@ class PostController extends Controller
      * Post Delete
      */
     public function delete($id){
-        DB::table('tags')->where('id', $id)->delete();
+        $data =  DB::table('posts')->where('id', $id)->first();
+
+        if(file_exists($data->image) && !empty($data->image)){
+            unlink($data->image);
+        }
+
+        DB::table('posts')->where('id', $id)->delete();
 
         $notification = [
-            'message' => 'Tag deleted successfully',
+            'message' => 'Post deleted successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('tags')->with($notification);
+        return redirect()->route('posts')->with($notification);
     }
 
 
