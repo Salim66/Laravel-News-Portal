@@ -95,8 +95,11 @@ class PostController extends Controller
      * Post Edit Page
      */
     public function edit($id){
-        $data = DB::table('tags')->where('id', $id)->first();
-        return view('backend.tag.edit', compact('data'));
+        $data = DB::table('posts')->where('id', $id)->first();
+        $category = DB::table('categories')->get();
+        $district = DB::table('districts')->get();
+        $tag = DB::table('tags')->get();
+        return view('backend.post.edit', compact('data', 'category', 'district', 'tag'));
     }
 
 

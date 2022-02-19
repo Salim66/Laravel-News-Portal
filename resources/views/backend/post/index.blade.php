@@ -56,8 +56,8 @@
                         <td class="text-center"> <img src="{{ $data->image }}" height="70px" width="70px" alt=""> </td>
                         <td> {{ $data->post_date }} </td>
                         <td>
-                            <a href="{{ route('edit.tag', $data->id) }}" class="btn btn-info">Edit</a>
-                            <a id="delete" href="{{ route('delete.tag', $data->id) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('edit.post', $data->id) }}" class="btn btn-info">Edit</a>
+                            <a id="delete" href="{{ route('delete.post', $data->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
                     @endforeach
