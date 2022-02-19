@@ -36,8 +36,10 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Edit Post</h4>
-                <form class="forms-sample" action="{{ route('update.tag', $data->id) }}" method="POST">
+                <form class="forms-sample" action="{{ route('update.post', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    <input type="hidden" name="old_image" value="{{ $data->image }}" class="form-control">
 
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -106,7 +108,6 @@
                         <div class="form-group col-md-6">
                             <label>Image Upload <small class="text-danger">( Image Length 1000 x 650 )</small></label>
                             <input type="file" name="image" class="form-control">
-                            <input type="hidden" name="old_image" value="{{ $data->image }}" class="form-control">
                             <img src="{{ URL::to($data->image) }}" height="60px" width="80px" alt="">
                         </div>
                     </div>
@@ -158,5 +159,56 @@
           </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // SubCategory get by categroy
+        $('select[name="category_id"]').change(function(){
+            let category_id = $(this).val();
+            if(category_id){
+                $.ajax({
+                    url: '/get/subcategory/' + category_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="subcategory_id"]').empty();
+                        $.each(data, function(key,value){
+                            $('select[name="subcategory_id"]').append(`
+                            <option value='${value.id}'>${value.subcategory_en} | ${value.subcategory_ban}</option>
+                            `);
+                        });
+                    }
+                });
+            }else {
+                alert('danger');
+            }
+
+        })
+
+        // SubDistrict get by district
+        $('select[name="district_id"]').change(function(){
+            let district_id = $(this).val();
+
+            if(district_id){
+                $.ajax({
+                    url: '/get/subdistrict/' + district_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select[name="subdistrict_id"]').empty();
+                        $.each(data, function(key,value){
+                            $('select[name="subdistrict_id"]').append(`
+                            <option value='${value.id}'>${value.subdistrict_en} | ${value.subdistrict_ban}</option>
+                            `);
+                        });
+                    }
+                });
+            }else {
+                alert('danger');
+            }
+
+        })
+    });
+</script>
 
 @endsection

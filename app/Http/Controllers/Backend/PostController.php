@@ -77,7 +77,7 @@ class PostController extends Controller
                 'alert-type' => 'success',
             ];
 
-            return redirect()->back()->with($notification);
+            return redirect()->route('posts')->with($notification);
 
         }else {
             $notification = [
@@ -107,17 +107,60 @@ class PostController extends Controller
      * Post Update
      */
     public function update(Request $request, $id){
+
         $data = [];
-        $data['tag_en'] = $request->tag_en;
-        $data['tag_ban'] = $request->tag_ban;
-        DB::table('tags')->where('id', $id)->update($data);
+        $data['title_en'] = $request->title_en;
+        $data['title_ban'] = $request->title_ban;
+        $data['user_id'] = Auth::id();
+        $data['category_id'] = $request->category_id;
+        $data['subcategory_id'] = $request->subcategory_id;
+        $data['district_id'] = $request->district_id;
+        $data['subdistrict_id'] = $request->subdistrict_id;
+        $data['tag_id'] = $request->tag_id;
+        $data['details_en'] = $request->details_en;
+        $data['details_ban'] = $request->details_ban;
+        $data['headline'] = $request->headline;
+        $data['bigthumbnail'] = $request->bigthumbnail;
+        $data['first_section'] = $request->first_section;
+        $data['first_section_thumbnail'] = $request->first_section_thumbnail;
 
-        $notification = [
-            'message' => 'Tag updated successfully',
-            'alert-type' => 'info',
-        ];
+        $old_image = $request->old_image;
 
-        return redirect()->route('tags')->with($notification);
+        $image = $request->file('image');
+        if($image){
+
+            $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(1000, 650)->save('image/postimg/' . $image_one);
+
+            $data['image'] = 'image/postimg/' . $image_one;
+
+            DB::table('posts')->where('id', $id)->update($data);
+
+            if(file_exists($old_image) && !empty($old_image)){
+                unlink($old_image);
+            }
+
+            $notification = [
+                'message' => 'Post updated successfully',
+                'alert-type' => 'info',
+            ];
+
+            return redirect()->route('posts')->with($notification);
+
+        }else {
+
+            $data['image'] = $old_image;
+
+            DB::table('posts')->where('id', $id)->update($data);
+
+            $notification = [
+                'message' => 'Post updated successfully',
+                'alert-type' => 'info',
+            ];
+
+            return redirect()->route('posts')->with($notification);
+        }
+
     }
 
     /**
