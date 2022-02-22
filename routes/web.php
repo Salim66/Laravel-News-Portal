@@ -99,3 +99,8 @@ Route::post('/update/seo/{id}', [SettingsController::class, 'seoSettingUpdate'])
 // Admin Prayer Settings Routes
 Route::get('/prayer/setting/', [SettingsController::class, 'prayerSetting'])->name('prayer.setting');
 Route::post('/update/prayer/{id}', [SettingsController::class, 'prayerSettingUpdate'])->name('update.prayer');
+
+
+// Admin LiveTv Settings Routes
+Route::get('/livetv/setting/', [SettingsController::class, 'livetvSetting'])->name('livetv.setting');
+Route::post('/update/livetv/{id}', [SettingsController::class, 'livetvSettingUpdate'])->name('update.livetv');

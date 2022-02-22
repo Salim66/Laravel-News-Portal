@@ -96,4 +96,29 @@ class SettingsController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+
+    /**
+     * LiveTv Settings Edit
+     */
+    public function livetvSetting(){
+        $data = DB::table('livetvs')->first();
+        return view('backend.setting.livetv', compact('data'));
+    }
+
+    /**
+     * LiveTv Settings Update
+     */
+    public function livetvSettingUpdate(Request $request, $id){
+        $data = [];
+        $data['embed_code'] = $request->embed_code;
+        DB::table('livetvs')->where('id', $id)->update($data);
+
+        $notification = [
+            'message' => 'LiveTV setting updated successfully',
+            'alert-type' => 'info',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
 }
