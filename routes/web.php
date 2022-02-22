@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
+use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SocialSettingsController;
@@ -122,3 +123,12 @@ Route::post('/store/website', [SettingsController::class, 'store'])->name('store
 Route::get('/edit/website/{id}', [SettingsController::class, 'edit'])->name('edit.website');
 Route::post('/update/website/{id}', [SettingsController::class, 'update'])->name('update.website');
 Route::get('/delete/website/{id}', [SettingsController::class, 'delete'])->name('delete.website');
+
+
+// Admin Photo Gallery Routes
+Route::get('/photos/gallery', [GalleryController::class, 'photoGallery'])->name('photo.gallery');
+Route::get('/add/photos/gallery', [GalleryController::class, 'addPhotoGallery'])->name('add.photo.gallery');
+Route::post('/store/photos/gallery', [GalleryController::class, 'store'])->name('store.photo.gallery');
+Route::get('/edit/photos/gallery/{id}', [GalleryController::class, 'edit'])->name('edit.photo.gallery');
+Route::post('/update/photos/gallery/{id}', [GalleryController::class, 'update'])->name('update.photo.gallery');
+Route::get('/delete/photos/gallery/{id}', [GalleryController::class, 'delete'])->name('delete.photo.gallery');
