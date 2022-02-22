@@ -104,3 +104,5 @@ Route::post('/update/prayer/{id}', [SettingsController::class, 'prayerSettingUpd
 // Admin LiveTv Settings Routes
 Route::get('/livetv/setting/', [SettingsController::class, 'livetvSetting'])->name('livetv.setting');
 Route::post('/update/livetv/{id}', [SettingsController::class, 'livetvSettingUpdate'])->name('update.livetv');
+Route::get('/livetv/active/{id}', [SettingsController::class, 'livetvActive'])->name('active.livetv');
+Route::get('/livetv/deactive/{id}', [SettingsController::class, 'livetvDeactive'])->name('deactive.livetv');

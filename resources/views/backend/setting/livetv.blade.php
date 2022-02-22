@@ -30,6 +30,22 @@
               <div class="card-body">
                 <h4 class="card-title">Edit Live TV Setting</h4>
                 <form class="forms-sample" action="{{ route('update.livetv', $data->id) }}" method="POST">
+                    <div class="template-demo">
+                        @if($data->status == 1)
+                        <a href="{{ route('deactive.livetv', $data->id) }}" class="btn btn-danger btn-fw mb-4">DeActive</a>
+                        @else
+                        <a href="{{ route('active.livetv', $data->id) }}" class="btn btn-primary btn-fw mb-4">Active</a>
+                        @endif
+                    </div>
+
+                    @if($data->status == 1)
+                    <small class="text-success">Now Live TV Are Active</small>
+                    @else
+                    <small class="text-danger">Now Live TV Are DeActive</small>
+                    @endif
+
+                    <br><br>
+
                     @csrf
                     <div class="form-group">
                         <label for="exampleTextarea1">Embed Code For Live</label>

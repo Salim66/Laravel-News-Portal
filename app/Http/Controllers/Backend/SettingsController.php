@@ -121,4 +121,30 @@ class SettingsController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    /**
+     * Live Tv active
+     */
+    public function livetvActive($id){
+        DB::table('livetvs')->where('id', $id)->update(['status' => 1]);
+        $notification = [
+            'message' => 'LiveTV active successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
+
+    /**
+     * Live Tv DeActive
+     */
+    public function livetvDeactive($id){
+        DB::table('livetvs')->where('id', $id)->update(['status' => 0]);
+        $notification = [
+            'message' => 'LiveTV DeActive successfully',
+            'alert-type' => 'error',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
 }
