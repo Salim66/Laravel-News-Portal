@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
@@ -86,5 +87,15 @@ Route::get('/get/subdistrict/{district_id}', [PostController::class, 'getSubDist
 
 
 // Admin Social Settings Routes
-Route::get('/social/setting/', [SocialSettingsController::class, 'socialSetting'])->name('social.setting');
-Route::post('/update/social/{id}', [SocialSettingsController::class, 'socialSettingUpdate'])->name('update.social');
+Route::get('/social/setting/', [SettingsController::class, 'socialSetting'])->name('social.setting');
+Route::post('/update/social/{id}', [SettingsController::class, 'socialSettingUpdate'])->name('update.social');
+
+
+// Admin Seo Settings Routes
+Route::get('/seo/setting/', [SettingsController::class, 'seoSetting'])->name('seo.setting');
+Route::post('/update/seo/{id}', [SettingsController::class, 'seoSettingUpdate'])->name('update.seo');
+
+
+// Admin Prayer Settings Routes
+Route::get('/prayer/setting/', [SettingsController::class, 'prayerSetting'])->name('prayer.setting');
+Route::post('/update/prayer/{id}', [SettingsController::class, 'prayerSettingUpdate'])->name('update.prayer');
