@@ -147,4 +147,55 @@ class SettingsController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+
+    /**
+     * Notice Settings Edit
+     */
+    public function noticeSetting(){
+        $data = DB::table('notices')->first();
+        return view('backend.setting.notice', compact('data'));
+    }
+
+    /**
+     * Notice Settings Update
+     */
+    public function noticeSettingUpdate(Request $request, $id){
+        $data = [];
+        $data['notice'] = $request->notice;
+        DB::table('notices')->where('id', $id)->update($data);
+
+        $notification = [
+            'message' => 'Notice setting updated successfully',
+            'alert-type' => 'info',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
+
+    /**
+     * Notice Tv active
+     */
+    public function noticeActive($id){
+        DB::table('notices')->where('id', $id)->update(['status' => 1]);
+        $notification = [
+            'message' => 'Notice active successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
+
+    /**
+     * Notice Tv DeActive
+     */
+    public function noticeDeactive($id){
+        DB::table('notices')->where('id', $id)->update(['status' => 0]);
+        $notification = [
+            'message' => 'Notice DeActive successfully',
+            'alert-type' => 'error',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
 }

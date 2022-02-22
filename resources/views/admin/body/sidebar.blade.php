@@ -143,6 +143,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{ route('seo.setting') }}"> Seo Setting </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('prayer.setting') }}"> Prayer Setting </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('livetv.setting') }}"> LiveTv Setting </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('notice.setting') }}"> Notice Setting </a></li>
           </ul>
         </div>
       </li>

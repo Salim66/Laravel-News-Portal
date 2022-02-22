@@ -28,28 +28,28 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Edit Live TV Setting</h4>
-                <form class="forms-sample" action="{{ route('update.livetv', $data->id) }}" method="POST">
+                <h4 class="card-title">Edit Notice Setting</h4>
+                <form class="forms-sample" action="{{ route('update.notice', $data->id) }}" method="POST">
                     <div class="template-demo">
                         @if($data->status == 1)
-                        <a href="{{ route('deactive.livetv', $data->id) }}" class="btn btn-danger btn-fw mb-4">DeActive</a>
+                        <a href="{{ route('deactive.notice', $data->id) }}" class="btn btn-danger btn-fw mb-4">DeActive</a>
                         @else
-                        <a href="{{ route('active.livetv', $data->id) }}" class="btn btn-success btn-fw mb-4">Active</a>
+                        <a href="{{ route('active.notice', $data->id) }}" class="btn btn-success btn-fw mb-4">Active</a>
                         @endif
                     </div>
 
                     @if($data->status == 1)
-                    <small class="text-success">Now Live TV Are Active</small>
+                    <small class="text-success">Now Notice Are Active</small>
                     @else
-                    <small class="text-danger">Now Live TV Are DeActive</small>
+                    <small class="text-danger">Now Notice Are DeActive</small>
                     @endif
 
                     <br><br>
 
                     @csrf
                     <div class="form-group">
-                        <label for="exampleTextarea1">Embed Code For Live</label>
-                        <textarea class="form-control" name="embed_code" id="summernote" rows="4">{{ $data->embed_code }}</textarea>
+                        <label for="exampleTextarea1">Notice</label>
+                        <textarea class="form-control" name="notice" id="summernote" rows="4">{{ $data->notice }}</textarea>
                     </div>
 
 
