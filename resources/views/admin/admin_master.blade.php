@@ -18,8 +18,11 @@
     <!-- Datatable -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/datatables.min.css') }}">
     <!-- Summernote Editor -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> --}}
+    <script src="{{ asset('backend/') }}/assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="{{ asset('backend/') }}/assets/js/popper.min.js"></script>
+     <link rel="stylesheet" href="{{ asset('backend/assets/css/summernote-bs4.min.css') }}">
+    {{-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> --}}
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -100,8 +103,10 @@
     </script>
 
     <!-- summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/summernote-bs4.min.css') }}">
+    <script src="{{ asset('backend/') }}/assets/js/summernote-bs4.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --}}
     <script type="text/javascript">
         $('#summernote').summernote({
             height: 200

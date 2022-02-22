@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\Backend\TagController;
@@ -82,3 +83,8 @@ Route::post('/update/post/{id}', [PostController::class, 'update'])->name('updat
 Route::get('/delete/post/{id}', [PostController::class, 'delete'])->name('delete.post');
 Route::get('/get/subcategory/{category_id}', [PostController::class, 'getSubCategory']);
 Route::get('/get/subdistrict/{district_id}', [PostController::class, 'getSubDistrict']);
+
+
+// Admin Social Settings Routes
+Route::get('/social/setting/', [SocialSettingsController::class, 'socialSetting'])->name('social.setting');
+Route::post('/update/social/{id}', [SocialSettingsController::class, 'socialSettingUpdate'])->name('update.social');
