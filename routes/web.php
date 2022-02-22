@@ -113,3 +113,12 @@ Route::get('/notice/setting/', [SettingsController::class, 'noticeSetting'])->na
 Route::post('/update/notice/{id}', [SettingsController::class, 'noticeSettingUpdate'])->name('update.notice');
 Route::get('/notice/active/{id}', [SettingsController::class, 'noticeActive'])->name('active.notice');
 Route::get('/notice/deactive/{id}', [SettingsController::class, 'noticeDeactive'])->name('deactive.notice');
+
+
+// Admin Website Settings Routes
+Route::get('/websites', [SettingsController::class, 'index'])->name('websites');
+Route::get('/add/website', [SettingsController::class, 'create'])->name('add.website');
+Route::post('/store/website', [SettingsController::class, 'store'])->name('store.website');
+Route::get('/edit/website/{id}', [SettingsController::class, 'edit'])->name('edit.website');
+Route::post('/update/website/{id}', [SettingsController::class, 'update'])->name('update.website');
+Route::get('/delete/website/{id}', [SettingsController::class, 'delete'])->name('delete.website');

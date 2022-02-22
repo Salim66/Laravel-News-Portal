@@ -198,4 +198,88 @@ class SettingsController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+
+
+
+
+
+
+    ////////////// Websites //////////////
+    /**
+     * Website view
+     */
+    public function index(){
+        $all_data = DB::table('websites')->orderBy('id', 'desc')->get();
+        return view('backend.website.index', compact('all_data'));
+    }
+
+    /**
+     * Website create page
+     */
+    public function create(){
+        return view('backend.website.create');
+    }
+
+    /**
+     * Website Store
+     */
+    public function store(Request $request){
+        $this->validate($request, [
+            'website_name' => 'required',
+            'website_link' => 'required',
+        ]);
+
+        $data = [];
+        $data['website_name'] = $request->website_name;
+        $data['website_link'] = $request->website_link;
+        DB::table('websites')->insert($data);
+
+        $notification = [
+            'message' => 'Website added successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('websites')->with($notification);
+    }
+
+    /**
+     * Website Edit Page
+     */
+    public function edit($id){
+        $data = DB::table('websites')->where('id', $id)->first();
+        return view('backend.website.edit', compact('data'));
+    }
+
+
+    /**
+     * Website Update
+     */
+    public function update(Request $request, $id){
+        $data = [];
+        $data['website_name'] = $request->website_name;
+        $data['website_link'] = $request->website_link;
+        DB::table('websites')->where('id', $id)->update($data);
+
+        $notification = [
+            'message' => 'Website updated successfully',
+            'alert-type' => 'info',
+        ];
+
+        return redirect()->route('websites')->with($notification);
+    }
+
+    /**
+     * Website Delete
+     */
+    public function delete($id){
+        DB::table('websites')->where('id', $id)->delete();
+
+        $notification = [
+            'message' => 'Website deleted successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('websites')->with($notification);
+    }
 }
