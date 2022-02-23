@@ -32,15 +32,14 @@
           </div>
           <div class="col-lg-6">
              <ul class="top-header-others">
+
                 <li>
                    <div class="languages-list">
-                      <select>
-                         <option value="1">English</option>
-                         <option value="2">العربيّة</option>
-                         <option value="3">Deutsch</option>
-                         <option value="3">Português</option>
-                         <option value="3">简体中文</option>
-                      </select>
+                    @if(session()->get('lang') == 'bangla')
+                    <a href="{{ route('lang.english') }}">English</a>
+                    @else
+                    <a href="{{ route('lang.bangla') }}">বাংলা</a>
+                    @endif
                    </div>
                 </li>
                 <li>

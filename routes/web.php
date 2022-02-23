@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Frontend\ExtraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Frontend Routes
+
 Route::get('/', function () {
     return view('main.home');
 });
+
+
+Route::get('/lang/bangla', [ExtraController::class, 'langBangla'])->name('lang.bangla');
+Route::get('/lang/english', [ExtraController::class, 'langEnglish'])->name('lang.english');
+
+
+
+
+
+// Backend Routes
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.index');

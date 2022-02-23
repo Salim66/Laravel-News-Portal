@@ -30,7 +30,11 @@
                    @foreach($categories as $cat)
                    <li class="nav-item">
                       <a href="#" class="nav-link">
-                      {{ $cat->category_en }}
+                        @if(session()->get('lang') == 'english')
+                        {{ $cat->category_en }}
+                        @else
+                        {{ $cat->category_ban }}
+                        @endif
                       <i class='bx bx-chevron-down'></i>
                       </a>
                       <ul class="dropdown-menu">
@@ -42,7 +46,11 @@
                         @foreach($subcategories as $subcat)
                          <li class="nav-item">
                             <a href="news.html" class="nav-link">
-                            {{ $subcat->subcategory_en }}
+                                @if(session()->get('lang') == 'english')
+                                {{ $subcat->subcategory_en }}
+                                @else
+                                {{ $subcat->subcategory_ban }}
+                                @endif
                             </a>
                          </li>
                          @endforeach
