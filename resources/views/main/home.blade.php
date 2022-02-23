@@ -865,7 +865,11 @@
                 @endphp
                 @if($livetv->status == 1)
                 <section class="widget widget_featured_reports">
+                   @if(session()->get('lang') == 'english')
                    <h3 class="widget-title">Live TV</h3>
+                   @else
+                   <h3 class="widget-title">সরাসরি সম্প্রচার</h3>
+                   @endif
                    <div class="single-featured-reports">
                       <div class="featured-reports-image">
                           <div class="ratio ratio-16x9">
@@ -995,6 +999,80 @@
                       </div>
                    </div>
                 </section>
+                @php
+                    $prayer = DB::table('prayers')->first();
+                @endphp
+                <section class="widget widget_popular_posts_thumb">
+                   @if(session()->get('lang') == 'english')
+                   <h3 class="widget-title">Prayer Time</h3>
+                   @else
+                   <h3 class="widget-title">নামাজের সময়</h3>
+                   @endif
+                   <div>
+                     <table class="table">
+                         <tr>
+                             <th>
+                                @if(session()->get('lang') == 'english')
+                                Fajar
+                                @else
+                                ফজর
+                                @endif
+                             </th>
+                             <th>{{ $prayer->fojr }}</th>
+                         </tr>
+                         <tr>
+                             <th>
+                                @if(session()->get('lang') == 'english')
+                                Dhuhr
+                                @else
+                                যুহর
+                                @endif
+                             </th>
+                             <th>{{ $prayer->johor }}</th>
+                         </tr>
+                         <tr>
+                             <th>
+                                @if(session()->get('lang') == 'english')
+                                Asr
+                                @else
+                                আসর
+                                @endif
+                             </th>
+                             <th>{{ $prayer->asor }}</th>
+                         </tr>
+                         <tr>
+                             <th>
+                                @if(session()->get('lang') == 'english')
+                                Maghrib
+                                @else
+                                মাগরিব
+                                @endif
+                             </th>
+                             <th>{{ $prayer->magrib }}</th>
+                         </tr>
+                         <tr>
+                             <th>
+                                @if(session()->get('lang') == 'english')
+                                Isha
+                                @else
+                                ইশা
+                                @endif
+                             </th>
+                             <th>{{ $prayer->eaha }}</th>
+                         </tr>
+                         <tr>
+                             <th>
+                                @if(session()->get('lang') == 'english')
+                                Jummah
+                                @else
+                                জুম্মা
+                                @endif
+                             </th>
+                             <th>{{ $prayer->jummah }}</th>
+                         </tr>
+                     </table>
+                   </div>
+                </section>
                 <section class="widget widget_popular_posts_thumb">
                    <h3 class="widget-title">Popular posts</h3>
                    <article class="item">
@@ -1106,6 +1184,25 @@
                       </li>
                    </ul>
                 </section>
+
+                @php
+                    $websites = DB::table('websites')->get();
+                @endphp
+                <!-- Inportant Website -->
+                <section class="widget widget_instagram">
+                    @if(session()->get('lang') == 'english')
+                    <h3 class="widget-title">Important Websites</h3>
+                    @else
+                    <h3 class="widget-title">গুরুত্বপূর্ণ ওয়েবসাইট</h3>
+                    @endif
+                    <article class="item">
+                        @foreach($websites as $website)
+                        <div class="info">
+                           <a href="{{ $website->website_link }}">{{ $website->website_name }}</a>
+                        </div>
+                        @endforeach
+                     </article>
+                 </section>
              </aside>
           </div>
        </div>

@@ -8,6 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="{{ $seo->meta_description }}" />
       <meta name="keywords" content="{{ $seo->meta_keyword }}" />
+      <meta name="author" content="{{ $seo->meta_author }}" />
       <meta name="brand_name" content="Chandlee News" />
       <meta name="apple-mobile-web-app-title" content="Chandlee News" />
       <!-- Google Analytics -->
@@ -44,7 +45,11 @@
                <div class="circle circle-2"></div>
                <div class="circle circle-3"></div>
             </div>
+            @if(session()->get('lang') == 'english')
             <span>Loading...</span>
+            @else
+            <span>লোড হচ্ছে...</span>
+            @endif
          </div>
       </div>
 
