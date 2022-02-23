@@ -49,7 +49,7 @@
                       <tr>
                         <td> {{ $loop->index+1 }} </td>
                         <td> {{ Str::limit($data->title_en, 15, '...') }} </td>
-                        <td class="text-center"> <img src="{{ $data->photo }}" height="70px" width="70px" alt=""> </td>
+                        <td class="text-center"> <img src="{{ URL::to($data->photo) }}" height="70px" width="70px" alt=""> </td>
                         <td>
                             @if($data->type == 1)
                             <span class="badge badge-success">Big Photo</span>
@@ -58,8 +58,8 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('edit.post', $data->id) }}" class="btn btn-info">Edit</a>
-                            <a id="delete" href="{{ route('delete.post', $data->id) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('edit.photo.gallery', $data->id) }}" class="btn btn-info">Edit</a>
+                            <a id="delete" href="{{ route('delete.photo.gallery', $data->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
                     @endforeach

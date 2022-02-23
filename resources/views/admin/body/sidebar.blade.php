@@ -168,7 +168,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-playlist-play"></i>
           </span>
-          <span class="menu-title">photos</span>
+          <span class="menu-title">Gallery</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="photos">

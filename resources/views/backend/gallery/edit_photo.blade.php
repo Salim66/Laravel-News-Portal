@@ -28,20 +28,20 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Add New Photo Gallery</h4>
-                <form class="forms-sample" action="{{ route('store.photo.gallery') }}" method="POST" enctype="multipart/form-data">
+                <h4 class="card-title">Edit Photo Gallery</h4>
+                <form class="forms-sample" action="{{ route('update.photo.gallery', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputUsername1">Title English</label>
-                            <input type="text" class="form-control" name="title_en" placeholder="Title English">
+                            <input type="text" class="form-control" name="title_en" placeholder="Title English" value="{{ $data->title_en }}">
                             @error('title_en')
                               <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail1">Title Bangla</label>
-                            <input type="text" class="form-control" name="title_ban" placeholder="Title Bangla">
+                            <input type="text" class="form-control" name="title_ban" placeholder="Title Bangla" value="{{ $data->title_ban }}">
                             @error('title_ban')
                               <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -56,12 +56,14 @@
                             @error('photo')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
+                            <img src="{{ URL::to($data->photo) }}" height="100" width="120" alt="">
+                            <input type="hidden" name="old_photo" value="{{ $data->photo }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleSelectGender">Select Type</label>
                             <select name="type" class="form-control" id="exampleSelectGender">
-                            <option value="1">Big Photo</option>
-                            <option value="0">Small Photo</option>
+                            <option value="1" {{ $data->type == 1 ? 'selected' : '' }}>Big Photo</option>
+                            <option value="0" {{ $data->type == 0 ? 'selected' : '' }}>Small Photo</option>
                             </select>
                             @error('type')
                             <span class="text-danger">{{ $message }}</span>
@@ -70,7 +72,7 @@
                     </div>
 
 
-                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  <button type="submit" class="btn btn-primary mr-2">Update</button>
                 </form>
               </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Image;
 
 class GalleryController extends Controller
 {
@@ -26,63 +27,116 @@ class GalleryController extends Controller
     /**
      * Photo Store
      */
-    public function store(Request $request){
+    public function storePhotoGallery(Request $request){
         $this->validate($request, [
             'photo' => 'required',
             'title_en' => 'required',
             'title_ban' => 'required',
+            'type' => 'required',
         ]);
 
         $data = [];
-        $data['title_en'] = $request->website_name;
-        $data['website_link'] = $request->website_link;
-        DB::table('title_ban')->insert($data);
+        $data['title_en'] = $request->title_en;
+        $data['title_ban'] = $request->title_ban;
+        $data['type'] = $request->type;
+        $data['post_date'] = date('d-m-Y');
 
-        $notification = [
-            'message' => 'Website added successfully',
-            'alert-type' => 'success',
-        ];
 
-        return redirect()->route('websites')->with($notification);
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(1000, 650)->save('image/photogallery/' . $image_one);
+
+            $data['photo'] = 'image/photogallery/' . $image_one;
+
+            DB::table('photos')->insert($data);
+
+            $notification = [
+                'message' => 'Photo gallery added successfully',
+                'alert-type' => 'success',
+            ];
+
+            return redirect()->route('photo.gallery')->with($notification);
+
+        }else {
+            $notification = [
+                'message' => 'Please insert photo',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->with($notification);
+        }
     }
 
     /**
-     * Website Edit Page
+     * Photo Edit Page
      */
-    public function edit($id){
-        $data = DB::table('websites')->where('id', $id)->first();
-        return view('backend.website.edit', compact('data'));
+    public function editPhotoGallery($id){
+        $data = DB::table('photos')->where('id', $id)->first();
+        return view('backend.gallery.edit_photo', compact('data'));
     }
 
 
     /**
-     * Website Update
+     * Photo Update
      */
-    public function update(Request $request, $id){
+    public function updatePhotoGallery(Request $request, $id){
+
         $data = [];
-        $data['website_name'] = $request->website_name;
-        $data['website_link'] = $request->website_link;
-        DB::table('websites')->where('id', $id)->update($data);
+        $data['title_en'] = $request->title_en;
+        $data['title_ban'] = $request->title_ban;
+        $data['type'] = $request->type;
+        $data['post_date'] = date('d-m-Y');
 
-        $notification = [
-            'message' => 'Website updated successfully',
-            'alert-type' => 'info',
-        ];
+        $old_photo = $request->old_photo;
 
-        return redirect()->route('websites')->with($notification);
+        $image = $request->file('photo');
+        if($image){
+
+            $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(1000, 650)->save('image/photogallery/' . $image_one);
+
+            $data['photo'] = 'image/photogallery/' . $image_one;
+
+            DB::table('photos')->where('id', $id)->update($data);
+
+            if(file_exists($old_photo) && !empty($old_photo)){
+                unlink($old_photo);
+            }
+
+            $notification = [
+                'message' => 'Photo gallery updated successfully',
+                'alert-type' => 'info',
+            ];
+
+            return redirect()->route('photo.gallery')->with($notification);
+
+        }else {
+
+            $data['photo'] = $old_photo;
+
+            DB::table('photos')->where('id', $id)->update($data);
+
+            $notification = [
+                'message' => 'Photo gallery updated successfully',
+                'alert-type' => 'info',
+            ];
+
+            return redirect()->route('photo.gallery')->with($notification);
+        }
     }
 
     /**
-     * Website Delete
+     * Photo Delete
      */
-    public function delete($id){
-        DB::table('websites')->where('id', $id)->delete();
+    public function deletePhotoGallery($id){
+        DB::table('photos')->where('id', $id)->delete();
 
         $notification = [
-            'message' => 'Website deleted successfully',
+            'message' => 'Photo gallery deleted successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('websites')->with($notification);
+        return redirect()->route('photo.gallery')->with($notification);
     }
 }

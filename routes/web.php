@@ -128,7 +128,7 @@ Route::get('/delete/website/{id}', [SettingsController::class, 'delete'])->name(
 // Admin Photo Gallery Routes
 Route::get('/photos/gallery', [GalleryController::class, 'photoGallery'])->name('photo.gallery');
 Route::get('/add/photos/gallery', [GalleryController::class, 'addPhotoGallery'])->name('add.photo.gallery');
-Route::post('/store/photos/gallery', [GalleryController::class, 'store'])->name('store.photo.gallery');
-Route::get('/edit/photos/gallery/{id}', [GalleryController::class, 'edit'])->name('edit.photo.gallery');
-Route::post('/update/photos/gallery/{id}', [GalleryController::class, 'update'])->name('update.photo.gallery');
-Route::get('/delete/photos/gallery/{id}', [GalleryController::class, 'delete'])->name('delete.photo.gallery');
+Route::post('/store/photos/gallery', [GalleryController::class, 'storePhotoGallery'])->name('store.photo.gallery');
+Route::get('/edit/photos/gallery/{id}', [GalleryController::class, 'editPhotoGallery'])->name('edit.photo.gallery');
+Route::post('/update/photos/gallery/{id}', [GalleryController::class, 'updatePhotoGallery'])->name('update.photo.gallery');
+Route::get('/delete/photos/gallery/{id}', [GalleryController::class, 'deletePhotoGallery'])->name('delete.photo.gallery');

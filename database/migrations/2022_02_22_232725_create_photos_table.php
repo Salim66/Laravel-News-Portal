@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title_en');
             $table->string('title_ban');
             $table->integer('type')->default(0);
+            $table->string('post_date')->nullable();
             $table->timestamps();
         });
     }
