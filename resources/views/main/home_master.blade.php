@@ -1,8 +1,27 @@
+@php
+    $seo = DB::table('seos')->first();
+@endphp
 <!doctype html>
 <html lang="zxx">
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="{{ $seo->meta_description }}" />
+      <meta name="keywords" content="{{ $seo->meta_keyword }}" />
+      <meta name="brand_name" content="Chandlee News" />
+      <meta name="apple-mobile-web-app-title" content="Chandlee News" />
+      <!-- Google Analytics -->
+      <script>
+          {!! $seo->google_analytics !!}
+      </script>
+      <!-- Google Verification -->
+      <noscript>
+        {!! $seo->google_verification !!}
+      </noscript>
+      <!-- Alexa Analytics -->
+      <script>
+        {!! $seo->alexa_analytics !!}
+      </script>
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/bootstrap.min.css">
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/animate.min.css">
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/meanmenu.css">
@@ -13,7 +32,7 @@
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/nice-select.min.css">
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/style.css">
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/responsive.css">
-      <title>Chandlee News</title>
+      <title>{{ $seo->meta_title }}</title>
       <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
    </head>
    <body>

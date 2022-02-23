@@ -7,29 +7,34 @@
                 <img src="{{ asset('frontend/') }}/assets/img/logo_news.png" style="height: 80px" alt="image">
                 </a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                @php
+                    $social = DB::table('socials')->first();
+                @endphp
+
                 <ul class="social">
                    <li>
-                      <a href="#" class="facebook" target="_blank">
+                      <a href="{{ $social->facebook }}" class="facebook" target="_blank">
                       <i class='bx bxl-facebook'></i>
                       </a>
                    </li>
                    <li>
-                      <a href="#" class="twitter" target="_blank">
+                      <a href="{{ $social->instagram }}" class="twitter" target="_blank">
                       <i class='bx bxl-instagram'></i>
                       </a>
                    </li>
                    <li>
-                      <a href="#" class="pinterest" target="_blank">
+                      <a href="{{ $social->linkedin }}" class="pinterest" target="_blank">
                       <i class='bx bxl-linkedin'></i>
                       </a>
                    </li>
                    <li>
-                      <a href="#" class="linkedin" target="_blank">
+                      <a href="{{ $social->twitter }}" class="linkedin" target="_blank">
                       <i class='bx bxl-twitter'></i>
                       </a>
                    </li>
                    <li>
-                      <a href="#" class="linkedin" target="_blank">
+                      <a href="{{ $social->youtube }}" class="linkedin" target="_blank">
                       <i class='bx bxl-youtube'></i>
                       </a>
                    </li>

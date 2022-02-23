@@ -68,7 +68,7 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="exampleTextarea1">Google Analytics</label>
+                    <label for="exampleTextarea1">Alexa Analytics</label>
                     <textarea class="form-control" name="alexa_analytics" rows="4">{{ $data->alexa_analytics }}</textarea>
                   </div>
 
