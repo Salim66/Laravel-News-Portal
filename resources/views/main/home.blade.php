@@ -860,22 +860,21 @@
                       </li>
                    </ul>
                 </section>
+                @php
+                    $livetv = DB::table('livetvs')->first();
+                @endphp
+                @if($livetv->status == 1)
                 <section class="widget widget_featured_reports">
-                   <h3 class="widget-title">Featured reports</h3>
+                   <h3 class="widget-title">Live TV</h3>
                    <div class="single-featured-reports">
                       <div class="featured-reports-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/featured-reports/featured-reports-2.jpg" alt="image">
-                         </a>
-                         <div class="featured-reports-content">
-                            <h3>
-                               <a href="#">All the highlights from western fashion week summer 2021</a>
-                            </h3>
-                            <p><a href="#">Patricia</a> / 28 September, 2021</p>
-                         </div>
+                          <div class="ratio ratio-16x9">
+                            {!! htmlspecialchars_decode($livetv->embed_code) !!}
+                          </div>
                       </div>
                    </div>
                 </section>
+                @endif
                 <section class="widget widget_latest_news_thumb">
                    <h3 class="widget-title">Latest news</h3>
                    <article class="item">
