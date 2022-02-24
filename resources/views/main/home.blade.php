@@ -1,89 +1,109 @@
 @extends('main.home_master')
 
 @section('content')
+
+@php
+    $firstBigThumb = DB::table('posts')->where('first_section_thumbnail', 1)
+    ->join('categories', 'posts.category_id', 'categories.id')
+    ->select('posts.*', 'categories.category_en', 'categories.category_ban')
+    ->orderBy('id', 'desc')->first();
+
+    $firstsection = DB::table('posts')->where('first_section', 1)
+    ->join('categories', 'posts.category_id', 'categories.id')
+    ->select('posts.*', 'categories.category_en', 'categories.category_ban')
+    ->orderBy('id', 'desc')->limit(4)->get();
+
+@endphp
 <section class="new-news-area">
     <div class="container">
        <div class="row">
           <div class="col-lg-3">
-             <div class="single-new-news">
-                <div class="new-news-image">
-                   <a href="#">
-                   <img src="{{ asset('frontend/') }}/assets/img/new-news/new-news-1.jpg" alt="image">
-                   </a>
-                   <div class="new-news-content">
-                      <span>Politics</span>
-                      <h3>
-                         <a href="#">All the highlights from western fashion week summer 2021</a>
-                      </h3>
-                      <p>28 September 2021</p>
-                   </div>
-                </div>
-             </div>
-             <div class="single-new-news">
-                <div class="new-news-image">
-                   <a href="#">
-                   <img src="{{ asset('frontend/') }}/assets/img/new-news/new-news-2.jpg" alt="image">
-                   </a>
-                   <div class="new-news-content">
-                      <span>Business</span>
-                      <h3>
-                         <a href="#">Follow some simple rules to invest money in any business</a>
-                      </h3>
-                      <p>28 September 2021</p>
-                   </div>
-                </div>
-             </div>
+             @foreach($firstsection as $key => $first)
+                @if ($key < 2)
+                    <div class="single-new-news">
+                        <div class="new-news-image">
+                        <a href="#">
+                        <img src="{{ URL::to($first->image) }}" alt="image">
+                        </a>
+                        <div class="new-news-content">
+                            @if(session()->get('lang') == 'english')
+                            <span>{{ $first->category_en }}</span>
+                            @else
+                            <span>{{ $first->category_ban }}</span>
+                            @endif
+                            <h3>
+                                <a href="#">
+                                    @if(session()->get('lang') == 'english')
+                                    {{ $first->title_en }}
+                                    @else
+                                    {{ $first->title_ban }}
+                                    @endif
+                                </a>
+                            </h3>
+                            <p>{{ date('d F Y', strtotime($first->post_date)) }}</p>
+                        </div>
+                        </div>
+                    </div>
+                @endif
+             @endforeach
           </div>
+
           <div class="col-lg-6">
              <div class="single-new-news-box">
                 <div class="new-news-image">
                    <a href="#">
-                   <img src="{{ asset('frontend/') }}/assets/img/new-news/new-news-3.jpg" alt="image">
+                   <img src="{{ URL::to($firstBigThumb->image) }}" alt="image">
                    </a>
                    <div class="new-news-content">
-                      <span>World news</span>
+                      @if(session()->get('lang') == 'english')
+                      <span>{{ $firstBigThumb->category_en }}</span>
+                      @else
+                      <span>{{ $firstBigThumb->category_ban }}</span>
+                      @endif
                       <h3>
-                         <a href="#">More than 1 million people have died of coronavirus worldwide so far, so people are becoming aware</a>
+                        <a href="#">
+                            @if(session()->get('lang') == 'english')
+                            {{ $firstBigThumb->title_en }}
+                            @else
+                            {{ $firstBigThumb->title_ban }}
+                            @endif
+                        </a>
                       </h3>
-                      <p>28 September 2021</p>
+                      <p>{{ date('d F Y', strtotime($firstBigThumb->post_date)) }}</p>
                    </div>
                 </div>
              </div>
           </div>
+
           <div class="col-lg-3">
-             <div class="daily-briefing-item">
-                <div class="title">
-                   <h3>Daily briefing</h3>
+            @foreach($firstsection as $key => $first)
+            @if ($key >= 2)
+                <div class="single-new-news">
+                    <div class="new-news-image">
+                    <a href="#">
+                    <img src="{{ URL::to($first->image) }}" alt="image">
+                    </a>
+                    <div class="new-news-content">
+                        @if(session()->get('lang') == 'english')
+                        <span>{{ $first->category_en }}</span>
+                        @else
+                        <span>{{ $first->category_ban }}</span>
+                        @endif
+                        <h3>
+                            <a href="#">
+                                @if(session()->get('lang') == 'english')
+                                {{ $first->title_en }}
+                                @else
+                                {{ $first->title_ban }}
+                                @endif
+                            </a>
+                        </h3>
+                        <p>{{ date('d F Y', strtotime($first->post_date)) }}</p>
+                    </div>
+                    </div>
                 </div>
-                <div class="daily-briefing-content">
-                   <span>Sports</span>
-                   <h4>
-                      <a href="#">Who is ahead in the final of the women’s world cup football match</a>
-                   </h4>
-                   <p>28 September 2021</p>
-                </div>
-                <div class="daily-briefing-content">
-                   <span>Technology</span>
-                   <h4>
-                      <a href="#">A team of British troops is constantly monitoring cyber attacks</a>
-                   </h4>
-                   <p>28 September 2021</p>
-                </div>
-                <div class="daily-briefing-content">
-                   <span>Culture</span>
-                   <h4>
-                      <a href="#">Entertainment activists started again a few months later</a>
-                   </h4>
-                   <p>28 September 2021</p>
-                </div>
-                <div class="daily-briefing-content">
-                   <span>World news</span>
-                   <h4>
-                      <a href="#">Differences between user experience interface</a>
-                   </h4>
-                   <p>28 September 2021</p>
-                </div>
-             </div>
+            @endif
+         @endforeach
           </div>
        </div>
     </div>
