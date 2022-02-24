@@ -1186,7 +1186,7 @@
                 </section>
 
                 @php
-                    $websites = DB::table('websites')->get();
+                    $websites = DB::table('websites')->limit(5)->get();
                 @endphp
                 <!-- Inportant Website -->
                 <section class="widget widget_instagram">
@@ -1198,7 +1198,7 @@
                     <article class="item">
                         @foreach($websites as $website)
                         <div class="info">
-                           <a href="{{ $website->website_link }}">{{ $website->website_name }}</a>
+                           {{ $loop->index+1 }}. <a href="{{ $website->website_link }}" target="_blank">{{ $website->website_name }}</a>
                         </div>
                         @endforeach
                      </article>
