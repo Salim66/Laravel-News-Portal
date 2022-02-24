@@ -162,7 +162,8 @@ class SettingsController extends Controller
      */
     public function noticeSettingUpdate(Request $request, $id){
         $data = [];
-        $data['notice'] = $request->notice;
+        $data['notice_en'] = $request->notice_en;
+        $data['notice_ban'] = $request->notice_ban;
         DB::table('notices')->where('id', $id)->update($data);
 
         $notification = [

@@ -56,6 +56,45 @@
       @include('main.body.top-header')
       @include('main.body.header')
 
+      @php
+        $notice = DB::table('notices')->first();
+      @endphp
+
+     @if($notice->status == 1)
+     <div class="top-header-area bg-ffffff">
+        <div class="container">
+           <div class="row align-items-center">
+              <div class="col-lg-12">
+                 <div class="breaking-news-content">
+                    <h6 class="breaking-title">
+                       @if(session()->get('lang') == 'english')
+                       Notice:&nbsp;&nbsp;
+                       @else
+                       নোটিশ:&nbsp;&nbsp;
+                       @endif
+                    </h6>
+                    <div class="breaking-news-slides owl-carousel owl-theme">
+                       <div class="single-breaking-news">
+                          <p>
+                             <a href="#">
+                              <marquee>
+                               @if(session()->get('lang') == 'english')
+                               {!! $notice->notice_en !!}
+                               @else
+                               {!! $notice->notice_ban !!}
+                               @endif
+                              </marquee>
+                             </a>
+                          </p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     @endif
+
       @section('content')
       @show
 

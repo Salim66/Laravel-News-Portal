@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->text('notice')->nullable();
+            $table->text('notice_en')->nullable();
+            $table->text('notice_ban')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
         });

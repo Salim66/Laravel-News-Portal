@@ -48,8 +48,12 @@
 
                     @csrf
                     <div class="form-group">
-                        <label for="exampleTextarea1">Notice</label>
-                        <textarea class="form-control" name="notice" id="summernote" rows="4">{{ $data->notice }}</textarea>
+                        <label for="exampleTextarea1">Notice English</label>
+                        <textarea class="form-control" name="notice_en" id="summernote" rows="4">{{ $data->notice_en }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Notice Bangla</label>
+                        <textarea class="form-control" name="notice_ban" id="summernote1" rows="4">{{ $data->notice_ban }}</textarea>
                     </div>
 
 
