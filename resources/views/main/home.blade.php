@@ -108,190 +108,137 @@
        </div>
     </div>
  </section>
+
+@php
+
+    $video_data = DB::table('videos')->orderBy('id', 'desc')->get();
+
+    $most_popular = DB::table('posts')->orderBy('id', 'desc')->inRandomOrder()->limit(6)->get();
+
+@endphp
+
  <section class="default-news-area">
     <div class="container">
        <div class="row">
           <div class="col-lg-8">
              <div class="most-popular-news">
                 <div class="section-title">
+                   @if(session()->get('lang') == 'english')
                    <h2>Most popular</h2>
+                   @else
+                   <h2>সবচেয়ে জনপ্রিয়</h2>
+                   @endif
                 </div>
                 <div class="row">
+                   @foreach($most_popular as $key => $mp)
+                   @if($key < 2)
+                   @php
+                       $category_m  = DB::table('categories')->where('id', $mp->category_id)->first();
+                   @endphp
                    <div class="col-lg-6 col-md-6">
                       <div class="single-most-popular-news">
                          <div class="popular-news-image">
                             <a href="#">
-                            <img src="{{ asset('frontend/') }}/assets/img/most-popular/most-popular-1.jpg" alt="image">
+                            <img src="{{ URL::to($mp->image) }}" alt="image">
                             </a>
                          </div>
                          <div class="popular-news-content">
-                            <span>Politics</span>
+                            @if(session()->get('lang') == 'english')
+                            <span>{{ $category_m->category_en }}</span>
+                            @else
+                            <span>{{ $category_m->category_ban }}</span>
+                            @endif
                             <h3>
-                               <a href="#">The Prime Minister’s said that selfish nations are constantly dying for their won interests</a>
+                                <a href="#">
+                                    @if(session()->get('lang') == 'english')
+                                    {{ $mp->title_en }}
+                                    @else
+                                    {{ $mp->title_ban }}
+                                    @endif
+                                </a>
                             </h3>
-                            <p><a href="#">Patricia</a> / 28 September, 2021</p>
+                            <p>{{ date('d F, Y', strtotime($mp->post_date)) }}</p>
                          </div>
                       </div>
                    </div>
-                   <div class="col-lg-6 col-md-6">
-                      <div class="single-most-popular-news">
-                         <div class="popular-news-image">
-                            <a href="#">
-                            <img src="{{ asset('frontend/') }}/assets/img/most-popular/most-popular-7.jpg" alt="image">
-                            </a>
-                         </div>
-                         <div class="popular-news-content">
-                            <span>Premer league</span>
-                            <h3>
-                               <a href="#">Manchester United’s dream of winning by a goal was fulfilled</a>
-                            </h3>
-                            <p><a href="#">Gonzalez</a> / 28 September, 2021</p>
-                         </div>
-                      </div>
-                   </div>
+                   @endif
+                   @endforeach
+
+                   @foreach($most_popular as $key => $mp)
+                   @if($key >= 2)
+                   @php
+                       $category_m  = DB::table('categories')->where('id', $mp->category_id)->first();
+                   @endphp
                    <div class="col-lg-6">
                       <div class="most-popular-post">
                          <div class="row align-items-center">
                             <div class="col-lg-4 col-sm-4">
                                <div class="post-image">
                                   <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/most-popular/most-popular-3.jpg" alt="image">
+                                  <img src="{{ URL::to($mp->image) }}" class="small_image" alt="image">
                                   </a>
                                </div>
                             </div>
                             <div class="col-lg-8 col-sm-8">
                                <div class="post-content">
-                                  <span>Culture</span>
-                                  <h3>
-                                     <a href="#">As well as stopping goals, Christiane Endler is opening.</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
+                                    @if(session()->get('lang') == 'english')
+                                    <span>{{ $category_m->category_en }}</span>
+                                    @else
+                                    <span>{{ $category_m->category_ban }}</span>
+                                    @endif
+                                    <h3>
+                                        <a href="#">
+                                            @if(session()->get('lang') == 'english')
+                                            {{ $mp->title_en }}
+                                            @else
+                                            {{ $mp->title_ban }}
+                                            @endif
+                                        </a>
+                                    </h3>
+                                    <p>{{ date('d F, Y', strtotime($mp->post_date)) }}</p>
                                </div>
                             </div>
                          </div>
                       </div>
                    </div>
-                   <div class="col-lg-6">
-                      <div class="most-popular-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="post-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/most-popular/most-popular-4.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="post-content">
-                                  <span>Technology</span>
-                                  <h3>
-                                     <a href="#">The majority of news published online presents more videos</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="col-lg-6">
-                      <div class="most-popular-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="post-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/most-popular/most-popular-5.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="post-content">
-                                  <span>Business</span>
-                                  <h3>
-                                     <a href="#">This movement aims to establish women’s rights.</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="col-lg-6">
-                      <div class="most-popular-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="post-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/most-popular/most-popular-6.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="post-content">
-                                  <span>Politics</span>
-                                  <h3>
-                                     <a href="#">Trump discusses various issues with his party’s political leaders.</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
+                   @endif
+                   @endforeach
                 </div>
              </div>
              <div class="video-news">
                 <div class="section-title">
-                   <h2>Top video</h2>
+                   @if(session()->get('lang') == 'english')
+                   <h2>Video Gallery</h2>
+                   @else
+                   <h2>ভিডিও সংগ্রহশালা</h2>
+                   @endif
                 </div>
                 <div class="video-slides owl-carousel owl-theme">
+                    @foreach($video_data as $video)
                    <div class="video-item">
                       <div class="video-news-image">
-                         <a href="#">
+                         {{-- <a href="#">
                          <img src="{{ asset('frontend/') }}/assets/img/video-news/video-news-4.jpg" alt="image">
                          </a>
-                         <a href="https://www.youtube.com/watch?v=UG8N5JT4QLc" class="popup-youtube">
+                         <a href="{{ $video->video }}" class="popup-youtube">
                          <i class='bx bx-play-circle'></i>
-                         </a>
+                         </a> --}}
+                         <div class="ratio ratio-16x9 video_gallery">
+                            {!! htmlspecialchars_decode($video->video) !!}
+                          </div>
                       </div>
                       <div class="video-news-content">
                          <h3>
-                            <a href="#">Apply these 10 secret techniques to improve travel</a>
+                            @if(session()->get('lang') == 'english')
+                            {{ $video->title_en }}
+                            @else
+                            {{ $video->title_ban }}
+                            @endif
                          </h3>
-                         <span>28 September, 2021</span>
+                         <span>{{ date('d F, Y', strtotime($video->post_date)) }}</span>
                       </div>
                    </div>
-                   <div class="video-item">
-                      <div class="video-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/video-news/video-news-2.jpg" alt="image">
-                         </a>
-                         <a href="https://www.youtube.com/watch?v=UG8N5JT4QLc" class="popup-youtube">
-                         <i class='bx bx-play-circle'></i>
-                         </a>
-                      </div>
-                      <div class="video-news-content">
-                         <h3>
-                            <a href="#">The lazy man’s guide to travel you to our moms</a>
-                         </h3>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </div>
-                   <div class="video-item">
-                      <div class="video-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/video-news/video-news-3.jpg" alt="image">
-                         </a>
-                         <a href="https://www.youtube.com/watch?v=UG8N5JT4QLc" class="popup-youtube">
-                         <i class='bx bx-play-circle'></i>
-                         </a>
-                      </div>
-                      <div class="video-news-content">
-                         <h3>
-                            <a href="#">Sony laptops are still part of the sony family</a>
-                         </h3>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </div>
+                   @endforeach
                 </div>
              </div>
 
@@ -680,69 +627,134 @@
                    </div>
                 </div>
              </div>
+
+             @php
+
+                $sixCategory = DB::table('categories')->skip(5)->first();
+
+
+                $six_cat_small_data = DB::table('posts')->where('category_id', $sixCategory->id)
+                ->join('categories', 'posts.category_id', 'categories.id')
+                ->join('users', 'posts.user_id', 'users.id')
+                ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                ->orderBy('id', 'desc')->limit(6)->get();
+
+            @endphp
+
              <div class="health-news">
                 <div class="section-title">
-                   <h2>Health</h2>
+                    @if(session()->get('lang') == 'english')
+                    <h2>{{ $sixCategory->category_en }}</h2>
+                    @else
+                    <h2>{{ $sixCategory->category_ban }}</h2>
+                    @endif
                 </div>
                 <div class="health-news-slides owl-carousel owl-theme">
+                   @foreach($six_cat_small_data as $key => $sixcsd)
                    <div class="single-health-news">
                       <div class="health-news-image">
                          <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/health-news/health-news-3.jpg" alt="image">
+                         <img src="{{ URL::to($sixcsd->image) }}" alt="image">
                          </a>
                       </div>
                       <div class="health-news-content">
-                         <span>Health</span>
+                        @if(session()->get('lang') == 'english')
+                        <span>{{ $sixCategory->category_en }}</span>
+                        @else
+                        <span>{{ $sixCategory->category_ban }}</span>
+                        @endif
                          <h3>
-                            <a href="#">At present, diseases have become the main obstacle for children to get out healthy</a>
+                            <a href="#">
+                                @if(session()->get('lang') == 'english')
+                                {{ $sixcsd->title_en }}
+                                @else
+                                {{ $sixcsd->title_ban }}
+                                @endif
+                            </a>
                          </h3>
-                         <p><a href="#">Tikelo</a> / 28 September, 2021</p>
+                         <p><a href="#">{{ $sixcsd->name }}</a> / {{ date('d F, Y', strtotime($sixcsd->post_date)) }}</p>
                       </div>
                    </div>
-                   <div class="single-health-news">
-                      <div class="health-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/health-news/health-news-4.jpg" alt="image">
-                         </a>
-                      </div>
-                      <div class="health-news-content">
-                         <span>Fitness</span>
-                         <h3>
-                            <a href="#">Morning yoga is very important for maintaining good physical fitness</a>
-                         </h3>
-                         <p><a href="#">Patricia</a> / 28 September, 2021</p>
-                      </div>
-                   </div>
-                   <div class="single-health-news">
-                      <div class="health-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/health-news/health-news-3.jpg" alt="image">
-                         </a>
-                      </div>
-                      <div class="health-news-content">
-                         <span>Health</span>
-                         <h3>
-                            <a href="#">At present, diseases have become the main obstacle for children to get out healthy</a>
-                         </h3>
-                         <p><a href="#">Tikelo</a> / 28 September, 2021</p>
-                      </div>
-                   </div>
-                   <div class="single-health-news">
-                      <div class="health-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/health-news/health-news-4.jpg" alt="image">
-                         </a>
-                      </div>
-                      <div class="health-news-content">
-                         <span>Fitness</span>
-                         <h3>
-                            <a href="#">Morning yoga is very important for maintaining good physical fitness</a>
-                         </h3>
-                         <p><a href="#">Patricia</a> / 28 September, 2021</p>
-                      </div>
-                   </div>
+                   @endforeach
                 </div>
              </div>
+
+             @php
+
+                $photo_big_data = DB::table('photos')
+                    ->where('type', 1)
+                    ->orderBy('id', 'desc')->first();
+
+                $photo_small_data = DB::table('photos')
+                    ->where('type', 0)
+                    ->orderBy('id', 'desc')->limit(3)->get();
+
+            @endphp
+
+
+                <div class="culture-news mt-5">
+                    <div class="section-title">
+                        @if(session()->get('lang') == 'english')
+                        <h2>Photo Gallery</h2>
+                        @else
+                        <h2>ফটো গ্যালারি</h2>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                        @foreach($photo_small_data as $tcsd)
+                        <div class="politics-news-post">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="politics-news-image">
+                                    <a href="#">
+                                    <img src="{{ URL::to($tcsd->photo) }}" class="small_image" alt="image">
+                                    </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <div class="politics-news-content">
+                                    <h3>
+                                        <a href="#">
+                                            @if(session()->get('lang') == 'english')
+                                            {{ $tcsd->title_en }}
+                                            @else
+                                            {{ $tcsd->title_ban }}
+                                            @endif
+                                        </a>
+                                    </h3>
+                                    <p>{{ date('d F, Y', strtotime($tcsd->post_date)) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        @endforeach
+                        </div>
+
+                        <div class="col-lg-6">
+                        <div class="single-politics-news">
+                            <div class="politics-news-image">
+                                <a href="#">
+                                <img src="{{ URL::to($photo_big_data->photo) }}" class="big_image" alt="image">
+                                </a>
+                            </div>
+                            <div class="politics-news-content">
+                                <h3>
+                                    <a href="#">
+                                        @if(session()->get('lang') == 'english')
+                                        {{ $photo_big_data->title_en }}
+                                        @else
+                                        {{ $photo_big_data->title_ban }}
+                                        @endif
+                                    </a>
+                                </h3>
+                                <p>{{ date('d F, Y', strtotime($photo_big_data->post_date)) }}</p>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
           </div>
           <div class="col-lg-4">
              <aside class="widget-area">
@@ -806,98 +818,34 @@
                    </div>
                 </section>
                 @endif
+
+                @php
+                    $latest_post = DB::table('posts')->orderBy('id', 'desc')->limit(10)->get();
+                @endphp
+
                 <section class="widget widget_latest_news_thumb">
+                    @if(session()->get('lang') == 'english')
                    <h3 class="widget-title">Latest news</h3>
+                   @else
+                   <h3 class="widget-title">সর্বশেষ সংবাদ</h3>
+                   @endif
+                   @foreach($latest_post as $post)
                    <article class="item">
                       <a href="#" class="thumb">
-                      <span class="fullimage cover bg1" role="img"></span>
+                      <img src="{{ URL::to($post->image) }}" class="l_img" role="img"></img>
                       </a>
                       <div class="info">
-                         <h4 class="title usmall"><a href="#">Negotiations on a peace agreement between the two countries</a></h4>
-                         <span>28 September, 2021</span>
+                         <h4 class="title usmall"><a href="#">
+                            @if(session()->get('lang') == 'english')
+                            {{ Str::words($post->title_en, 6, '...') }}
+                            @else
+                            {{ Str::words($post->title_ban, 6, '...') }}
+                            @endif
+                        </a></h4>
+                         <span>{{ date('d F, Y', strtotime($post->post_date)) }}</span>
                       </div>
                    </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg2" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">Love songs helped me through heartbreak</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg3" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">This movement aims to establish women rights</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg4" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">Giving special powers to police officers to prevent crime</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg5" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">Copy paste the style of your element Newspaper</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg6" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">Take the tour to explore the new header manager</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg7" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">As well as stopping goals, Christiane Endler is opening.</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg8" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">These are the 10 colors Set to dominate fashion week</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg9" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">Spotted! what the editors wore to fashion week fall</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg10" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">As well as stopping goals for an, cristiane endler is opening</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
+                   @endforeach
                 </section>
                 <section class="widget widget_newsletter">
                    <div class="newsletter-content">
@@ -1000,53 +948,33 @@
                      </table>
                    </div>
                 </section>
+
+                @php
+                    $popular_post = DB::table('posts')->orderBy('id', 'asc')->inRandomOrder()->limit(5)->get();
+                @endphp
                 <section class="widget widget_popular_posts_thumb">
+                   @if(session()->get('lang') == 'english')
                    <h3 class="widget-title">Popular posts</h3>
+                   @else
+                   <h3 class="widget-title">জনপ্রিয় পোস্ট</h3>
+                   @endif
+                   @foreach($popular_post as $post)
                    <article class="item">
                       <a href="#" class="thumb">
-                      <span class="fullimage cover bg1" role="img"></span>
+                      <img src="{{ URL::to($post->image) }}" class="l_img" role="img"></img>
                       </a>
                       <div class="info">
-                         <h4 class="title usmall"><a href="#">Match between United States and England at AGD stadium</a></h4>
-                         <span>28 September, 2021</span>
+                         <h4 class="title usmall"><a href="#">
+                            @if(session()->get('lang') == 'english')
+                            {{ Str::words($post->title_en, 6, '...') }}
+                            @else
+                            {{ Str::words($post->title_ban, 6, '...') }}
+                            @endif
+                        </a></h4>
+                         <span>{{ date('d F, Y', strtotime($post->post_date)) }}</span>
                       </div>
                    </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg2" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">For the last time, he addressed the people</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg3" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">The coronavairus is finished and the outfit is busy</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg4" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">A fierce battle is going on between the two in the game</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
-                   <article class="item">
-                      <a href="#" class="thumb">
-                      <span class="fullimage cover bg5" role="img"></span>
-                      </a>
-                      <div class="info">
-                         <h4 class="title usmall"><a href="#">Negotiations on a peace agreement between the two countries</a></h4>
-                         <span>28 September, 2021</span>
-                      </div>
-                   </article>
+                   @endforeach
                 </section>
                 <section class="widget widget_tag_cloud">
                    <h3 class="widget-title">Tags</h3>

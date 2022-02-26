@@ -148,3 +148,12 @@ Route::post('/store/photos/gallery', [GalleryController::class, 'storePhotoGalle
 Route::get('/edit/photos/gallery/{id}', [GalleryController::class, 'editPhotoGallery'])->name('edit.photo.gallery');
 Route::post('/update/photos/gallery/{id}', [GalleryController::class, 'updatePhotoGallery'])->name('update.photo.gallery');
 Route::get('/delete/photos/gallery/{id}', [GalleryController::class, 'deletePhotoGallery'])->name('delete.photo.gallery');
+
+
+// Admin Photo Gallery Routes
+Route::get('/videos/gallery', [GalleryController::class, 'videoGallery'])->name('video.gallery');
+Route::get('/add/videos/gallery', [GalleryController::class, 'addVideoGallery'])->name('add.video.gallery');
+Route::post('/store/videos/gallery', [GalleryController::class, 'storeVideoGallery'])->name('store.video.gallery');
+Route::get('/edit/videos/gallery/{id}', [GalleryController::class, 'editVideoGallery'])->name('edit.video.gallery');
+Route::post('/update/videos/gallery/{id}', [GalleryController::class, 'updateVideoGallery'])->name('update.video.gallery');
+Route::get('/delete/videos/gallery/{id}', [GalleryController::class, 'deleteVideoGallery'])->name('delete.video.gallery');

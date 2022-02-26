@@ -174,7 +174,7 @@
         <div class="collapse" id="photos">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('photo.gallery') }}"> Photo Gallery </a></li>
-            <li class="nav-item"> <a class="nav-link" href=""> Video Gallery </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('video.gallery') }}"> Video Gallery </a></li>
           </ul>
         </div>
       </li>

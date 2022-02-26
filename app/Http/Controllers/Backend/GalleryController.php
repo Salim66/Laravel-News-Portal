@@ -9,6 +9,7 @@ use Image;
 
 class GalleryController extends Controller
 {
+    //////////////// Photo Gallery /////////////////
     /**
      * Photo Gallery view
      */
@@ -139,4 +140,96 @@ class GalleryController extends Controller
 
         return redirect()->route('photo.gallery')->with($notification);
     }
+
+
+
+    //////////////// Video Gallery /////////////////
+    /**
+     * Video Gallery view
+     */
+    public function videoGallery(){
+        $all_data = DB::table('videos')->orderBy('id', 'desc')->get();
+        return view('backend.gallery.videos', compact('all_data'));
+    }
+
+    /**
+     * Video create page
+     */
+    public function addVideoGallery(){
+        return view('backend.gallery.create-video');
+    }
+
+    /**
+     * Video Store
+     */
+    public function storeVideoGallery(Request $request){
+        $this->validate($request, [
+            'video' => 'required',
+            'title_en' => 'required',
+            'title_ban' => 'required',
+        ]);
+
+        $data = [];
+        $data['title_en'] = $request->title_en;
+        $data['title_ban'] = $request->title_ban;
+        $data['video'] = $request->video;
+        $data['post_date'] = date('d-m-Y');
+
+
+        DB::table('videos')->insert($data);
+
+        $notification = [
+            'message' => 'Video gallery added successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('video.gallery')->with($notification);
+
+    }
+
+    /**
+     * Video Edit Page
+     */
+    public function editVideoGallery($id){
+        $data = DB::table('videos')->where('id', $id)->first();
+        return view('backend.gallery.edit_video', compact('data'));
+    }
+
+
+    /**
+     * Video Update
+     */
+    public function updateVideoGallery(Request $request, $id){
+
+        $data = [];
+        $data['title_en'] = $request->title_en;
+        $data['title_ban'] = $request->title_ban;
+        $data['video'] = $request->video;
+        $data['post_date'] = date('d-m-Y');
+
+        DB::table('videos')->where('id', $id)->update($data);
+
+        $notification = [
+            'message' => 'Video gallery updated successfully',
+            'alert-type' => 'info',
+        ];
+
+        return redirect()->route('video.gallery')->with($notification);
+
+    }
+
+    /**
+     * Video Delete
+     */
+    public function deleteVideoGallery($id){
+        DB::table('videos')->where('id', $id)->delete();
+
+        $notification = [
+            'message' => 'Video gallery deleted successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('video.gallery')->with($notification);
+    }
+
 }
