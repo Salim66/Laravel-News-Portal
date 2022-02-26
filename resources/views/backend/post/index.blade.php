@@ -39,7 +39,6 @@
                         <th> # </th>
                         <th> Post English </th>
                         <th> Category </th>
-                        <th> District </th>
                         <th> Image </th>
                         <th> Post Date </th>
                         <th> Action </th>
@@ -52,7 +51,6 @@
                         <td> {{ $loop->index+1 }} </td>
                         <td> {{ Str::limit($data->title_en, 15, '...') }} </td>
                         <td> {{ $data->category_en }} </td>
-                        <td> {{ $data->district_en }} </td>
                         <td class="text-center"> <img src="{{ $data->image }}" height="70px" width="70px" alt=""> </td>
                         <td> {{ $data->post_date }} </td>
                         <td>

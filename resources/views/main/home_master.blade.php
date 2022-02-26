@@ -35,6 +35,7 @@
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/responsive.css">
       <title>{{ $seo->meta_title }}</title>
       <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
+      <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" >
    </head>
    <body>
       <div class="preloader">

@@ -294,481 +294,388 @@
                    </div>
                 </div>
              </div>
+
+
+
+
+
+             @php
+
+                 $firstCategory = DB::table('categories')->first();
+
+                 $first_cat_big_data = DB::table('posts')->where('category_id', $firstCategory->id)
+                    ->where('bigthumbnail', 1)
+                    ->join('categories', 'posts.category_id', 'categories.id')
+                    ->join('users', 'posts.user_id', 'users.id')
+                    ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                    ->orderBy('id', 'desc')->first();
+
+                 $first_cat_small_data = DB::table('posts')->where('category_id', $firstCategory->id)
+                    ->where('bigthumbnail', null)
+                    ->join('categories', 'posts.category_id', 'categories.id')
+                    ->join('users', 'posts.user_id', 'users.id')
+                    ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                    ->orderBy('id', 'desc')->limit(3)->get();
+
+             @endphp
+
              <div class="politics-news">
                 <div class="section-title">
-                   <h2>Politics</h2>
+                   @if(session()->get('lang') == 'english')
+                   <h2>{{ $firstCategory->category_en }}</h2>
+                   @else
+                   <h2>{{ $firstCategory->category_ban }}</h2>
+                   @endif
                 </div>
                 <div class="row">
                    <div class="col-lg-6">
+                      @foreach($first_cat_small_data as $fcsd)
                       <div class="politics-news-post">
                          <div class="row align-items-center">
                             <div class="col-lg-4 col-sm-4">
                                <div class="politics-news-image">
                                   <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/politics-news/politics-news-2.jpg" alt="image">
+                                  <img src="{{ URL::to($fcsd->image) }}" class="small_image" alt="image">
                                   </a>
                                </div>
                             </div>
                             <div class="col-lg-8 col-sm-8">
                                <div class="politics-news-content">
                                   <h3>
-                                     <a href="#">Politically, new riots have started inside the country</a>
+                                    <a href="#">
+                                        @if(session()->get('lang') == 'english')
+                                        {{ $fcsd->title_en }}
+                                        @else
+                                        {{ $fcsd->title_ban }}
+                                        @endif
+                                    </a>
                                   </h3>
-                                  <p>28 September, 2021</p>
+                                  <p>{{ date('d F, Y', strtotime($fcsd->post_date)) }}</p>
                                </div>
                             </div>
                          </div>
-                      </div>
-                      <div class="politics-news-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="politics-news-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/politics-news/politics-news-3.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="politics-news-content">
-                                  <h3>
-                                     <a href="#">Public discussion in 5 major issues</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="politics-news-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="politics-news-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/politics-news/politics-news-4.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="politics-news-content">
-                                  <h3>
-                                     <a href="#">Preparations are being made in a new way for the elections</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
+                       </div>
+                      @endforeach
                    </div>
+
                    <div class="col-lg-6">
                       <div class="single-politics-news">
                          <div class="politics-news-image">
                             <a href="#">
-                            <img src="{{ asset('frontend/') }}/assets/img/politics-news/politics-news-5.jpg" alt="image">
+                            <img src="{{ URL::to($first_cat_big_data->image) }}" class="big_image" alt="image">
                             </a>
                          </div>
                          <div class="politics-news-content">
-                            <span>Politics</span>
+                            @if(session()->get('lang') == 'english')
+                            <span>{{ $first_cat_big_data->category_en }}</span>
+                            @else
+                            <span>{{ $first_cat_big_data->category_ban }}</span>
+                            @endif
                             <h3>
-                               <a href="#">Organizing conference among our selves to make it better financially</a>
+                                <a href="#">
+                                    @if(session()->get('lang') == 'english')
+                                    {{ $first_cat_big_data->title_en }}
+                                    @else
+                                    {{ $first_cat_big_data->title_ban }}
+                                    @endif
+                                </a>
                             </h3>
-                            <p><a href="#">Jonson Steven</a> / 28 September, 2021</p>
+                            <p><a href="#">{{ $first_cat_big_data->name }}</a> / {{ date('d F, Y', strtotime($first_cat_big_data->post_date)) }}</p>
                          </div>
                       </div>
                    </div>
+
                 </div>
              </div>
+
+             @php
+
+                $secondCategory = DB::table('categories')->skip(1)->first();
+
+                $second_cat_small_data = DB::table('posts')->where('category_id', $secondCategory->id)
+                    ->where('bigthumbnail', null)
+                    ->join('categories', 'posts.category_id', 'categories.id')
+                    ->join('users', 'posts.user_id', 'users.id')
+                    ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                    ->orderBy('id', 'desc')->limit(3)->get();
+
+            @endphp
+
              <div class="business-news">
                 <div class="section-title">
-                   <h2>Business</h2>
+                   @if(session()->get('lang') == 'english')
+                   <h2>{{ $secondCategory->category_en }}</h2>
+                   @else
+                   <h2>{{ $secondCategory->category_ban }}</h2>
+                   @endif
                 </div>
                 <div class="business-news-slides owl-carousel owl-theme">
+
+                   @foreach($second_cat_small_data as $scsd)
                    <div class="single-business-news">
                       <div class="business-news-image">
                          <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/business-news/business-news-3.jpg" alt="image">
+                         <img src="{{ URL::to($scsd->image) }}" alt="image">
                          </a>
                       </div>
                       <div class="business-news-content">
-                         <span>Business</span>
+                        @if(session()->get('lang') == 'english')
+                        <span>{{ $secondCategory->category_en }}</span>
+                        @else
+                        <span>{{ $secondCategory->category_ban }}</span>
+                        @endif
                          <h3>
-                            <a href="#">We have to make a business plan while maintaining mental heatlh during this epidemic</a>
+                            <a href="#">
+                                @if(session()->get('lang') == 'english')
+                                {{ $scsd->title_en }}
+                                @else
+                                {{ $scsd->title_ban }}
+                                @endif
+                            </a>
                          </h3>
-                         <p><a href="#">Patricia</a> / 28 September, 2021</p>
+                         <p><a href="#">{{ $scsd->name }}</a> / {{ date('d F, Y', strtotime($scsd->post_date)) }}</p>
                       </div>
                    </div>
-                   <div class="single-business-news">
-                      <div class="business-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/business-news/business-news-4.jpg" alt="image">
-                         </a>
-                      </div>
-                      <div class="business-news-content">
-                         <span>News</span>
-                         <h3>
-                            <a href="#">Many people are established today by doing ecommerce business during the time of Corona</a>
-                         </h3>
-                         <p><a href="#">Sanford</a> / 28 September, 2021</p>
-                      </div>
-                   </div>
-                   <div class="single-business-news">
-                      <div class="business-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/business-news/business-news-3.jpg" alt="image">
-                         </a>
-                      </div>
-                      <div class="business-news-content">
-                         <span>Business</span>
-                         <h3>
-                            <a href="#">We have to make a business plan while maintaining mental heatlh during this epidemic</a>
-                         </h3>
-                         <p><a href="#">Patricia</a> / 28 September, 2021</p>
-                      </div>
-                   </div>
-                   <div class="single-business-news">
-                      <div class="business-news-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/business-news/business-news-4.jpg" alt="image">
-                         </a>
-                      </div>
-                      <div class="business-news-content">
-                         <span>News</span>
-                         <h3>
-                            <a href="#">Many people are established today by doing ecommerce business during the time of Corona</a>
-                         </h3>
-                         <p><a href="#">Sanford</a> / 28 September, 2021</p>
-                      </div>
-                   </div>
+                   @endforeach
+
                 </div>
              </div>
+
+
+             @php
+
+                 $thirdCategory = DB::table('categories')->skip(2)->first();
+
+                 $third_cat_big_data = DB::table('posts')->where('category_id', $thirdCategory->id)
+                    ->where('bigthumbnail', 1)
+                    ->join('categories', 'posts.category_id', 'categories.id')
+                    ->join('users', 'posts.user_id', 'users.id')
+                    ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                    ->orderBy('id', 'desc')->first();
+
+                 $third_cat_small_data = DB::table('posts')->where('category_id', $thirdCategory->id)
+                    ->where('bigthumbnail', null)
+                    ->join('categories', 'posts.category_id', 'categories.id')
+                    ->join('users', 'posts.user_id', 'users.id')
+                    ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                    ->orderBy('id', 'desc')->limit(3)->get();
+
+             @endphp
+
+
              <div class="culture-news">
                 <div class="section-title">
-                   <h2>Culture</h2>
-                </div>
-                <div class="row">
-                   <div class="col-lg-6">
-                      <div class="culture-news-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="culture-news-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/culture-news/culture-news-2.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="culture-news-content">
-                                  <h3>
-                                     <a href="#">Working in the garden is a tradition for women</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="culture-news-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="culture-news-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/culture-news/culture-news-3.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="culture-news-content">
-                                  <h3>
-                                     <a href="#">The fashion that captures the lives of women</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="culture-news-post">
-                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-sm-4">
-                               <div class="culture-news-image">
-                                  <a href="#">
-                                  <img src="{{ asset('frontend/') }}/assets/img/culture-news/culture-news-4.jpg" alt="image">
-                                  </a>
-                               </div>
-                            </div>
-                            <div class="col-lg-8 col-sm-8">
-                               <div class="culture-news-content">
-                                  <h3>
-                                     <a href="#">A group of artists performed music in a group way</a>
-                                  </h3>
-                                  <p>28 September, 2021</p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="col-lg-6">
-                      <div class="single-culture-news">
-                         <div class="culture-news-image">
-                            <a href="#">
-                            <img src="{{ asset('frontend/') }}/assets/img/culture-news/culture-news-1.jpg" alt="image">
-                            </a>
-                         </div>
-                         <div class="culture-news-content">
-                            <span>Culture</span>
-                            <h3>
-                               <a href="#">Entertainment activists started again a few months later</a>
-                            </h3>
-                            <p><a href="#">Steven</a> / 28 September, 2021</p>
-                         </div>
-                      </div>
-                   </div>
-                </div>
+                    @if(session()->get('lang') == 'english')
+                    <h2>{{ $thirdCategory->category_en }}</h2>
+                    @else
+                    <h2>{{ $thirdCategory->category_ban }}</h2>
+                    @endif
+                 </div>
+                 <div class="row">
+                    <div class="col-lg-6">
+                       @foreach($third_cat_small_data as $tcsd)
+                       <div class="politics-news-post">
+                          <div class="row align-items-center">
+                             <div class="col-lg-4 col-sm-4">
+                                <div class="politics-news-image">
+                                   <a href="#">
+                                   <img src="{{ URL::to($tcsd->image) }}" class="small_image" alt="image">
+                                   </a>
+                                </div>
+                             </div>
+                             <div class="col-lg-8 col-sm-8">
+                                <div class="politics-news-content">
+                                   <h3>
+                                     <a href="#">
+                                         @if(session()->get('lang') == 'english')
+                                         {{ $tcsd->title_en }}
+                                         @else
+                                         {{ $tcsd->title_ban }}
+                                         @endif
+                                     </a>
+                                   </h3>
+                                   <p>{{ date('d F, Y', strtotime($tcsd->post_date)) }}</p>
+                                </div>
+                             </div>
+                          </div>
+                        </div>
+                       @endforeach
+                    </div>
+
+                    <div class="col-lg-6">
+                       <div class="single-politics-news">
+                          <div class="politics-news-image">
+                             <a href="#">
+                             <img src="{{ URL::to($third_cat_big_data->image) }}" class="big_image" alt="image">
+                             </a>
+                          </div>
+                          <div class="politics-news-content">
+                             @if(session()->get('lang') == 'english')
+                             <span>{{ $third_cat_big_data->category_en }}</span>
+                             @else
+                             <span>{{ $third_cat_big_data->category_ban }}</span>
+                             @endif
+                             <h3>
+                                 <a href="#">
+                                     @if(session()->get('lang') == 'english')
+                                     {{ $third_cat_big_data->title_en }}
+                                     @else
+                                     {{ $third_cat_big_data->title_ban }}
+                                     @endif
+                                 </a>
+                             </h3>
+                             <p><a href="#">{{ $third_cat_big_data->name }}</a> / {{ date('d F, Y', strtotime($third_cat_big_data->post_date)) }}</p>
+                          </div>
+                       </div>
+                    </div>
+
+                 </div>
              </div>
+
+
+             @php
+
+                 $fourCategory = DB::table('categories')->skip(3)->first();
+
+
+                 $four_cat_small_data = DB::table('posts')->where('category_id', $fourCategory->id)
+                    ->join('categories', 'posts.category_id', 'categories.id')
+                    ->join('users', 'posts.user_id', 'users.id')
+                    ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                    ->orderBy('id', 'desc')->limit(3)->get();
+
+             @endphp
+
+
              <div class="row">
                 <div class="col-lg-6">
                    <div class="section-title">
-                      <h2>Sports</h2>
+                    @if(session()->get('lang') == 'english')
+                    <h2>{{ $fourCategory->category_en }}</h2>
+                    @else
+                    <h2>{{ $fourCategory->category_ban }}</h2>
+                    @endif
                    </div>
                    <div class="sports-slider owl-carousel owl-theme">
+
                       <div class="sports-item">
+                        @foreach($four_cat_small_data as $fcsd)
                          <div class="single-sports-news">
                             <div class="row align-items-center">
                                <div class="col-lg-4">
                                   <div class="sports-news-image">
                                      <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/sports-news/sports-news-1.jpg" alt="image">
+                                     <img src="{{ URL::to($fcsd->image) }}" class="small_image" alt="image">
                                      </a>
                                   </div>
                                </div>
                                <div class="col-lg-8">
                                   <div class="sports-news-content">
                                      <h3>
-                                        <a href="#">Start a new men’s road World Championships</a>
+                                        <a href="#">
+                                            @if(session()->get('lang') == 'english')
+                                            {{ $fcsd->title_en }}
+                                            @else
+                                            {{ $fcsd->title_ban }}
+                                            @endif
+                                        </a>
                                      </h3>
-                                     <p>28 September, 2021</p>
+                                     <p>{{ date('d F Y', strtotime($fcsd->post_date)) }}</p>
                                   </div>
                                </div>
                             </div>
                          </div>
-                         <div class="single-sports-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="sports-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/sports-news/sports-news-2.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="sports-news-content">
-                                     <h3>
-                                        <a href="#">He look the first wicket with the first ball in this IPL</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="single-sports-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="sports-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/sports-news/sports-news-3.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="sports-news-content">
-                                     <h3>
-                                        <a href="#">The last time of the match is goning on</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
+                        @endforeach
                       </div>
-                      <div class="sports-item">
-                         <div class="single-sports-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="sports-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/sports-news/sports-news-1.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="sports-news-content">
-                                     <h3>
-                                        <a href="#">Start a new men’s road World Championships</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="single-sports-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="sports-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/sports-news/sports-news-2.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="sports-news-content">
-                                     <h3>
-                                        <a href="#">He look the first wicket with the first ball in this IPL</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="single-sports-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="sports-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/sports-news/sports-news-3.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="sports-news-content">
-                                     <h3>
-                                        <a href="#">The last time of the match is goning on</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
+
                    </div>
                 </div>
+
+
+                @php
+
+                    $fiveCategory = DB::table('categories')->skip(4)->first();
+
+
+                    $five_cat_small_data = DB::table('posts')->where('category_id', $fiveCategory->id)
+                    ->join('categories', 'posts.category_id', 'categories.id')
+                    ->join('users', 'posts.user_id', 'users.id')
+                    ->select('posts.*', 'categories.category_en', 'categories.category_ban', 'users.name')
+                    ->orderBy('id', 'desc')->limit(6)->get();
+
+                @endphp
+
+
                 <div class="col-lg-6">
                    <div class="section-title">
-                      <h2>Tech</h2>
+                        @if(session()->get('lang') == 'english')
+                        <h2>{{ $fiveCategory->category_en }}</h2>
+                        @else
+                        <h2>{{ $fiveCategory->category_ban }}</h2>
+                        @endif
                    </div>
                    <div class="tech-slider owl-carousel owl-theme">
                       <div class="tech-item">
-                         <div class="single-tech-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="tech-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/tech-news/tech-news-1.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="tech-news-content">
-                                     <h3>
-                                        <a href="#">5 more phones have come to the market with features.</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="single-tech-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="tech-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/tech-news/tech-news-2.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="tech-news-content">
-                                     <h3>
-                                        <a href="#">Like humans, the new robot has a lot of memory power</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="single-tech-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="tech-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/tech-news/tech-news-3.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="tech-news-content">
-                                     <h3>
-                                        <a href="#">All new gadgets are being made in technology</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
+                        @foreach($five_cat_small_data as $key => $fivcsd)
+                        @if($key < 3)
+                        <div class="single-sports-news">
+                           <div class="row align-items-center">
+                              <div class="col-lg-4">
+                                 <div class="sports-news-image">
+                                    <a href="#">
+                                    <img src="{{ URL::to($fivcsd->image) }}" class="small_image" alt="image">
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-lg-8">
+                                 <div class="sports-news-content">
+                                    <h3>
+                                       <a href="#">
+                                           @if(session()->get('lang') == 'english')
+                                           {{ $fivcsd->title_en }}
+                                           @else
+                                           {{ $fivcsd->title_ban }}
+                                           @endif
+                                       </a>
+                                    </h3>
+                                    <p>{{ date('d F Y', strtotime($fivcsd->post_date)) }}</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        @endif
+                       @endforeach
                       </div>
                       <div class="tech-item">
-                         <div class="single-tech-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="tech-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/tech-news/tech-news-1.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="tech-news-content">
-                                     <h3>
-                                        <a href="#">5 more phones have come to the market with features.</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="single-tech-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="tech-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/tech-news/tech-news-2.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="tech-news-content">
-                                     <h3>
-                                        <a href="#">Like humans, the new robot has a lot of memory power</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                         <div class="single-tech-news">
-                            <div class="row align-items-center">
-                               <div class="col-lg-4">
-                                  <div class="tech-news-image">
-                                     <a href="#">
-                                     <img src="{{ asset('frontend/') }}/assets/img/tech-news/tech-news-3.jpg" alt="image">
-                                     </a>
-                                  </div>
-                               </div>
-                               <div class="col-lg-8">
-                                  <div class="tech-news-content">
-                                     <h3>
-                                        <a href="#">All new gadgets are being made in technology</a>
-                                     </h3>
-                                     <p>28 September, 2021</p>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
+                        @foreach($five_cat_small_data as $key => $fivcsd)
+                        @if($key >= 3)
+                        <div class="single-sports-news">
+                           <div class="row align-items-center">
+                              <div class="col-lg-4">
+                                 <div class="sports-news-image">
+                                    <a href="#">
+                                    <img src="{{ URL::to($fivcsd->image) }}" class="small_image" alt="image">
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-lg-8">
+                                 <div class="sports-news-content">
+                                    <h3>
+                                       <a href="#">
+                                           @if(session()->get('lang') == 'english')
+                                           {{ $fivcsd->title_en }}
+                                           @else
+                                           {{ $fivcsd->title_ban }}
+                                           @endif
+                                       </a>
+                                    </h3>
+                                    <p>{{ date('d F Y', strtotime($fivcsd->post_date)) }}</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        @endif
+                       @endforeach
                       </div>
                    </div>
                 </div>

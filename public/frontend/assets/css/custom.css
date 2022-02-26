@@ -1,0 +1,11 @@
+.small_image {
+    height: 125px;
+    width: 103px;
+    object-fit: cover;
+}
+
+.big_image {
+    height: 356px;
+    width: 321px;
+    object-fit: cover;
+}
