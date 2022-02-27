@@ -35,6 +35,8 @@ class CategoryController extends Controller
         $data = [];
         $data['category_en'] = $request->category_en;
         $data['category_ban'] = $request->category_ban;
+        $data['slug_en'] = str_replace(' ', '-',  $request->category_en);
+        $data['slug_ban'] = str_replace(' ', '-', $request->category_ban);
         DB::table('categories')->insert($data);
 
         $notification = [
@@ -61,6 +63,8 @@ class CategoryController extends Controller
         $data = [];
         $data['category_en'] = $request->category_en;
         $data['category_ban'] = $request->category_ban;
+        $data['slug_en'] = str_replace(' ', '-',  $request->category_en);
+        $data['slug_ban'] = str_replace(' ', '-', $request->category_ban);
         DB::table('categories')->where('id', $id)->update($data);
 
         $notification = [

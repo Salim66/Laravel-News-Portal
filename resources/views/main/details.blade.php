@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/responsive.css">
         <title>{{ $seo->meta_title }}</title>
         <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
+        <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" >
     </head>
    <body>
       <div class="preloader">
@@ -92,10 +93,24 @@
       <div class="page-title-area">
          <div class="container">
             <div class="page-title-content">
+                @if(session()->get('lang') == 'english')
                <h2>News details</h2>
+               @else
+               <h2>খবর বিস্তারিত</h2>
+               @endif
                <ul>
-                  <li><a href="{{ url('/') }}">Home</a></li>
+                  <li><a href="{{ url('/') }}">
+                    @if(session()->get('lang') == 'english')
+                      Home
+                    @else
+                      হোম
+                    @endif
+                  </a></li>
+                  @if(session()->get('lang') == 'english')
                   <li>News details</li>
+                  @else
+                  <li>খবর বিস্তারিত</li>
+                  @endif
                </ul>
             </div>
          </div>

@@ -3,7 +3,7 @@
        <div class="container">
           <div class="main-responsive-menu">
              <div class="logo">
-                <a href="index.html">
+                <a href="{{ url('/') }}">
                 <img src="{{ asset('frontend/') }}/assets/img/logo_news.png" style="height: 80px" alt="image">
                 </a>
              </div>
@@ -13,14 +13,18 @@
     <div class="main-navbar">
        <div class="container">
           <nav class="navbar navbar-expand-md navbar-light">
-             <a class="navbar-brand" href="index.html">
+             <a class="navbar-brand" href="{{ url('/') }}">
              <img src="{{ asset('frontend/') }}/assets/img/logo_news.png" style="height: 80px" alt="image">
              </a>
              <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                    <li class="nav-item">
-                      <a href="#" class="nav-link active">
+                      <a href="{{ url('/') }}" class="nav-link active">
+                    @if(session()->get('lang') == 'english')
                       Home
+                    @else
+                      হোম
+                    @endif
                       </a>
                    </li>
 @php
@@ -29,7 +33,7 @@
 
                    @foreach($categories as $cat)
                    <li class="nav-item">
-                      <a href="#" class="nav-link">
+                      <a href="{{ route('category.wise.post', $cat->slug_en) }}" class="nav-link">
                         @if(session()->get('lang') == 'english')
                         {{ $cat->category_en }}
                         @else
@@ -45,7 +49,7 @@
 
                         @foreach($subcategories as $subcat)
                          <li class="nav-item">
-                            <a href="news.html" class="nav-link">
+                            <a href="{{ url('/category/'.$cat->slug_en.'/'.$subcat->slug_en) }}" class="nav-link">
                                 @if(session()->get('lang') == 'english')
                                 {{ $subcat->subcategory_en }}
                                 @else

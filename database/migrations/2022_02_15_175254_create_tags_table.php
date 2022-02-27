@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('tag_en');
             $table->string('tag_ban');
+            $table->string('slug_en');
+            $table->string('slug_ban');
             $table->timestamps();
         });
     }

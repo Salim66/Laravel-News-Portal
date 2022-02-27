@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('category_en');
             $table->string('category_ban');
+            $table->string('slug_en');
+            $table->string('slug_ban');
             $table->string('soft_delete')->nullable()->default(0);
             $table->timestamps();
         });

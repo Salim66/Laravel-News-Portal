@@ -41,4 +41,25 @@ class ExtraController extends Controller
         return view('main.details', compact('data'));
     }
 
+    /**
+     * Category Wise Post Search
+     */
+    public function categoryWisePostView($slug_en){
+        $category = DB::table('categories')->where('slug_en', $slug_en)->first();
+        $all_data = DB::table('posts')->where('category_id', $category->id)->orderBy('id', 'desc')->paginate(10);
+
+        return view('main.category_wise_post', compact('all_data', 'category'));
+    }
+
+    /**
+     * SubCategory Wise Post Search
+     */
+    public function subCategoryWisePostView($c_slug_en, $s_slug_en){
+        $category = DB::table('categories')->where('slug_en', $c_slug_en)->first();
+        $subcategory = DB::table('subcategories')->where('slug_en', $s_slug_en)->first();
+        $all_data = DB::table('posts')->where('category_id', $category->id)->where('subcategory_id', $subcategory->id)->orderBy('id', 'desc')->paginate(10);
+
+        return view('main.subcategory_wise_post', compact('all_data', 'category', 'subcategory'));
+    }
+
 }

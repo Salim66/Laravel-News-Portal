@@ -40,6 +40,8 @@ class SubCategoryController extends Controller
         $data = [];
         $data['subcategory_en'] = $request->subcategory_en;
         $data['subcategory_ban'] = $request->subcategory_ban;
+        $data['slug_en'] = str_replace(' ', '-',  $request->subcategory_en);
+        $data['slug_ban'] = str_replace(' ', '-', $request->subcategory_ban);
         $data['category_id'] = $request->category_id;
         DB::table('subcategories')->insert($data);
 
@@ -68,6 +70,8 @@ class SubCategoryController extends Controller
         $data = [];
         $data['subcategory_en'] = $request->subcategory_en;
         $data['subcategory_ban'] = $request->subcategory_ban;
+        $data['slug_en'] = str_replace(' ', '-',  $request->subcategory_en);
+        $data['slug_ban'] = str_replace(' ', '-', $request->subcategory_ban);
         $data['category_id'] = $request->category_id;
         DB::table('subcategories')->where('id', $id)->update($data);
 

@@ -20,3 +20,8 @@
     height: 80px;
     object-fit: cover;
 }
+
+.category_image {
+    width: 229px;
+    height: 188px;
+}
