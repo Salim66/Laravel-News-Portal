@@ -30,9 +30,7 @@ Route::get('/', function () {
     return view('main.home');
 });
 
-Route::get('/single', function() {
-    return view('main.details');
-});
+Route::get('/post/view/{slug_en}', [ExtraController::class, 'postView'])->name('post.view');
 
 Route::get('/lang/bangla', [ExtraController::class, 'langBangla'])->name('lang.bangla');
 Route::get('/lang/english', [ExtraController::class, 'langEnglish'])->name('lang.english');

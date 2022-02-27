@@ -16,8 +16,7 @@ class PostController extends Controller
     public function index(){
         $all_data = DB::table('posts')
             ->join('categories', 'posts.category_id', 'categories.id')
-            ->join('subcategories', 'posts.subcategory_id', 'subcategories.id')
-            ->select('posts.*', 'categories.category_en', 'subcategories.subcategory_en')
+            ->select('posts.*', 'categories.category_en')
             ->orderBy('id', 'desc')->get();
         return view('backend.post.index', compact('all_data'));
     }
@@ -46,6 +45,8 @@ class PostController extends Controller
         $data = [];
         $data['title_en'] = $request->title_en;
         $data['title_ban'] = $request->title_ban;
+        $data['slug_en'] = str_replace(' ', '-', $request->title_en);
+        $data['slug_ban'] = str_replace(' ', '-', $request->title_ban);
         $data['user_id'] = Auth::id();
         $data['category_id'] = $request->category_id;
         $data['subcategory_id'] = $request->subcategory_id;
@@ -110,6 +111,8 @@ class PostController extends Controller
         $data = [];
         $data['title_en'] = $request->title_en;
         $data['title_ban'] = $request->title_ban;
+        $data['slug_en'] = str_replace(' ', '-', $request->title_en);
+        $data['slug_ban'] = str_replace(' ', '-', $request->title_ban);
         $data['user_id'] = Auth::id();
         $data['category_id'] = $request->category_id;
         $data['subcategory_id'] = $request->subcategory_id;

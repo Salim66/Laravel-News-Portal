@@ -22,7 +22,7 @@
                 @if ($key < 2)
                     <div class="single-new-news">
                         <div class="new-news-image">
-                        <a href="#">
+                        <a href="{{ route('post.view', $first->slug_en) }}">
                         <img src="{{ URL::to($first->image) }}" alt="image">
                         </a>
                         <div class="new-news-content">
@@ -32,7 +32,7 @@
                             <span>{{ $first->category_ban }}</span>
                             @endif
                             <h3>
-                                <a href="#">
+                                <a href="{{ route('post.view', $first->slug_en) }}">
                                     @if(session()->get('lang') == 'english')
                                     {{ $first->title_en }}
                                     @else
@@ -51,7 +51,7 @@
           <div class="col-lg-6">
              <div class="single-new-news-box">
                 <div class="new-news-image">
-                   <a href="#">
+                   <a href="{{ route('post.view', $firstBigThumb->slug_en) }}">
                    <img src="{{ URL::to($firstBigThumb->image) }}" alt="image">
                    </a>
                    <div class="new-news-content">
@@ -61,7 +61,7 @@
                       <span>{{ $firstBigThumb->category_ban }}</span>
                       @endif
                       <h3>
-                        <a href="#">
+                        <a href="{{ route('post.view', $firstBigThumb->slug_en) }}">
                             @if(session()->get('lang') == 'english')
                             {{ $firstBigThumb->title_en }}
                             @else
@@ -80,7 +80,7 @@
             @if ($key >= 2)
                 <div class="single-new-news">
                     <div class="new-news-image">
-                    <a href="#">
+                    <a href="{{ route('post.view', $first->slug_en) }}">
                     <img src="{{ URL::to($first->image) }}" alt="image">
                     </a>
                     <div class="new-news-content">
@@ -90,7 +90,7 @@
                         <span>{{ $first->category_ban }}</span>
                         @endif
                         <h3>
-                            <a href="#">
+                            <a href="{{ route('post.view', $first->slug_en) }}">
                                 @if(session()->get('lang') == 'english')
                                 {{ $first->title_en }}
                                 @else
@@ -138,7 +138,7 @@
                    <div class="col-lg-6 col-md-6">
                       <div class="single-most-popular-news">
                          <div class="popular-news-image">
-                            <a href="#">
+                            <a href="{{ route('post.view', $mp->slug_en) }}">
                             <img src="{{ URL::to($mp->image) }}" alt="image">
                             </a>
                          </div>
@@ -149,7 +149,7 @@
                             <span>{{ $category_m->category_ban }}</span>
                             @endif
                             <h3>
-                                <a href="#">
+                                <a href="{{ route('post.view', $mp->slug_en) }}">
                                     @if(session()->get('lang') == 'english')
                                     {{ $mp->title_en }}
                                     @else
@@ -174,7 +174,7 @@
                          <div class="row align-items-center">
                             <div class="col-lg-4 col-sm-4">
                                <div class="post-image">
-                                  <a href="#">
+                                  <a href="{{ route('post.view', $mp->slug_en) }}">
                                   <img src="{{ URL::to($mp->image) }}" class="small_image" alt="image">
                                   </a>
                                </div>
@@ -187,7 +187,7 @@
                                     <span>{{ $category_m->category_ban }}</span>
                                     @endif
                                     <h3>
-                                        <a href="#">
+                                        <a href="{{ route('post.view', $mp->slug_en) }}">
                                             @if(session()->get('lang') == 'english')
                                             {{ $mp->title_en }}
                                             @else
@@ -217,12 +217,6 @@
                     @foreach($video_data as $video)
                    <div class="video-item">
                       <div class="video-news-image">
-                         {{-- <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/video-news/video-news-4.jpg" alt="image">
-                         </a>
-                         <a href="{{ $video->video }}" class="popup-youtube">
-                         <i class='bx bx-play-circle'></i>
-                         </a> --}}
                          <div class="ratio ratio-16x9 video_gallery">
                             {!! htmlspecialchars_decode($video->video) !!}
                           </div>
@@ -281,7 +275,7 @@
                          <div class="row align-items-center">
                             <div class="col-lg-4 col-sm-4">
                                <div class="politics-news-image">
-                                  <a href="#">
+                                  <a href="{{ route('post.view', $fcsd->slug_en) }}">
                                   <img src="{{ URL::to($fcsd->image) }}" class="small_image" alt="image">
                                   </a>
                                </div>
@@ -289,7 +283,7 @@
                             <div class="col-lg-8 col-sm-8">
                                <div class="politics-news-content">
                                   <h3>
-                                    <a href="#">
+                                    <a href="{{ route('post.view', $fcsd->slug_en) }}">
                                         @if(session()->get('lang') == 'english')
                                         {{ $fcsd->title_en }}
                                         @else
@@ -308,7 +302,7 @@
                    <div class="col-lg-6">
                       <div class="single-politics-news">
                          <div class="politics-news-image">
-                            <a href="#">
+                            <a href="{{ route('post.view', $first_cat_big_data->slug_en) }}">
                             <img src="{{ URL::to($first_cat_big_data->image) }}" class="big_image" alt="image">
                             </a>
                          </div>
@@ -319,7 +313,7 @@
                             <span>{{ $first_cat_big_data->category_ban }}</span>
                             @endif
                             <h3>
-                                <a href="#">
+                                <a href="{{ route('post.view', $first_cat_big_data->slug_en) }}">
                                     @if(session()->get('lang') == 'english')
                                     {{ $first_cat_big_data->title_en }}
                                     @else
@@ -361,7 +355,7 @@
                    @foreach($second_cat_small_data as $scsd)
                    <div class="single-business-news">
                       <div class="business-news-image">
-                         <a href="#">
+                         <a href="{{ route('post.view', $scsd->slug_en) }}">
                          <img src="{{ URL::to($scsd->image) }}" alt="image">
                          </a>
                       </div>
@@ -372,7 +366,7 @@
                         <span>{{ $secondCategory->category_ban }}</span>
                         @endif
                          <h3>
-                            <a href="#">
+                            <a href="{{ route('post.view', $scsd->slug_en) }}">
                                 @if(session()->get('lang') == 'english')
                                 {{ $scsd->title_en }}
                                 @else
@@ -425,7 +419,7 @@
                           <div class="row align-items-center">
                              <div class="col-lg-4 col-sm-4">
                                 <div class="politics-news-image">
-                                   <a href="#">
+                                   <a href="{{ route('post.view', $tcsd->slug_en) }}">
                                    <img src="{{ URL::to($tcsd->image) }}" class="small_image" alt="image">
                                    </a>
                                 </div>
@@ -433,7 +427,7 @@
                              <div class="col-lg-8 col-sm-8">
                                 <div class="politics-news-content">
                                    <h3>
-                                     <a href="#">
+                                     <a href="{{ route('post.view', $tcsd->slug_en) }}">
                                          @if(session()->get('lang') == 'english')
                                          {{ $tcsd->title_en }}
                                          @else
@@ -452,7 +446,7 @@
                     <div class="col-lg-6">
                        <div class="single-politics-news">
                           <div class="politics-news-image">
-                             <a href="#">
+                             <a href="{{ route('post.view', $third_cat_big_data->slug_en) }}">
                              <img src="{{ URL::to($third_cat_big_data->image) }}" class="big_image" alt="image">
                              </a>
                           </div>
@@ -463,7 +457,7 @@
                              <span>{{ $third_cat_big_data->category_ban }}</span>
                              @endif
                              <h3>
-                                 <a href="#">
+                                 <a href="{{ route('post.view', $third_cat_big_data->slug_en) }}">
                                      @if(session()->get('lang') == 'english')
                                      {{ $third_cat_big_data->title_en }}
                                      @else
@@ -511,7 +505,7 @@
                             <div class="row align-items-center">
                                <div class="col-lg-4">
                                   <div class="sports-news-image">
-                                     <a href="#">
+                                     <a href="{{ route('post.view', $fcsd->slug_en) }}">
                                      <img src="{{ URL::to($fcsd->image) }}" class="small_image" alt="image">
                                      </a>
                                   </div>
@@ -519,7 +513,7 @@
                                <div class="col-lg-8">
                                   <div class="sports-news-content">
                                      <h3>
-                                        <a href="#">
+                                        <a href="{{ route('post.view', $fcsd->slug_en) }}">
                                             @if(session()->get('lang') == 'english')
                                             {{ $fcsd->title_en }}
                                             @else
@@ -569,7 +563,7 @@
                            <div class="row align-items-center">
                               <div class="col-lg-4">
                                  <div class="sports-news-image">
-                                    <a href="#">
+                                    <a href="{{ route('post.view', $fivcsd->slug_en) }}">
                                     <img src="{{ URL::to($fivcsd->image) }}" class="small_image" alt="image">
                                     </a>
                                  </div>
@@ -577,7 +571,7 @@
                               <div class="col-lg-8">
                                  <div class="sports-news-content">
                                     <h3>
-                                       <a href="#">
+                                       <a href="{{ route('post.view', $fivcsd->slug_en) }}">
                                            @if(session()->get('lang') == 'english')
                                            {{ $fivcsd->title_en }}
                                            @else
@@ -600,7 +594,7 @@
                            <div class="row align-items-center">
                               <div class="col-lg-4">
                                  <div class="sports-news-image">
-                                    <a href="#">
+                                    <a href="{{ route('post.view', $fivcsd->slug_en) }}">
                                     <img src="{{ URL::to($fivcsd->image) }}" class="small_image" alt="image">
                                     </a>
                                  </div>
@@ -608,7 +602,7 @@
                               <div class="col-lg-8">
                                  <div class="sports-news-content">
                                     <h3>
-                                       <a href="#">
+                                       <a href="{{ route('post.view', $fivcsd->slug_en) }}">
                                            @if(session()->get('lang') == 'english')
                                            {{ $fivcsd->title_en }}
                                            @else
@@ -653,7 +647,7 @@
                    @foreach($six_cat_small_data as $key => $sixcsd)
                    <div class="single-health-news">
                       <div class="health-news-image">
-                         <a href="#">
+                         <a href="{{ route('post.view', $sixcsd->slug_en) }}">
                          <img src="{{ URL::to($sixcsd->image) }}" alt="image">
                          </a>
                       </div>
@@ -664,7 +658,7 @@
                         <span>{{ $sixCategory->category_ban }}</span>
                         @endif
                          <h3>
-                            <a href="#">
+                            <a href="{{ route('post.view', $sixcsd->slug_en) }}">
                                 @if(session()->get('lang') == 'english')
                                 {{ $sixcsd->title_en }}
                                 @else
@@ -707,7 +701,7 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-4 col-sm-4">
                                     <div class="politics-news-image">
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                     <img src="{{ URL::to($tcsd->photo) }}" class="small_image" alt="image">
                                     </a>
                                     </div>
@@ -715,7 +709,7 @@
                                 <div class="col-lg-8 col-sm-8">
                                     <div class="politics-news-content">
                                     <h3>
-                                        <a href="#">
+                                        <a href="javascript:void(0)">
                                             @if(session()->get('lang') == 'english')
                                             {{ $tcsd->title_en }}
                                             @else
@@ -740,7 +734,7 @@
                             </div>
                             <div class="politics-news-content">
                                 <h3>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         @if(session()->get('lang') == 'english')
                                         {{ $photo_big_data->title_en }}
                                         @else
@@ -831,17 +825,19 @@
                    @endif
                    @foreach($latest_post as $post)
                    <article class="item">
-                      <a href="#" class="thumb">
+                      <a href="{{ route('post.view', $post->slug_en) }}" class="thumb">
                       <img src="{{ URL::to($post->image) }}" class="l_img" role="img"></img>
                       </a>
                       <div class="info">
-                         <h4 class="title usmall"><a href="#">
-                            @if(session()->get('lang') == 'english')
-                            {{ Str::words($post->title_en, 6, '...') }}
-                            @else
-                            {{ Str::words($post->title_ban, 6, '...') }}
-                            @endif
-                        </a></h4>
+                         <h4 class="title usmall">
+                            <a href="{{ route('post.view', $post->slug_en) }}">
+                                @if(session()->get('lang') == 'english')
+                                {{ Str::words($post->title_en, 6, '...') }}
+                                @else
+                                {{ Str::words($post->title_ban, 6, '...') }}
+                                @endif
+                            </a>
+                          </h4>
                          <span>{{ date('d F, Y', strtotime($post->post_date)) }}</span>
                       </div>
                    </article>
@@ -960,17 +956,19 @@
                    @endif
                    @foreach($popular_post as $post)
                    <article class="item">
-                      <a href="#" class="thumb">
+                      <a href="{{ route('post.view', $post->slug_en) }}" class="thumb">
                       <img src="{{ URL::to($post->image) }}" class="l_img" role="img"></img>
                       </a>
                       <div class="info">
-                         <h4 class="title usmall"><a href="#">
-                            @if(session()->get('lang') == 'english')
-                            {{ Str::words($post->title_en, 6, '...') }}
-                            @else
-                            {{ Str::words($post->title_ban, 6, '...') }}
-                            @endif
-                        </a></h4>
+                         <h4 class="title usmall">
+                            <a href="{{ route('post.view', $post->slug_en) }}">
+                                @if(session()->get('lang') == 'english')
+                                {{ Str::words($post->title_en, 6, '...') }}
+                                @else
+                                {{ Str::words($post->title_ban, 6, '...') }}
+                                @endif
+                            </a>
+                          </h4>
                          <span>{{ date('d F, Y', strtotime($post->post_date)) }}</span>
                       </div>
                    </article>

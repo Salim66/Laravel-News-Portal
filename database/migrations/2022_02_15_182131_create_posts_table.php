@@ -29,6 +29,8 @@ return new class extends Migration
             $table->foreign('subdistrict_id')->references('id')->on('subdistricts')->onDelete('cascade');
             $table->string('title_en');
             $table->string('title_ban');
+            $table->string('slug_en');
+            $table->string('slug_ban');
             $table->string('image');
             $table->longText('details_en')->nullable();
             $table->longText('details_ban')->nullable();
