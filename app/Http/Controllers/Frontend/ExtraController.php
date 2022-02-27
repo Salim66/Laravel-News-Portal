@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
 class ExtraController extends Controller
@@ -60,6 +61,30 @@ class ExtraController extends Controller
         $all_data = DB::table('posts')->where('category_id', $category->id)->where('subcategory_id', $subcategory->id)->orderBy('id', 'desc')->paginate(10);
 
         return view('main.subcategory_wise_post', compact('all_data', 'category', 'subcategory'));
+    }
+
+    /**
+     * Get SubDistrict By Ajax
+     */
+    public function getSubDistrict($district_id){
+        $sub = DB::table('subdistricts')->where('district_id', $district_id)->get();
+        return response()->json($sub);
+    }
+
+    /**
+     * District Wise Search
+     */
+    public function districtSearch(Request $request){
+        $this->validate($request, [
+            'district_id' => 'required',
+        ],[
+            'district_id.required' => 'Please select any district'
+        ]);
+
+        $district = DB::table('districts')->where('id', $request->district_id)->first();
+        $all_data = DB::table('posts')->where('district_id', $request->district_id)->orderBy('id', 'desc')->paginate(10);
+
+        return view('main.district_wise_post', compact('all_data', 'district'));
     }
 
 }

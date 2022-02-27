@@ -33,7 +33,10 @@ Route::get('/', function () {
 Route::get('/post/view/{slug_en}', [ExtraController::class, 'postView'])->name('post.view');
 Route::get('/category/{slug_en}', [ExtraController::class, 'categoryWisePostView'])->name('category.wise.post');
 Route::get('/category/{c_slug_en}/{s_slug_en}', [ExtraController::class, 'subCategoryWisePostView']);
+Route::get('/get/subdistrict/frontend/{district_id}', [ExtraController::class, 'getSubDistrict']);
+Route::post('district.search', [ExtraController::class, 'districtSearch'])->name('district.search');
 
+// Language Routes
 Route::get('/lang/bangla', [ExtraController::class, 'langBangla'])->name('lang.bangla');
 Route::get('/lang/english', [ExtraController::class, 'langEnglish'])->name('lang.english');
 

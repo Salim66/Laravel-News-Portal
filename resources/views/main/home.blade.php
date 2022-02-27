@@ -843,15 +843,45 @@
                    </article>
                    @endforeach
                 </section>
+
+                @php
+                    $district = DB::table('districts')->get();
+                @endphp
+
                 <section class="widget widget_newsletter">
                    <div class="newsletter-content">
-                      <h3>Subscribe to our newsletter</h3>
-                      <p>Subscribe to our newsletter to get the new updates!</p>
+                       @if(session()->get('lang') == 'english')
+                      <h3>Search By District</h3>
+                      @else
+                      <h3>জেলা দ্বারা অনুসন্ধান</h3>
+                      @endif
                    </div>
-                   <form class="newsletter-form" data-toggle="validator">
-                      <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required autocomplete="off">
+                   <form action="{{ route('district.search') }}" method="POST">
+                       @csrf
+                       <div class="row">
+                           <div class="col-md-12">
+                                <div class="form-group">
+                                    <select name="district_id" class="form-control" id="exampleSelectGender">
+                                        <option disabled selected>- Select District -</option>
+                                        @foreach($district as $district)
+                                        <option value="{{ $district->id }}">{{ $district->district_en }} | {{ $district->district_ban }}</option>
+                                        @endforeach
+
+                                    </select>
+                                    @error('district_id')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                           </div>
+                           <div class="col-md-12">
+                                <div class="form-group">
+                                    <button class="district_button" type="submit">Search</button>
+                                </div>
+                           </div>
+                       </div>
+                      {{-- <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required autocomplete="off">
                       <button type="submit">Subscribe</button>
-                      <div id="validator-newsletter" class="form-result"></div>
+                      <div id="validator-newsletter" class="form-result"></div> --}}
                    </form>
                 </section>
                 <section class="widget widget_most_shared">
@@ -1061,4 +1091,34 @@
        </div>
     </div>
  </section>
+
+ {{-- <script type="text/javascript">
+    $(document).ready(function () {
+
+        // SubDistrict get by district
+        $('select[name="district_id"]').change(function(){
+            let district_id = $(this).val();
+            // alert(district_id);
+            if(district_id){
+                $.ajax({
+                    url: '/get/subdistrict/frontend/' + district_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        $('select #subdistrict_id').empty();
+                        $.each(data, function(key,value){
+                            $('select #subdistrict_id').append(`
+                            <option value='${value.id}'>${value.subdistrict_en} | ${value.subdistrict_ban}</option>
+                            `);
+                        });
+                    }
+                });
+            }else {
+                alert('danger');
+            }
+
+        })
+    });
+</script> --}}
+
 @endsection
