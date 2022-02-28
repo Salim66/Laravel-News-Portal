@@ -109,6 +109,26 @@
     </div>
  </section>
 
+<!-- Add Section -->
+@php
+    $adds_first = DB::table('ads')->where('type', 2)->first();
+@endphp
+
+     @if($adds_first == NULL)
+
+     @else
+     <div class="top-header-area bg-ffffff top_add">
+        <div class="container">
+           <div class="row align-items-center">
+              <div class="col-lg-12 text-center">
+                <a target="_blank" href="{{ $adds_first->link }}"><img src="{{ $adds_first->ads }}" alt=""></a>
+              </div>
+           </div>
+        </div>
+     </div>
+    @endif
+
+
 @php
 
     $video_data = DB::table('videos')->orderBy('id', 'desc')->get();
@@ -116,6 +136,7 @@
     $most_popular = DB::table('posts')->orderBy('id', 'desc')->inRandomOrder()->limit(6)->get();
 
 @endphp
+
 
  <section class="default-news-area">
     <div class="container">
@@ -237,7 +258,24 @@
              </div>
 
 
+        <!-- Add Section -->
+        @php
+            $adds_second = DB::table('ads')->where('type', 2)->skip(1)->first();
+        @endphp
 
+            @if($adds_second == NULL)
+
+            @else
+            <div class="top-header-area bg-ffffff top_add">
+                <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 text-center">
+                        <a target="_blank" href="{{ $adds_second->link }}"><img src="{{ $adds_second->ads }}" alt=""></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            @endif
 
 
              @php
@@ -329,6 +367,25 @@
                 </div>
              </div>
 
+                     <!-- Add Section -->
+        @php
+            $adds_third = DB::table('ads')->where('type', 2)->skip(2)->first();
+        @endphp
+
+            @if($adds_third == NULL)
+
+            @else
+            <div class="top-header-area bg-ffffff top_add">
+                <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 text-center">
+                        <a target="_blank" href="{{ $$adds_third->link }}"><img src="{{ $$adds_third->ads }}" alt=""></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            @endif
+
              @php
 
                 $secondCategory = DB::table('categories')->skip(1)->first();
@@ -381,6 +438,26 @@
 
                 </div>
              </div>
+
+
+                                <!-- Add Section -->
+        @php
+            $adds_four = DB::table('ads')->where('type', 2)->skip(3)->first();
+        @endphp
+
+            @if($adds_four == NULL)
+
+            @else
+            <div class="top-header-area bg-ffffff top_add">
+                <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 text-center">
+                        <a target="_blank" href="{{ $$adds_four->link }}"><img src="{{ $$adds_four->ads }}" alt=""></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            @endif
 
 
              @php
@@ -879,27 +956,27 @@
                                 </div>
                            </div>
                        </div>
-                      {{-- <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required autocomplete="off">
-                      <button type="submit">Subscribe</button>
-                      <div id="validator-newsletter" class="form-result"></div> --}}
                    </form>
                 </section>
+                <!-- Ads Section -->
+                @php
+                    $adds_v_one = DB::table('ads')->where('type', 1)->first();
+                @endphp
+
+                @if($adds_v_one == NULL)
+
+                @else
                 <section class="widget widget_most_shared">
-                   <h3 class="widget-title">Most shared</h3>
                    <div class="single-most-shared">
                       <div class="most-shared-image">
-                         <a href="#">
-                         <img src="{{ asset('frontend/') }}/assets/img/most-shared/most-shared-2.jpg" alt="image">
+                         <a target="_blank" href="{{ $adds_v_one->link }}">
+                         <img src="{{ URL::to($adds_v_one->ads) }}" alt="image">
                          </a>
-                         <div class="most-shared-content">
-                            <h3>
-                               <a href="#">All the highlights from western fashion week summer 2021</a>
-                            </h3>
-                            <p><a href="#">Patricia</a> / 28 September, 2021</p>
-                         </div>
                       </div>
                    </div>
                 </section>
+                @endif
+
                 @php
                     $prayer = DB::table('prayers')->first();
                 @endphp
@@ -1020,6 +1097,26 @@
                       <a href="#">Fashion</a>
                    </div>
                 </section>
+
+                <!-- Ads Section -->
+                @php
+                    $adds_v_two = DB::table('ads')->where('type', 1)->skip(1)->first();
+                @endphp
+
+                @if($adds_v_two == NULL)
+
+                @else
+                <section class="widget widget_most_shared">
+                    <div class="single-most-shared">
+                    <div class="most-shared-image">
+                        <a target="_blank" href="{{ $adds_v_two->link }}">
+                        <img src="{{ URL::to($adds_v_two->ads) }}" alt="image">
+                        </a>
+                    </div>
+                    </div>
+                </section>
+                @endif
+
                 <section class="widget widget_instagram">
                    <h3 class="widget-title">Instagram</h3>
                    <ul>
