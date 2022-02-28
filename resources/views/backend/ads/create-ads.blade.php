@@ -29,11 +29,11 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Add New Ads</h4>
-                <form class="forms-sample" action="{{ route('store.photo.gallery') }}" method="POST" enctype="multipart/form-data">
+                <form class="forms-sample" action="{{ route('store.ads') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="exampleInputUsername1">Link</label>
+                            <label for="exampleInputUsername1">Ads Link</label>
                             <input type="text" class="form-control" name="link" placeholder="Ads Link">
                             @error('link')
                               <span class="text-danger">{{ $message }}</span>
@@ -42,14 +42,14 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label>Image Upload</label>
+                            <label>Ads Image Upload</label>
                             <input type="file" name="ads" class="form-control">
                             @error('ads')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="exampleSelectGender">Select Type</label>
+                            <label for="exampleSelectGender">Ads Type</label>
                             <select name="type" class="form-control" id="exampleSelectGender">
                             <option value="1">Vertical Ads</option>
                             <option value="2">Horizontal Ads</option>

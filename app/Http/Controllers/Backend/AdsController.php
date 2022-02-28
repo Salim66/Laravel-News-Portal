@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Image;
 
 class AdsController extends Controller
 {
@@ -24,47 +25,78 @@ class AdsController extends Controller
     }
 
     /**
-     * Photo Store
+     * Ads Store
      */
-    public function storePhotoGallery(Request $request){
+    public function storeAds(Request $request){
         $this->validate($request, [
-            'photo' => 'required',
-            'title_en' => 'required',
-            'title_ban' => 'required',
+            'link' => 'required',
+            'ads' => 'required',
             'type' => 'required',
         ]);
 
         $data = [];
-        $data['title_en'] = $request->title_en;
-        $data['title_ban'] = $request->title_ban;
-        $data['type'] = $request->type;
-        $data['post_date'] = date('d-m-Y');
+        $data['link'] = $request->link;
 
+        if($request->type == 2){
 
-        if($request->hasFile('photo')){
-            $image = $request->file('photo');
-            $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(1000, 650)->save('image/photogallery/' . $image_one);
+            if($request->hasFile('ads')){
+                $image = $request->file('ads');
+                $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(736, 90)->save('image/ads/' . $image_one);
 
-            $data['photo'] = 'image/photogallery/' . $image_one;
+                $data['type'] = 2;
+                $data['ads'] = 'image/ads/' . $image_one;
 
-            DB::table('photos')->insert($data);
+                DB::table('ads')->insert($data);
 
-            $notification = [
-                'message' => 'Photo gallery added successfully',
-                'alert-type' => 'success',
-            ];
+                $notification = [
+                    'message' => 'Ads added successfully',
+                    'alert-type' => 'success',
+                ];
 
-            return redirect()->route('photo.gallery')->with($notification);
+                return redirect()->route('ads.list')->with($notification);
+
+            }else {
+                $notification = [
+                    'message' => 'Please insert image',
+                    'alert-type' => 'error',
+                ];
+
+                return redirect()->back()->with($notification);
+            }
 
         }else {
-            $notification = [
-                'message' => 'Please insert photo',
-                'alert-type' => 'error',
-            ];
 
-            return redirect()->back()->with($notification);
+            if($request->hasFile('ads')){
+                $image = $request->file('ads');
+                $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(356, 279)->save('image/ads/' . $image_one);
+
+                $data['type'] = 1;
+                $data['ads'] = 'image/ads/' . $image_one;
+
+                DB::table('ads')->insert($data);
+
+                $notification = [
+                    'message' => 'Ads added successfully',
+                    'alert-type' => 'success',
+                ];
+
+                return redirect()->route('ads.list')->with($notification);
+
+            }else {
+                $notification = [
+                    'message' => 'Please insert image',
+                    'alert-type' => 'error',
+                ];
+
+                return redirect()->back()->with($notification);
+            }
+
         }
+
+
+
     }
 
     /**
