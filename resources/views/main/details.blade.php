@@ -36,6 +36,7 @@
         <title>{{ $seo->meta_title }}</title>
         <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" >
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=621cb8f8b846610019d3dc86&product=inline-share-buttons" async="async"></script>
     </head>
    <body>
       <div class="preloader">
@@ -141,24 +142,7 @@
                      </div>
                      <div class="article-footer">
                         <div class="article-share">
-                           <ul class="social">
-                              <li><span>Share:</span></li>
-                              <li>
-                                 <a href="#" target="_blank">
-                                 <i class='bx bxl-facebook'></i>
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" target="_blank">
-                                 <i class='bx bxl-twitter'></i>
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" target="_blank">
-                                 <i class='bx bxl-instagram'></i>
-                                 </a>
-                              </li>
-                           </ul>
+                            <div class="sharethis-inline-share-buttons"></div>
                         </div>
                      </div>
                      <div class="post-navigation">

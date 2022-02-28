@@ -831,44 +831,14 @@
              <aside class="widget-area">
                 <section class="widget widget_stay_connected">
                    <h3 class="widget-title">Stay connected</h3>
-                   <ul class="stay-connected-list">
-                      <li>
-                         <a href="#">
-                         <i class='bx bxl-facebook'></i>
-                         120,345 Fans
-                         </a>
-                      </li>
-                      <li>
-                         <a href="#" class="twitter">
-                         <i class='bx bxl-twitter'></i>
-                         25,321 Followers
-                         </a>
-                      </li>
-                      <li>
-                         <a href="#" class="linkedin">
-                         <i class='bx bxl-linkedin'></i>
-                         7,519 Connect
-                         </a>
-                      </li>
-                      <li>
-                         <a href="#" class="youtube">
-                         <i class='bx bxl-youtube'></i>
-                         101,545 Subscribers
-                         </a>
-                      </li>
-                      <li>
-                         <a href="#" class="instagram">
-                         <i class='bx bxl-instagram'></i>
-                         10,129 Followers
-                         </a>
-                      </li>
-                      <li>
-                         <a href="#" class="wifi">
-                         <i class='bx bx-wifi'></i>
-                         952 Subscribers
-                         </a>
-                      </li>
-                   </ul>
+
+                   <!-- Facebook Page -->
+                   <div id="fb-root"></div>
+                   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0" nonce="DGGeTXZi"></script>
+                   <div class="fb-page" data-href="https://www.facebook.com/chandleenews" data-tabs="" data-width="357" data-height="160" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/chandleenews" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chandleenews">Chandlee News</a></blockquote></div>
+
+
+
                 </section>
                 @php
                     $livetv = DB::table('livetvs')->first();
@@ -1117,7 +1087,7 @@
                 </section>
                 @endif
 
-                <section class="widget widget_instagram">
+                {{-- <section class="widget widget_instagram">
                    <h3 class="widget-title">Instagram</h3>
                    <ul>
                       <li>
@@ -1163,7 +1133,7 @@
                          </div>
                       </li>
                    </ul>
-                </section>
+                </section> --}}
 
                 @php
                     $websites = DB::table('websites')->limit(5)->get();
