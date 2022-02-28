@@ -58,8 +58,8 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('edit.photo.gallery', $data->id) }}" class="btn btn-info">Edit</a>
-                            <a id="delete" href="{{ route('delete.photo.gallery', $data->id) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('edit.ads', $data->id) }}" class="btn btn-info">Edit</a>
+                            <a id="delete" href="{{ route('delete.ads', $data->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
                     @endforeach

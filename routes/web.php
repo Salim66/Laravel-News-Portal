@@ -167,6 +167,6 @@ Route::get('/delete/videos/gallery/{id}', [GalleryController::class, 'deleteVide
 Route::get('/ads/list', [AdsController::class, 'adsList'])->name('ads.list');
 Route::get('/add/ads', [AdsController::class, 'addAds'])->name('add.ads');
 Route::post('/store/ads', [AdsController::class, 'storeAds'])->name('store.ads');
-Route::get('/edit/photos/gallery/{id}', [GalleryController::class, 'editPhotoGallery'])->name('edit.photo.gallery');
-Route::post('/update/photos/gallery/{id}', [GalleryController::class, 'updatePhotoGallery'])->name('update.photo.gallery');
-Route::get('/delete/photos/gallery/{id}', [GalleryController::class, 'deletePhotoGallery'])->name('delete.photo.gallery');
+Route::get('/edit/ads/{id}', [AdsController::class, 'editAds'])->name('edit.ads');
+Route::post('/update/ads/{id}', [AdsController::class, 'updateAds'])->name('update.ads');
+Route::get('/delete/ads/{id}', [AdsController::class, 'deleteAds'])->name('delete.ads');

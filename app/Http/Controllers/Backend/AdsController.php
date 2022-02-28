@@ -100,75 +100,120 @@ class AdsController extends Controller
     }
 
     /**
-     * Photo Edit Page
+     * Ads Edit Page
      */
-    public function editPhotoGallery($id){
-        $data = DB::table('photos')->where('id', $id)->first();
-        return view('backend.gallery.edit_photo', compact('data'));
+    public function editAds($id){
+        $data = DB::table('ads')->where('id', $id)->first();
+        return view('backend.ads.edit_ads', compact('data'));
     }
 
 
     /**
-     * Photo Update
+     * Ads Update
      */
-    public function updatePhotoGallery(Request $request, $id){
+    public function updateAds(Request $request, $id){
 
         $data = [];
-        $data['title_en'] = $request->title_en;
-        $data['title_ban'] = $request->title_ban;
-        $data['type'] = $request->type;
-        $data['post_date'] = date('d-m-Y');
+        $data['link'] = $request->link;
 
-        $old_photo = $request->old_photo;
+        $old_image = $request->old_photo;
 
-        $image = $request->file('photo');
-        if($image){
+        if($request->type == 2){
 
-            $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(1000, 650)->save('image/photogallery/' . $image_one);
+            if($request->hasFile('ads')){
+                $image = $request->file('ads');
+                $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(736, 90)->save('image/ads/' . $image_one);
 
-            $data['photo'] = 'image/photogallery/' . $image_one;
+                $data['type'] = 2;
+                $data['ads'] = 'image/ads/' . $image_one;
 
-            DB::table('photos')->where('id', $id)->update($data);
+                DB::table('ads')->where('id', $id)->update($data);
 
-            if(file_exists($old_photo) && !empty($old_photo)){
-                unlink($old_photo);
+                if(file_exists($old_image) && !empty($old_image)){
+                    unlink($old_image);
+                }
+
+                $notification = [
+                    'message' => 'Ads updated successfully',
+                    'alert-type' => 'success',
+                ];
+
+                return redirect()->route('ads.list')->with($notification);
+
+            }else {
+                $data['ads'] = $old_image;
+
+                DB::table('ads')->where('id', $id)->update($data);
+
+                $notification = [
+                    'message' => 'Ads updated successfully',
+                    'alert-type' => 'info',
+                ];
+
+                return redirect()->route('ads.list')->with($notification);
             }
-
-            $notification = [
-                'message' => 'Photo gallery updated successfully',
-                'alert-type' => 'info',
-            ];
-
-            return redirect()->route('photo.gallery')->with($notification);
 
         }else {
 
-            $data['photo'] = $old_photo;
+            if($request->hasFile('ads')){
+                $image = $request->file('ads');
+                $image_one = md5(time().rand()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(356, 279)->save('image/ads/' . $image_one);
 
-            DB::table('photos')->where('id', $id)->update($data);
+                $data['type'] = 1;
+                $data['ads'] = 'image/ads/' . $image_one;
 
-            $notification = [
-                'message' => 'Photo gallery updated successfully',
-                'alert-type' => 'info',
-            ];
+                DB::table('ads')->where('id', $id)->update($data);
 
-            return redirect()->route('photo.gallery')->with($notification);
+                if(file_exists($old_image) && !empty($old_image)){
+                    unlink($old_image);
+                }
+
+                $notification = [
+                    'message' => 'Ads updated successfully',
+                    'alert-type' => 'success',
+                ];
+
+                return redirect()->route('ads.list')->with($notification);
+
+            }else {
+                $data['ads'] = $old_image;
+
+                DB::table('ads')->where('id', $id)->update($data);
+
+                $notification = [
+                    'message' => 'Ads updated successfully',
+                    'alert-type' => 'info',
+                ];
+
+                return redirect()->route('ads.list')->with($notification);
+            }
+
         }
+
+
+
     }
 
     /**
-     * Photo Delete
+     * Ads Delete
      */
-    public function deletePhotoGallery($id){
-        DB::table('photos')->where('id', $id)->delete();
+    public function deleteAds($id){
+        $data = DB::table('ads')->where('id', $id)->first();
+
+        if(file_exists($data->ads) && !empty($data->ads)){
+            unlink($data->ads);
+        }
+
+        DB::table('ads')->where('id', $id)->delete();
 
         $notification = [
-            'message' => 'Photo gallery deleted successfully',
+            'message' => 'Ads deleted successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('photo.gallery')->with($notification);
+        return redirect()->route('ads.list')->with($notification);
     }
 
 
