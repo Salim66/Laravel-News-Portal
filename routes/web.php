@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AdsController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\GalleryController;
@@ -160,3 +161,12 @@ Route::post('/store/videos/gallery', [GalleryController::class, 'storeVideoGalle
 Route::get('/edit/videos/gallery/{id}', [GalleryController::class, 'editVideoGallery'])->name('edit.video.gallery');
 Route::post('/update/videos/gallery/{id}', [GalleryController::class, 'updateVideoGallery'])->name('update.video.gallery');
 Route::get('/delete/videos/gallery/{id}', [GalleryController::class, 'deleteVideoGallery'])->name('delete.video.gallery');
+
+
+// Admin Ads Routes
+Route::get('/ads/list', [AdsController::class, 'adsList'])->name('ads.list');
+Route::get('/add/ads', [AdsController::class, 'addAds'])->name('add.ads');
+Route::post('/store/photos/gallery', [GalleryController::class, 'storePhotoGallery'])->name('store.photo.gallery');
+Route::get('/edit/photos/gallery/{id}', [GalleryController::class, 'editPhotoGallery'])->name('edit.photo.gallery');
+Route::post('/update/photos/gallery/{id}', [GalleryController::class, 'updatePhotoGallery'])->name('update.photo.gallery');
+Route::get('/delete/photos/gallery/{id}', [GalleryController::class, 'deletePhotoGallery'])->name('delete.photo.gallery');
