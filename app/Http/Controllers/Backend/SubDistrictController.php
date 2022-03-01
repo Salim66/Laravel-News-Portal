@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class SubDistrictController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * SubDistrict view
      */

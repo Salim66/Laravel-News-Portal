@@ -9,6 +9,11 @@ use Image;
 
 class AdsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Add List view
      */

@@ -9,6 +9,11 @@ use Image;
 
 class GalleryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //////////////// Photo Gallery /////////////////
     /**
      * Photo Gallery view

@@ -177,3 +177,6 @@ Route::get('/delete/ads/{id}', [AdsController::class, 'deleteAds'])->name('delet
 Route::get('/all/writer', [RoleController::class, 'allWriter'])->name('all.writer');
 Route::get('/add/writer', [RoleController::class, 'addWriter'])->name('add.writer');
 Route::post('/store/writer', [RoleController::class, 'storeWriter'])->name('store.writer');
+Route::get('/edit/writer/{id}', [RoleController::class, 'editWriter'])->name('edit.writer');
+Route::post('/update/writer/{id}', [RoleController::class, 'updateWriter'])->name('update.writer');
+Route::get('/delete/writer/{id}', [RoleController::class, 'deleteWriter'])->name('delete.writer');
