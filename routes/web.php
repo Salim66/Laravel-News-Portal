@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -170,3 +171,7 @@ Route::post('/store/ads', [AdsController::class, 'storeAds'])->name('store.ads')
 Route::get('/edit/ads/{id}', [AdsController::class, 'editAds'])->name('edit.ads');
 Route::post('/update/ads/{id}', [AdsController::class, 'updateAds'])->name('update.ads');
 Route::get('/delete/ads/{id}', [AdsController::class, 'deleteAds'])->name('delete.ads');
+
+
+// Admin User roles Routes
+Route::get('/add/writer', [RoleController::class, 'addWriter'])->name('add.writer');

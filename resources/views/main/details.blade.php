@@ -146,7 +146,7 @@
                         </div>
                      </div>
                      <div class="post-navigation">
-                        <div class="navigation-links">
+                        {{-- <div class="navigation-links">
                            <div class="nav-previous">
                               <a href="#">
                               <i class='bx bx-chevron-left'></i>
@@ -159,10 +159,23 @@
                               <i class='bx bx-chevron-right'></i>
                               </a>
                            </div>
-                        </div>
+                        </div> --}}
                      </div>
+
+                      <!-- Facebook Comment Plugin -->
+                      <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1 version=v8.0" nonce="ClFC86MV"></script>
+<div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="8"></div>
+                      <!-- ! Facebook Comment Plugin -->
+
                      <div class="comments-area">
-                        <h3 class="comments-title">3 Comments:</h3>
+                         {{-- <!-- Facebook Comment Plugin -->
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0" nonce="NW5572vU"></script>
+                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
+                        <!-- ! Facebook Comment Plugin --> --}}
+
+                        {{-- <h3 class="comments-title">3 Comments:</h3>
                         <ol class="comment-list">
                            <li class="comment">
                               <div class="comment-body">
@@ -259,7 +272,7 @@
                                  <input type="submit" name="submit" id="submit" class="submit" value="Post a comment">
                               </p>
                            </form>
-                        </div>
+                        </div> --}}
                      </div>
                   </div>
                </div>

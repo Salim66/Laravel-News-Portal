@@ -830,7 +830,11 @@
           <div class="col-lg-4">
              <aside class="widget-area">
                 <section class="widget widget_stay_connected">
+                   @if(session()->get('lang') == 'english')
                    <h3 class="widget-title">Stay connected</h3>
+                   @else
+                   <h3 class="widget-title">যুক্ত থাকুন</h3>
+                   @endif
 
                    <!-- Facebook Page -->
                    <div id="fb-root"></div>
