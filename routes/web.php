@@ -29,6 +29,10 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
 
+// Language Routes
+Route::get('/lang/bangla', [ExtraController::class, 'langBangla'])->name('lang.bangla');
+Route::get('/lang/english', [ExtraController::class, 'langEnglish'])->name('lang.english');
+
 Route::get('/', function () {
     return view('main.home');
 });
@@ -37,11 +41,9 @@ Route::get('/post/view/{slug_en}', [ExtraController::class, 'postView'])->name('
 Route::get('/category/{slug_en}', [ExtraController::class, 'categoryWisePostView'])->name('category.wise.post');
 Route::get('/category/{c_slug_en}/{s_slug_en}', [ExtraController::class, 'subCategoryWisePostView']);
 Route::get('/get/subdistrict/frontend/{district_id}', [ExtraController::class, 'getSubDistrict']);
-Route::post('district.search', [ExtraController::class, 'districtSearch'])->name('district.search');
+Route::post('/district-search', [ExtraController::class, 'districtSearch'])->name('district.search');
+Route::get('/contact', [ExtraController::class, 'contactPage'])->name('contact.page');
 
-// Language Routes
-Route::get('/lang/bangla', [ExtraController::class, 'langBangla'])->name('lang.bangla');
-Route::get('/lang/english', [ExtraController::class, 'langEnglish'])->name('lang.english');
 
 
 

@@ -1,10 +1,14 @@
+@php
+    $websetting = DB::table('websitesettings')->first();
+@endphp
+
 <div class="navbar-area navbar-two">
     <div class="main-responsive-nav">
        <div class="container">
           <div class="main-responsive-menu">
              <div class="logo">
                 <a href="{{ url('/') }}">
-                <img src="{{ asset('frontend/') }}/assets/img/logo_news.png" style="height: 80px" alt="image">
+                <img src="{{ URL::to($websetting->logo) }}" alt="image">
                 </a>
              </div>
           </div>
@@ -14,7 +18,7 @@
        <div class="container">
           <nav class="navbar navbar-expand-md navbar-light">
              <a class="navbar-brand" href="{{ url('/') }}">
-             <img src="{{ asset('frontend/') }}/assets/img/logo_news.png" style="height: 80px" alt="image">
+             <img src="{{ URL::to($websetting->logo) }}" alt="image">
              </a>
              <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                 <ul class="navbar-nav">

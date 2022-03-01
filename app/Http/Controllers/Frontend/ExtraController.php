@@ -87,4 +87,12 @@ class ExtraController extends Controller
         return view('main.district_wise_post', compact('all_data', 'district'));
     }
 
+    /**
+     * Contact Page
+     */
+    public function contactPage(){
+        $data = DB::table('websitesettings')->first();
+        return view('main.contact', compact('data'));
+    }
+
 }
