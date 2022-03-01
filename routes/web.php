@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\WebsiteSetting;
 use App\Http\Controllers\Frontend\ExtraController;
 use Illuminate\Support\Facades\Route;
 
@@ -180,3 +181,7 @@ Route::post('/store/writer', [RoleController::class, 'storeWriter'])->name('stor
 Route::get('/edit/writer/{id}', [RoleController::class, 'editWriter'])->name('edit.writer');
 Route::post('/update/writer/{id}', [RoleController::class, 'updateWriter'])->name('update.writer');
 Route::get('/delete/writer/{id}', [RoleController::class, 'deleteWriter'])->name('delete.writer');
+
+
+// Admin Website Setting Routes
+Route::get('/website/setting/', [WebsiteSetting::class, 'websiteSetting'])->name('website.setting');

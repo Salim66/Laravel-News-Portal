@@ -162,6 +162,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{ route('prayer.setting') }}"> Prayer Setting </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('livetv.setting') }}"> LiveTv Setting </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('notice.setting') }}"> Notice Setting </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('website.setting') }}"> Website Setting </a></li>
           </ul>
         </div>
       </li>
@@ -247,16 +248,6 @@
 
       @endif
 
-
-
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
-          <span class="menu-icon">
-            <i class="mdi mdi-file-document-box"></i>
-          </span>
-          <span class="menu-title">Documentation</span>
-        </a>
-      </li>
 
     </ul>
   </nav>
