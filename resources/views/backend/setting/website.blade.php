@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Edit Website Setting</h4>
-                <form class="forms-sample" action="{{ route('update.seo', $data->id) }}" method="POST">
+                <form class="forms-sample" action="{{ route('update.websetting', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                 <div class="row">

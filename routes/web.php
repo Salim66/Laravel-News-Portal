@@ -185,3 +185,4 @@ Route::get('/delete/writer/{id}', [RoleController::class, 'deleteWriter'])->name
 
 // Admin Website Setting Routes
 Route::get('/website/setting/', [WebsiteSetting::class, 'websiteSetting'])->name('website.setting');
+Route::post('/update/website/setting/{id}', [WebsiteSetting::class, 'updateWebsiteSetting'])->name('update.websetting');
