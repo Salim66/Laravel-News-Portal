@@ -62,7 +62,7 @@
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="setting" value="1"> Setting <i class="input-helper"></i></label>
                           </div>
-                          <div class="form-check form-check-danger">
+                          <div class="form-check form-check-warning">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="tag" value="1"> Tag <i class="input-helper"></i></label>
                           </div>

@@ -10,7 +10,16 @@ use Illuminate\Support\Facades\Hash;
 class RoleController extends Controller
 {
     /**
-     * Add Wirte page
+     * All Writer
+     */
+    public function allWriter(){
+        $all_data = DB::table('users')->where('type', 0)->get();
+        return view('backend.role.index', compact('all_data'));
+    }
+
+
+    /**
+     * Add Writer page
      */
     public function addWriter(){
         return view('backend.role.create');
@@ -18,7 +27,7 @@ class RoleController extends Controller
 
 
     /**
-     * Store Wirte
+     * Store Writer
      */
     public function storeWriter(Request $request){
 
