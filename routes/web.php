@@ -175,3 +175,4 @@ Route::get('/delete/ads/{id}', [AdsController::class, 'deleteAds'])->name('delet
 
 // Admin User roles Routes
 Route::get('/add/writer', [RoleController::class, 'addWriter'])->name('add.writer');
+Route::post('/store/writer', [RoleController::class, 'storeWriter'])->name('store.writer');

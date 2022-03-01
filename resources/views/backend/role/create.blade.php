@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Add User Role</h4>
-                <form class="forms-sample" action="{{ route('store.category') }}" method="POST">
+                <form class="forms-sample" action="{{ route('store.writer') }}" method="POST">
                     @csrf
                   <div class="form-group">
                     <label for="exampleInputUsername1">Name</label>
@@ -61,6 +61,10 @@
                           <div class="form-check form-check-danger">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="setting" value="1"> Setting <i class="input-helper"></i></label>
+                          </div>
+                          <div class="form-check form-check-danger">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="tag" value="1"> Tag <i class="input-helper"></i></label>
                           </div>
                         </div>
                       </div>
