@@ -33,7 +33,7 @@
                 <a href="{{ route('edit.profile') }}" class="btn btn-success float-right edit_profile">Edit Profile</a>
 
                 <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('backend/') }}/assets/images/faces/face15.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="{{ (!empty($data->image)) ? URL::to($data->image) : URL::to('/upload/no_image.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <table class="table table-striped">
                             <tr>

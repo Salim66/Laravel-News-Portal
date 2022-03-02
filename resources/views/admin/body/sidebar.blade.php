@@ -8,7 +8,7 @@
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="{{ asset('backend/') }}/assets/images/faces/face15.jpg" alt="">
+              <img class="img-xs rounded-circle " src="{{ (!empty(Auth::user()->image)) ? URL::to(Auth::user()->image) : URL::to('/upload/no_image.jpg') }}" alt="">
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">

@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Update User Profile</h4>
-                <form class="forms-sample" action="{{ route('update.ads', $data->id) }}" method="POST" enctype="multipart/form-data">
+                <form class="forms-sample" action="{{ route('update.profile', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-12">
