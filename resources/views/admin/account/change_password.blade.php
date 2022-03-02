@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Change Password</h4>
-                <form class="forms-sample" action="{{ route('store.ads') }}" method="POST">
+                <form class="forms-sample" action="{{ route('update.password') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-12">

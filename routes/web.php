@@ -195,3 +195,4 @@ Route::get('/account/setting', [AdminController::class, 'accountSetting'])->name
 Route::get('/edit/profile', [AdminController::class, 'editProfile'])->name('edit.profile');
 Route::post('/update/profile/{id}', [AdminController::class, 'updateProfile'])->name('update.profile');
 Route::get('/change/password', [AdminController::class, 'changePassword'])->name('change.password');
+Route::post('/update/password', [AdminController::class, 'updatePassword'])->name('update.password');
