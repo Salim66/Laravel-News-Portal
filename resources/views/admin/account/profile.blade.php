@@ -30,7 +30,7 @@
               <div class="card-body">
                 <h4 class="card-title">User Profile</h4>
 
-                <a href="#" class="btn btn-success float-right edit_profile">Edit Profile</a>
+                <a href="{{ route('edit.profile') }}" class="btn btn-success float-right edit_profile">Edit Profile</a>
 
                 <div class="card" style="width: 20rem;">
                     <img class="card-img-top" src="{{ asset('backend/') }}/assets/images/faces/face15.jpg" alt="Card image cap">

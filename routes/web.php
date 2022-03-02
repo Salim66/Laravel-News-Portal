@@ -192,3 +192,4 @@ Route::post('/update/website/setting/{id}', [WebsiteSetting::class, 'updateWebsi
 
 // Admin Account Password
 Route::get('/account/setting', [AdminController::class, 'accountSetting'])->name('account.setting');
+Route::get('/edit/profile', [AdminController::class, 'editProfile'])->name('edit.profile');
