@@ -2,3 +2,7 @@
     color: gray !important;
     font-size: 8px !important;
 }
+
+.edit_profile {
+    float: right;
+}
