@@ -76,4 +76,11 @@ class AdminController extends Controller
         return redirect()->route('account.setting')->with($notification);
 
     }
+
+    /**
+     * Change Password Page
+     */
+    public function changePassword(){
+        return view('admin.account.change_password');
+    }
 }

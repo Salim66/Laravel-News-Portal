@@ -194,3 +194,4 @@ Route::post('/update/website/setting/{id}', [WebsiteSetting::class, 'updateWebsi
 Route::get('/account/setting', [AdminController::class, 'accountSetting'])->name('account.setting');
 Route::get('/edit/profile', [AdminController::class, 'editProfile'])->name('edit.profile');
 Route::post('/update/profile/{id}', [AdminController::class, 'updateProfile'])->name('update.profile');
+Route::get('/change/password', [AdminController::class, 'changePassword'])->name('change.password');

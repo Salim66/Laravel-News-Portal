@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-      <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('backend/') }}/assets/images/logo.svg" alt="logo" /></a>
-      <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{ asset('backend/') }}/assets/images/logo-mini.svg" alt="logo" /></a>
+      <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('frontend/') }}/assets/img/facicon_news.png" alt="logo" style="height: 30px; width: 30px; object-fit: cover; text-align: center;" /></a>
+      <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{ asset('frontend/') }}/assets/img/facicon_news.png" style="height: 30px; width: 30px; object-fit: cover; text-align: center;" alt="logo" /></a>
     </div>
     <ul class="nav">
       <li class="nav-item profile">
@@ -29,7 +29,7 @@
               </div>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item preview-item">
+            <a href="{{ route('change.password') }}" class="dropdown-item preview-item">
               <div class="preview-thumbnail">
                 <div class="preview-icon bg-dark rounded-circle">
                   <i class="mdi mdi-onepassword  text-info"></i>
