@@ -54,6 +54,16 @@ class ExtraController extends Controller
     }
 
     /**
+     * User Wise Post Search
+     */
+    public function userWisePost($user_id){
+        $user = DB::table('users')->where('id', $user_id)->first();
+        $all_data = DB::table('posts')->where('user_id', $user->id)->orderBy('id', 'desc')->paginate(10);
+
+        return view('main.user_wise_post', compact('all_data', 'user'));
+    }
+
+    /**
      * SubCategory Wise Post Search
      */
     public function subCategoryWisePostView($c_slug_en, $s_slug_en){

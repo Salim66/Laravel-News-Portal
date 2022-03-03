@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Image;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewPostNotify;
 use Illuminate\Support\Facades\Auth;
-use Image;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
@@ -83,6 +86,14 @@ class PostController extends Controller
             ];
 
             return redirect()->route('posts')->with($notification);
+
+            $subscribers = Subscriber::all();
+            foreach ($subscribers as $subscriber)
+            {
+                Notification::route('mail',$subscriber->email)
+                    ->notify(new NewPostNotify($data));
+            }
+
 
         }else {
             $notification = [

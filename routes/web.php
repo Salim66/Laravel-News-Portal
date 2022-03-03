@@ -45,6 +45,7 @@ Route::get('/', function () {
 Route::get('/post/view/{slug_en}', [ExtraController::class, 'postView'])->name('post.view');
 Route::get('/category/{slug_en}', [ExtraController::class, 'categoryWisePostView'])->name('category.wise.post');
 Route::get('/category/{c_slug_en}/{s_slug_en}', [ExtraController::class, 'subCategoryWisePostView']);
+Route::get('/user/{user_id}', [ExtraController::class, 'userWisePost'])->name('user.post');
 Route::get('/get/subdistrict/frontend/{district_id}', [ExtraController::class, 'getSubDistrict']);
 Route::post('/district-search', [ExtraController::class, 'districtSearch'])->name('district.search');
 Route::get('/contact', [ExtraController::class, 'contactPage'])->name('contact.page');
