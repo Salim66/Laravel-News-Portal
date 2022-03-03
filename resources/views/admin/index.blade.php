@@ -34,6 +34,8 @@
     @endphp
 
     <div class="row">
+
+      @if(Auth::user()->category == 1)
       <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
@@ -74,6 +76,11 @@
           </div>
         </div>
       </div>
+      @else
+
+      @endif
+
+     @if(Auth::user()->post == 1)
       <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
@@ -94,6 +101,11 @@
           </div>
         </div>
       </div>
+      @else
+
+      @endif
+
+      @if(Auth::user()->ads == 1)
       <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
@@ -114,6 +126,9 @@
           </div>
         </div>
       </div>
+      @else
+
+      @endif
     </div>
 </div>
 

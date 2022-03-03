@@ -3,16 +3,16 @@
 
        <li>
           <div class="languages-list">
-           @if(session()->get('lang') == 'bangla')
-           <a href="{{ route('lang.english') }}">English</a>
-           @else
+           @if(session()->get('lang') == 'english')
            <a href="{{ route('lang.bangla') }}">বাংলা</a>
+           @else
+           <a href="{{ route('lang.english') }}">English</a>
            @endif
           </div>
        </li>
        <li>
           <i class='bx bx-user'></i>
-          <a href="login.html">Login</a>
+          <a href="{{ route('login') }}">Login</a>
        </li>
     </ul>
 </div>

@@ -11,6 +11,7 @@
         <meta name="author" content="{{ $seo->meta_author }}" />
         <meta name="brand_name" content="Chandlee News" />
         <meta name="apple-mobile-web-app-title" content="Chandlee News" />
+        <meta name="csrf_token" content="{{ csrf_token() }}" />
         <!-- Google Analytics -->
         <script>
             {!! $seo->google_analytics !!}
@@ -33,7 +34,12 @@
         <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/nice-select.min.css">
         <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/style.css">
         <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/responsive.css">
+
         <title>{{ $seo->meta_title }}</title>
+
+        <!-- Toastr CSS -->
+	    <link rel="stylesheet" href="{{ asset('backend/assets/css/toastr.min.css') }}">
+
         <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" >
         <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=621cb8f8b846610019d3dc86&product=inline-share-buttons" async="async"></script>
@@ -146,136 +152,39 @@
                         </div>
                      </div>
                      <div class="post-navigation">
-                        {{-- <div class="navigation-links">
-                           <div class="nav-previous">
-                              <a href="#">
-                              <i class='bx bx-chevron-left'></i>
-                              Prev Post
-                              </a>
-                           </div>
-                           <div class="nav-next">
-                              <a href="#">
-                              Next Post
-                              <i class='bx bx-chevron-right'></i>
-                              </a>
-                           </div>
-                        </div> --}}
+
                      </div>
 
                       <!-- Facebook Comment Plugin -->
-                      <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1 version=v8.0" nonce="ClFC86MV"></script>
-<div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="8"></div>
+                      {{-- <div id="fb-root"></div>
+                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1 version=v8.0" nonce="ClFC86MV"></script>
+                     <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="8"></div> --}}
                       <!-- ! Facebook Comment Plugin -->
 
-                     <div class="comments-area">
-                         {{-- <!-- Facebook Comment Plugin -->
-                        <div id="fb-root"></div>
-                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0" nonce="NW5572vU"></script>
-                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
-                        <!-- ! Facebook Comment Plugin --> --}}
-
-                        {{-- <h3 class="comments-title">3 Comments:</h3>
-                        <ol class="comment-list">
-                           <li class="comment">
-                              <div class="comment-body">
-                                 <footer class="comment-meta">
-                                    <div class="comment-author vcard">
-                                       <img src="assets/img/client/client-1.jpg" class="avatar" alt="image">
-                                       <b class="fn">John Jones</b>
-                                    </div>
-                                    <div class="comment-metadata">
-                                       <a href="index.html">
-                                       <span>April 24, 2021 at 10:59 am</span>
-                                       </a>
-                                    </div>
-                                 </footer>
-                                 <div class="comment-content">
-                                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</p>
-                                 </div>
-                                 <div class="reply">
-                                    <a href="#" class="comment-reply-link">Reply</a>
-                                 </div>
-                              </div>
-                              <ol class="children">
-                                 <li class="comment">
-                                    <div class="comment-body">
-                                       <footer class="comment-meta">
-                                          <div class="comment-author vcard">
-                                             <img src="assets/img/client/client-2.jpg" class="avatar" alt="image">
-                                             <b class="fn">Steven Smith</b>
-                                          </div>
-                                          <div class="comment-metadata">
-                                             <a href="index.html">
-                                             <span>April 24, 2021 at 10:59 am</span>
-                                             </a>
-                                          </div>
-                                       </footer>
-                                       <div class="comment-content">
-                                          <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</p>
-                                       </div>
-                                       <div class="reply">
-                                          <a href="#" class="comment-reply-link">Reply</a>
-                                       </div>
-                                    </div>
-                                 </li>
-                              </ol>
-                              <div class="comment-body">
-                                 <footer class="comment-meta">
-                                    <div class="comment-author vcard">
-                                       <img src="assets/img/client/client-3.jpg" class="avatar" alt="image">
-                                       <b class="fn">Sarah Taylor</b>
-                                    </div>
-                                    <div class="comment-metadata">
-                                       <a href="index.html">
-                                       <span>April 24, 2021 at 10:59 am</span>
-                                       </a>
-                                    </div>
-                                 </footer>
-                                 <div class="comment-content">
-                                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</p>
-                                 </div>
-                                 <div class="reply">
-                                    <a href="#" class="comment-reply-link">Reply</a>
-                                 </div>
-                              </div>
-                           </li>
-                        </ol>
-                        <div class="comment-respond">
-                           <h3 class="comment-reply-title">Leave a Reply</h3>
-                           <form class="comment-form">
-                              <p class="comment-notes">
-                                 <span id="email-notes">Your email address will not be published.</span>
-                                 Required fields are marked
-                              </p>
-                              <p class="comment-form-author">
-                                 <label>Name</label>
-                                 <input type="text" id="author" placeholder="Your Name*" name="author" required="required">
-                              </p>
-                              <p class="comment-form-email">
-                                 <label>Email</label>
-                                 <input type="email" id="email" placeholder="Your Email*" name="email" required="required">
-                              </p>
-                              <p class="comment-form-url">
-                                 <label>Website</label>
-                                 <input type="url" id="url" placeholder="Website" name="url">
-                              </p>
-                              <p class="comment-form-comment">
-                                 <label>Comment</label>
-                                 <textarea name="comment" id="comment" cols="45" placeholder="Your Comment..." rows="5" maxlength="65525" required="required"></textarea>
-                              </p>
-                              <p class="comment-form-cookies-consent">
-                                 <input type="checkbox" value="yes" name="wp-comment-cookies-consent" id="wp-comment-cookies-consent">
-                                 <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>
-                              </p>
-                              <p class="form-submit">
-                                 <input type="submit" name="submit" id="submit" class="submit" value="Post a comment">
-                              </p>
-                           </form>
-                        </div> --}}
-                     </div>
+                      <div id="disqus_thread"></div>
+                      <script>
+                          /**
+                          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                          /*
+                          var disqus_config = function () {
+                          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                          };
+                          */
+                          (function() { // DON'T EDIT BELOW THIS LINE
+                          var d = document, s = d.createElement('script');
+                          s.src = 'https://chandleenews.disqus.com/embed.js';
+                          s.setAttribute('data-timestamp', +new Date());
+                          (d.head || d.body).appendChild(s);
+                          })();
+                      </script>
+                      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                   </div>
                </div>
+
+
+
                <div class="col-lg-4">
                   <aside class="widget-area">
                      <div class="widget widget_search">
@@ -501,5 +410,34 @@
       <script src="{{ asset('frontend/') }}/assets/js/contact-form-script.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/wow.min.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/main.js"></script>
+
+      <!-- Toastr JS -->
+	<script src="{{ asset('backend/assets/js/toastr.min.js') }}"></script>
+    <script type="text/javascript">
+        @if(Session::has('message'))
+         let type = "{{ Session::get('alert-type', 'info') }}"
+         switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+              case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+        }
+        @endif
+    </script>
+
+    <!-- Custom JS -->
+    <script src="{{ asset('frontend/') }}/assets/js/custom.js"></script>
+
    </body>
 </html>

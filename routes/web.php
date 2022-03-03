@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\WebsiteSetting;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\ExtraController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,12 @@ Route::get('/get/subdistrict/frontend/{district_id}', [ExtraController::class, '
 Route::post('/district-search', [ExtraController::class, 'districtSearch'])->name('district.search');
 Route::get('/contact', [ExtraController::class, 'contactPage'])->name('contact.page');
 
+// Commnet Routes
+Route::post('/commnet/user/store', [CommentController::class, 'commentUserStore'])->name('comment.user.register');
+
+Route::post('/comment/store', [CommentController::class, 'commentStore'])->name('comment.store');
+Route::get('/comment/all_data/{id}', [CommentController::class, 'commentShowAll'])->name('comment.show.all');
+Route::post('/comment/reply/store', [CommentController::class, 'commentReplyStore'])->name('comment.reply.store');
 
 
 

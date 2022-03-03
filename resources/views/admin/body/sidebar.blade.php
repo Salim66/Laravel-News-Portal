@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-      <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('frontend/') }}/assets/img/facicon_news.png" alt="logo" style="height: 30px; width: 30px; object-fit: cover; text-align: center;" /></a>
-      <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{ asset('frontend/') }}/assets/img/facicon_news.png" style="height: 30px; width: 30px; object-fit: cover; text-align: center;" alt="logo" /></a>
+      <a class="sidebar-brand brand-logo" href="{{ url('/') }}"><img src="{{ asset('frontend/') }}/assets/img/facicon_news.png" alt="logo" style="height: 30px; width: 30px; object-fit: cover; text-align: center;" /></a>
+      <a class="sidebar-brand brand-logo-mini" href="{{ url('/') }}"><img src="{{ asset('frontend/') }}/assets/img/facicon_news.png" style="height: 30px; width: 30px; object-fit: cover; text-align: center;" alt="logo" /></a>
     </div>
     <ul class="nav">
       <li class="nav-item profile">
@@ -39,17 +39,7 @@
                 <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
               </div>
             </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-calendar-today text-success"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-              </div>
-            </a>
+
           </div>
         </div>
       </li>
