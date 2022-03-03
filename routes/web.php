@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
+use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\TermsController;
 use App\Http\Controllers\Backend\WebsiteSetting;
@@ -52,6 +53,7 @@ Route::get('/terms-condition', [ExtraController::class, 'termsConditionPage'])->
 Route::get('/tag/{id}/{tag_en}', [ExtraController::class, 'tagWisePostView']);
 Route::post('/search', [ExtraController::class, 'searchWiseProduct'])->name('search');
 Route::post('/contact-store', [ExtraController::class, 'contactStore'])->name('store.contact');
+Route::post('/subscriber-store', [ExtraController::class, 'subscriberStore'])->name('subscriber.store');
 
 // // Commnet Routes
 // Route::post('/commnet/user/store', [CommentController::class, 'commentUserStore'])->name('comment.user.register');
@@ -215,6 +217,10 @@ Route::post('/update/password', [AdminController::class, 'updatePassword'])->nam
 // Gat All Contact Routes
 Route::get('/all-contacts', [ContactController::class, 'allContacts'])->name('all-contacts');
 Route::get('/delete-contacts/{id}', [ContactController::class, 'deleteContact'])->name('delete.contact');
+
+// Gat All Subscriber Routes
+Route::get('/all-subscriber', [SubscriberController::class, 'allSubscriber'])->name('all-subscriber');
+Route::get('/delete-subscriber/{id}', [SubscriberController::class, 'deleteSubscriber'])->name('delete.subscriber');
 
 
 // Admin User roles Routes

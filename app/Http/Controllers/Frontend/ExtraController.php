@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Subscriber;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
@@ -147,6 +148,24 @@ class ExtraController extends Controller
 
         $notification = [
             'message' => 'You message send successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+
+    }
+
+    /**
+     * Subscriber Store
+     */
+    public function subscriberStore(Request $request){
+        $data = [];
+        $data['email'] = $request->email;
+
+        Subscriber::create($data);
+
+        $notification = [
+            'message' => 'Your request successfully done',
             'alert-type' => 'success',
         ];
 

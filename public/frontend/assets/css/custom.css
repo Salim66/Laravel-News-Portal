@@ -49,3 +49,33 @@
     margin-bottom: 20px;
 }
 
+.subs_btn {
+    background: #ff661f;
+    color: #ffffff;
+    border: none;
+    height: 55px;
+    padding: 0 60px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    line-height: 55px;
+    font-weight: 500;
+    border-radius: 0;
+    transition: 0.5s;
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.subs_input {
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    border: none;
+    height: 55px;
+    padding-left: 15px;
+    border-radius: 0;
+    outline: 0;
+    color: #09101f;
+}

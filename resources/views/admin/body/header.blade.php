@@ -17,6 +17,8 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
             <a href="{{ route('all-contacts') }}"><h6 class="p-3 mb-0">Messages</h6></a>
+            <div class="dropdown-divider"></div>
+            <a href="{{ route('all-subscriber') }}"><h6 class="p-3 mb-0">Subscribers</h6></a>
           </div>
         </li>
         @else

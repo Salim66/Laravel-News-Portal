@@ -158,9 +158,10 @@
                    @else
                    <p>নতুন আপডেট পেতে আমাদের নিউজলেটার সাবস্ক্রাইব করুন!</p>
                    @endif
-                   <form class="newsletter-form">
-                      <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required>
-                      <button type="submit">Subscribe</button>
+                   <form method="POST" action="{{ route('subscriber.store') }}">
+                    @csrf
+                      <input type="email" class="subs_input" placeholder="Enter your email" name="email" required>
+                      <button type="submit" class="subs_btn">Subscribe</button>
                    </form>
                 </div>
              </div>

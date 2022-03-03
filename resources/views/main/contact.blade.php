@@ -212,10 +212,11 @@
                             <p>নতুন আপডেট পেতে আমাদের নিউজলেটার সাবস্ক্রাইব করুন!</p>
                             @endif
                         </div>
-                        <form class="newsletter-form" data-toggle="validator">
-                           <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required autocomplete="off">
-                           <button type="submit">Subscribe</button>
-                           <div id="validator-newsletter" class="form-result"></div>
+                        <form method="POST" action="{{ route('subscriber.store') }}">
+                            @csrf
+                              <input type="email" class="subs_input" placeholder="Enter your email" name="email" required>
+                              <button type="submit" class="subs_btn">Subscribe</button>
+                              <div id="validator-newsletter" class="form-result"></div>
                         </form>
                      </section>
                   </aside>
