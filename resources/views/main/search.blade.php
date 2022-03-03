@@ -59,27 +59,7 @@
       <div class="page-title-area">
          <div class="container">
             <div class="page-title-content">
-                @if(session()->get('lang') == 'english')
-               <h2>{{ $category->category_en }}</h2>
-               @else
-               <h2>{{ $category->category_ban }}</h2>
-               @endif
-               <ul>
-                  <li>
-                    <a href="{{ url('/') }}">
-                      @if(session()->get('lang') == 'english')
-                        Home
-                      @else
-                        হোম
-                      @endif
-                    </a>
-                  </li>
-                  @if(session()->get('lang') == 'english')
-                  <li>{{ $category->category_en }}</li>
-                  @else
-                  <li>{{ $category->category_ban }}</li>
-                  @endif
-               </ul>
+               <h2>{{ $search }}</h2>
             </div>
          </div>
       </div>
@@ -101,11 +81,6 @@
                         </div>
                         <div class="col-lg-8">
                            <div class="overview-news-content mt-0">
-                                @if(session()->get('lang') == 'english')
-                                <span>{{ $category->category_en }}</span>
-                                @else
-                                <span>{{ $category->category_ban }}</span>
-                                @endif
                               <h3>
                                 <a href="{{ route('post.view', $data->slug_en) }}">
                                     @if(session()->get('lang') == 'english')

@@ -60,9 +60,9 @@
          <div class="container">
             <div class="page-title-content">
                 @if(session()->get('lang') == 'english')
-               <h2>{{ $category->category_en }}</h2>
+               <h2>{{ $tag->tag_en }}</h2>
                @else
-               <h2>{{ $category->category_ban }}</h2>
+               <h2>{{ $tag->tag_ban }}</h2>
                @endif
                <ul>
                   <li>
@@ -75,9 +75,9 @@
                     </a>
                   </li>
                   @if(session()->get('lang') == 'english')
-                  <li>{{ $category->category_en }}</li>
+                  <li>{{ $tag->tag_en }}</li>
                   @else
-                  <li>{{ $category->category_ban }}</li>
+                  <li>{{ $tag->tag_ban }}</li>
                   @endif
                </ul>
             </div>
@@ -102,9 +102,9 @@
                         <div class="col-lg-8">
                            <div class="overview-news-content mt-0">
                                 @if(session()->get('lang') == 'english')
-                                <span>{{ $category->category_en }}</span>
+                                <span>{{ $tag->tag_en }}</span>
                                 @else
-                                <span>{{ $category->category_ban }}</span>
+                                <span>{{ $tag->tag_ban }}</span>
                                 @endif
                               <h3>
                                 <a href="{{ route('post.view', $data->slug_en) }}">

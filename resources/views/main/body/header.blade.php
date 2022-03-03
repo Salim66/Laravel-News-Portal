@@ -32,7 +32,7 @@
                       </a>
                    </li>
 @php
-    $categories = DB::table('categories')->orderBy('id', 'ASC')->get();
+    $categories = DB::table('categories')->orderBy('id', 'ASC')->limit(6)->get();
 @endphp
 
                    @foreach($categories as $cat)
@@ -71,8 +71,9 @@
                 </ul>
                 <div class="others-options d-flex align-items-center">
                    <div class="option-item">
-                      <form class="search-box">
-                         <input type="text" class="form-control" placeholder="Search for..">
+                      <form class="search-box" action="{{ route('search') }}" method="POST">
+                        @csrf
+                         <input type="text" name="search" class="form-control" placeholder="@if(session()->get('lang') == 'english') Search for.. @else অনুসন্ধান করুন.. @endif">
                          <button type="submit"><i class='bx bx-search'></i></button>
                       </form>
                    </div>
@@ -95,9 +96,10 @@
              <div class="option-inner">
                 <div class="others-options d-flex align-items-center">
                    <div class="option-item">
-                      <form class="search-box">
-                         <input type="text" class="form-control" placeholder="Search for..">
-                         <button type="submit"><i class='bx bx-search'></i></button>
+                      <form class="search-box" action="{{ route('search') }}" method="POST">
+                        @csrf
+                        <input type="text" name="search" class="form-control" placeholder="@if(session()->get('lang') == 'english') Search for.. @else অনুসন্ধান করুন.. @endif">
+                        <button type="submit"><i class='bx bx-search'></i></button>
                       </form>
                    </div>
                 </div>

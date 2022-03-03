@@ -8,7 +8,7 @@
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="{{ (!empty(Auth::user()->image)) ? URL::to(Auth::user()->image) : URL::to('/upload/no_image.jpg') }}" alt="">
+              <img class="img-xs rounded-circle " src="{{ (!empty(Auth::user()->image)) ? URL::to(Auth::user()->image) : URL::to('/upload/no_image.jpg') }}" style="object-fit: cover;" alt="">
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
@@ -231,6 +231,46 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('add.writer') }}"> Add Writer </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('all.writer') }}"> All Writer </a></li>
+          </ul>
+        </div>
+      </li>
+      @else
+
+      @endif
+
+      @if(Auth::user()->role == 1)
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#privacy" aria-expanded="false" aria-controls="privacy">
+          <span class="menu-icon">
+            <i class="mdi mdi-chart-bar"></i>
+          </span>
+          <span class="menu-title">Privacy Policy</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="privacy">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('add.privacy') }}"> Add Privacy </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('all.privacy') }}"> All Privacy </a></li>
+          </ul>
+        </div>
+      </li>
+      @else
+
+      @endif
+
+      @if(Auth::user()->role == 1)
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#terms" aria-expanded="false" aria-controls="terms">
+          <span class="menu-icon">
+            <i class="mdi mdi-chart-bar"></i>
+          </span>
+          <span class="menu-title">Terms & Condition</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="terms">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('add.terms') }}"> Add Terms </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('all.terms') }}"> All Terms </a></li>
           </ul>
         </div>
       </li>

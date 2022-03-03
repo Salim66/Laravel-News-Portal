@@ -107,7 +107,7 @@
                       </a>
                    </li>
                    <li>
-                      <a href="#">
+                      <a href="{{ route('privacy.policy.page') }}">
                         @if(session()->get('lang') == 'english')
                         Privacy & policy
                         @else
@@ -117,7 +117,7 @@
                       </a>
                    </li>
                    <li>
-                      <a href="#">
+                      <a href="{{ route('terms.condition.page') }}">
                           @if(session()->get('lang') == 'english')
                           Terms & conditions
                           @else
@@ -125,6 +125,23 @@
                           @endif
                       </a>
                    </li>
+
+                   @php
+                        $categories = DB::table('categories')->orderBy('id', 'ASC')->get();
+                   @endphp
+
+                   @foreach($categories as $cat)
+                   <li>
+                      <a href="{{ route('category.wise.post', $cat->slug_en) }}">
+                        @if(session()->get('lang') == 'english')
+                        {{ $cat->category_en }}
+                        @else
+                        {{ $cat->category_ban }}
+                        @endif
+                      </a>
+                   </li>
+                   @endforeach
+
                 </ul>
              </div>
           </div>

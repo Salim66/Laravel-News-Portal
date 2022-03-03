@@ -191,107 +191,81 @@
                     </article>
                     @endforeach
                     </section>
-                     <section class="widget widget_stay_connected">
+                    <section class="widget widget_stay_connected">
+                        @if(session()->get('lang') == 'english')
                         <h3 class="widget-title">Stay connected</h3>
-                        <ul class="stay-connected-list">
-                           <li>
-                              <a href="#">
-                              <i class='bx bxl-facebook'></i>
-                              120,345 Fans
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#" class="twitter">
-                              <i class='bx bxl-twitter'></i>
-                              25,321 Followers
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#" class="linkedin">
-                              <i class='bx bxl-linkedin'></i>
-                              7,519 Connect
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#" class="youtube">
-                              <i class='bx bxl-youtube'></i>
-                              101,545 Subscribers
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#" class="instagram">
-                              <i class='bx bxl-instagram'></i>
-                              10,129 Followers
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#" class="wifi">
-                              <i class='bx bx-wifi'></i>
-                              952 Subscribers
-                              </a>
-                           </li>
-                        </ul>
+                        @else
+                        <h3 class="widget-title">যুক্ত থাকুন</h3>
+                        @endif
+
+                        <!-- Facebook Page -->
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0" nonce="DGGeTXZi"></script>
+                        <div class="fb-page" data-href="https://www.facebook.com/chandleenews" data-tabs="" data-width="357" data-height="160" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/chandleenews" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chandleenews">Chandlee News</a></blockquote></div>
+
+
+
                      </section>
-                     <section class="widget widget_featured_reports">
-                        <h3 class="widget-title">Featured reports</h3>
-                        <div class="single-featured-reports">
-                           <div class="featured-reports-image">
-                              <a href="#">
-                              <img src="assets/img/featured-reports/featured-reports-1.jpg" alt="image">
-                              </a>
-                              <div class="featured-reports-content">
-                                 <h3>
-                                    <a href="#">All the highlights from western fashion week summer 2021</a>
-                                 </h3>
-                                 <p><a href="#">Patricia</a> / 28 September, 2021</p>
-                              </div>
-                           </div>
-                        </div>
-                     </section>
-                     <section class="widget widget_newsletter">
-                        <div class="newsletter-content">
-                           <h3>Subscribe to our newsletter</h3>
-                           <p>Subscribe to our newsletter to get the new updates!</p>
-                        </div>
-                        <form class="newsletter-form" data-toggle="validator">
-                           <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required autocomplete="off">
-                           <button type="submit">Subscribe</button>
-                           <div id="validator-newsletter" class="form-result"></div>
-                        </form>
-                     </section>
-                     <section class="widget widget_most_shared">
-                        <h3 class="widget-title">Most shared</h3>
+                     <!-- Ads Section -->
+                    @php
+                        $adds_v_two = DB::table('ads')->where('type', 1)->skip(2)->first();
+                    @endphp
+
+                    @if($adds_v_two == NULL)
+
+                    @else
+                    <section class="widget widget_most_shared">
                         <div class="single-most-shared">
-                           <div class="most-shared-image">
-                              <a href="#">
-                              <img src="assets/img/most-shared/most-shared-2.jpg" alt="image">
-                              </a>
-                              <div class="most-shared-content">
-                                 <h3>
-                                    <a href="#">All the highlights from western fashion week summer 2021</a>
-                                 </h3>
-                                 <p><a href="#">Patricia</a> / 28 September, 2021</p>
-                              </div>
-                           </div>
+                        <div class="most-shared-image">
+                            <a target="_blank" href="{{ $adds_v_two->link }}">
+                            <img src="{{ URL::to($adds_v_two->ads) }}" alt="image">
+                            </a>
                         </div>
-                     </section>
+                        </div>
+                    </section>
+                    @endif
+                     <!-- Ads Section -->
+                    @php
+                        $adds_v_two = DB::table('ads')->where('type', 1)->skip(3)->first();
+                    @endphp
+
+                    @if($adds_v_two == NULL)
+
+                    @else
+                    <section class="widget widget_most_shared">
+                        <div class="single-most-shared">
+                        <div class="most-shared-image">
+                            <a target="_blank" href="{{ $adds_v_two->link }}">
+                            <img src="{{ URL::to($adds_v_two->ads) }}" alt="image">
+                            </a>
+                        </div>
+                        </div>
+                    </section>
+                    @endif
+
+                     @php
+                         $tags = DB::table('tags')->get();
+                     @endphp
+
                      <section class="widget widget_tag_cloud">
+                         @if(session()->get('lang') == 'english')
                         <h3 class="widget-title">Tags</h3>
+                        @else
+                        <h3 class="widget-title">ট্যাগ</h3>
+                        @endif
                         <div class="tagcloud">
-                           <a href="#">News</a>
-                           <a href="#">Business</a>
-                           <a href="#">Health</a>
-                           <a href="#">Politics</a>
-                           <a href="#">Magazine</a>
-                           <a href="#">Sport</a>
-                           <a href="#">Tech</a>
-                           <a href="#">Video</a>
-                           <a href="#">Global</a>
-                           <a href="#">Culture</a>
-                           <a href="#">Fashion</a>
+                           @foreach($tags as $tag)
+                           <a href="{{ url('/tag/' . $tag->id .'/' . $tag->tag_en) }}">
+                               @if(session()->get('lang') == 'english')
+                               {{ $tag->tag_en }}
+                               @else
+                               {{ $tag->tag_ban }}
+                               @endif
+                            </a>
+                           @endforeach
                         </div>
                      </section>
-                     <section class="widget widget_instagram">
+                     {{-- <section class="widget widget_instagram">
                         <h3 class="widget-title">Instagram</h3>
                         <ul>
                            <li>
@@ -337,7 +311,7 @@
                               </div>
                            </li>
                         </ul>
-                     </section>
+                     </section> --}}
                   </aside>
                </div>
             </div>

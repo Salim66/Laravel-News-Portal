@@ -3,15 +3,18 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdsController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\PrivacyController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\TermsController;
 use App\Http\Controllers\Backend\WebsiteSetting;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\ExtraController;
@@ -44,13 +47,18 @@ Route::get('/category/{c_slug_en}/{s_slug_en}', [ExtraController::class, 'subCat
 Route::get('/get/subdistrict/frontend/{district_id}', [ExtraController::class, 'getSubDistrict']);
 Route::post('/district-search', [ExtraController::class, 'districtSearch'])->name('district.search');
 Route::get('/contact', [ExtraController::class, 'contactPage'])->name('contact.page');
+Route::get('/privacy-policy', [ExtraController::class, 'privacyPolicyPage'])->name('privacy.policy.page');
+Route::get('/terms-condition', [ExtraController::class, 'termsConditionPage'])->name('terms.condition.page');
+Route::get('/tag/{id}/{tag_en}', [ExtraController::class, 'tagWisePostView']);
+Route::post('/search', [ExtraController::class, 'searchWiseProduct'])->name('search');
+Route::post('/contact-store', [ExtraController::class, 'contactStore'])->name('store.contact');
 
-// Commnet Routes
-Route::post('/commnet/user/store', [CommentController::class, 'commentUserStore'])->name('comment.user.register');
+// // Commnet Routes
+// Route::post('/commnet/user/store', [CommentController::class, 'commentUserStore'])->name('comment.user.register');
 
-Route::post('/comment/store', [CommentController::class, 'commentStore'])->name('comment.store');
-Route::get('/comment/all_data/{id}', [CommentController::class, 'commentShowAll'])->name('comment.show.all');
-Route::post('/comment/reply/store', [CommentController::class, 'commentReplyStore'])->name('comment.reply.store');
+// Route::post('/comment/store', [CommentController::class, 'commentStore'])->name('comment.store');
+// Route::get('/comment/all_data/{id}', [CommentController::class, 'commentShowAll'])->name('comment.show.all');
+// Route::post('/comment/reply/store', [CommentController::class, 'commentReplyStore'])->name('comment.reply.store');
 
 
 
@@ -203,3 +211,25 @@ Route::get('/edit/profile', [AdminController::class, 'editProfile'])->name('edit
 Route::post('/update/profile/{id}', [AdminController::class, 'updateProfile'])->name('update.profile');
 Route::get('/change/password', [AdminController::class, 'changePassword'])->name('change.password');
 Route::post('/update/password', [AdminController::class, 'updatePassword'])->name('update.password');
+
+// Gat All Contact Routes
+Route::get('/all-contacts', [ContactController::class, 'allContacts'])->name('all-contacts');
+Route::get('/delete-contacts/{id}', [ContactController::class, 'deleteContact'])->name('delete.contact');
+
+
+// Admin User roles Routes
+Route::get('/all/privacy', [PrivacyController::class, 'allPrivacy'])->name('all.privacy');
+Route::get('/add/privacy', [PrivacyController::class, 'addPrivacy'])->name('add.privacy');
+Route::post('/store/privacy', [PrivacyController::class, 'storePrivacy'])->name('store.privacy');
+Route::get('/edit/privacy/{id}', [PrivacyController::class, 'editPrivacy'])->name('edit.privacy');
+Route::post('/update/privacy/{id}', [PrivacyController::class, 'updatePrivacy'])->name('update.privacy');
+Route::get('/delete/privacy/{id}', [PrivacyController::class, 'deletePrivacy'])->name('delete.privacy');
+
+
+// Admin User roles Routes
+Route::get('/all/terms', [TermsController::class, 'allTerms'])->name('all.terms');
+Route::get('/add/terms', [TermsController::class, 'addTerms'])->name('add.terms');
+Route::post('/store/terms', [TermsController::class, 'storeTerms'])->name('store.terms');
+Route::get('/edit/terms/{id}', [TermsController::class, 'editTerms'])->name('edit.terms');
+Route::post('/update/terms/{id}', [TermsController::class, 'updateTerms'])->name('update.terms');
+Route::get('/delete/terms/{id}', [TermsController::class, 'deleteTerms'])->name('delete.terms');

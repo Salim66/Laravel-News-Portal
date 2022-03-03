@@ -34,6 +34,10 @@
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/style.css">
       <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/responsive.css">
       <title>{{ $seo->meta_title }}</title>
+
+      <!-- Toastr CSS -->
+	    <link rel="stylesheet" href="{{ asset('backend/assets/css/toastr.min.css') }}">
+
       <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
       <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" >
    </head>
@@ -125,7 +129,8 @@
                         <h3>Ready to get started?</h3>
                         <p>Your email address will not be published. Required fields are marked *</p>
                      </div>
-                     <form id="contactForm">
+                     <form action="{{ route('store.contact') }}" method="POST">
+                        @csrf
                         <div class="row">
                            <div class="col-lg-6 col-md-6">
                               <div class="form-group">
@@ -141,7 +146,7 @@
                            </div>
                            <div class="col-lg-6 col-md-6">
                               <div class="form-group">
-                                 <input type="text" name="phone_number" class="form-control" id="phone_number" required data-error="Please enter your phone number" placeholder="Phone">
+                                 <input type="text" name="phone" class="form-control" id="phone_number" required data-error="Please enter your phone number" placeholder="Phone">
                                  <div class="help-block with-errors"></div>
                               </div>
                            </div>
@@ -235,5 +240,31 @@
       <script src="{{ asset('frontend/') }}/assets/js/contact-form-script.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/wow.min.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/main.js"></script>
+
+       <!-- Toastr JS -->
+	<script src="{{ asset('backend/assets/js/toastr.min.js') }}"></script>
+    <script type="text/javascript">
+        @if(Session::has('message'))
+         let type = "{{ Session::get('alert-type', 'info') }}"
+         switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+              case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+        }
+        @endif
+    </script>
+
    </body>
 </html>

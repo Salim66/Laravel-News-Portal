@@ -64,6 +64,16 @@ class ExtraController extends Controller
     }
 
     /**
+     * Tag Wise Post Search
+     */
+    public function tagWisePostView($id, $tag_en){
+        $tag = DB::table('tags')->where('id', $id)->first();
+        $all_data = DB::table('posts')->where('tag_id', $tag->id)->orderBy('id', 'desc')->paginate(10);
+
+        return view('main.tag_wise_post', compact('all_data', 'tag'));
+    }
+
+    /**
      * Get SubDistrict By Ajax
      */
     public function getSubDistrict($district_id){
@@ -94,5 +104,55 @@ class ExtraController extends Controller
         $data = DB::table('websitesettings')->first();
         return view('main.contact', compact('data'));
     }
+
+    /**
+     * Privacy Policy Page
+     */
+    public function privacyPolicyPage(){
+        $all_data = DB::table('privacies')->orderBy('id', 'desc')->get();
+        return view('main.privacy', compact('all_data'));
+    }
+
+    /**
+     * Terms Condition Page
+     */
+    public function termsConditionPage(){
+        $all_data = DB::table('terms')->orderBy('id', 'desc')->get();
+        return view('main.terms', compact('all_data'));
+    }
+
+    /**
+     * Search Wise Product
+     */
+    public function searchWiseProduct(Request $request){
+        $search = $request->search;
+       $all_data = DB::table('posts')->where('title_en', 'LIKE', '%'.$search.'%')->orWhere('title_ban', 'LIKE', '%'.$search.'%')->orWhere('details_en', 'LIKE', '%'.$search.'%')->orWhere('details_ban', 'LIKE', '%'.$search.'%')->paginate(10);
+       return view('main.search', [
+           'all_data' => $all_data,
+           'search' => $search,
+       ]);
+    }
+
+    /**
+     * Contact Message Store
+     */
+    public function contactStore(Request $request){
+        $data = [];
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['phone'] = $request->phone;
+        $data['subject'] = $request->subject;
+        $data['message'] = $request->message;
+        DB::table('contacts')->insert($data);
+
+        $notification = [
+            'message' => 'You message send successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+
+    }
+
 
 }
