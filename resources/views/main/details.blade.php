@@ -94,19 +94,19 @@
       <div class="top-header-area bg-ffffff">
          <div class="container">
             <div class="row align-items-center">
-               <div class="col-lg-6">
+               <div class="col-lg-8">
                   <div class="breaking-news-content">
-                     <h6 class="breaking-title">
+                     {{-- <h6 class="breaking-title">
                         @if(session()->get('lang') == 'english')
                         Breaking News:
                         @else
                         সদ্যপ্রাপ্ত সংবাদ:
                         @endif
-                     </h6>
+                     </h6> --}}
                      @php
                          $headline = DB::table('posts')->where('headline', 1)->orderBy('id', 'DESC')->limit(3)->get();
                      @endphp
-                     <div class="breaking-news-slides owl-carousel owl-theme">
+                     {{-- <div class="breaking-news-slides owl-carousel owl-theme">
                         @foreach($headline as $head)
                         <div class="single-breaking-news">
                            <p>
@@ -120,7 +120,19 @@
                            </p>
                         </div>
                         @endforeach
-                     </div>
+                     </div> --}}
+                     <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"> 
+                        @foreach($headline as $head)
+                        <a href="{{ route('post.view', $head->slug_en) }}">
+                        @if(session()->get('lang') == 'english')
+                        {{ $head->title_en }}
+                        @else
+                        {{ $head->title_ban }}
+                        @endif    
+                        </a> 
+                        <span class="dot"></span> 
+                        @endforeach
+                    </marquee>
                   </div>
                </div>
                @include('main.body.language-login')

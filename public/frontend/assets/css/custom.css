@@ -112,4 +112,22 @@ select[name="subdistrict_id"] {
     display: inline-block;
 }
 
+/* Breaking News Tricker */
+.bg-danger_c {
+    background-color: #F0A140;
+}
+.bg-white_c {
+    background-color: #f0f0f0;
+}
+
+.news-scroll a {
+    color: #26ab3f;
+}
+
+.dot {
+    background-color: #F0A140 !important;
+}
+
+.news{width: 160px}.news-scroll a{text-decoration: none}.dot{height: 6px;width: 6px;margin-left: 3px;margin-right: 3px;margin-top: 2px !important;background-color: rgb(207,23,23);border-radius: 50%;display: inline-block}
+/* End Breaking News Tricker */
 

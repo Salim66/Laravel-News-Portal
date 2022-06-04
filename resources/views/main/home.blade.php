@@ -15,6 +15,36 @@
 
 @endphp
 <section class="new-news-area">
+
+    @php
+        $headline = DB::table('posts')->where('headline', 1)->orderBy('id', 'DESC')->limit(5)->get();
+    @endphp
+
+    <!-- Breaking News Tricker -->
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center breaking-news bg-white_c">
+                    <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-danger_c py-2 text-white px-1 news"><span class="d-flex align-items-center">&nbsp;CN News</span></div>
+                    <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"> 
+                        @foreach($headline as $head)
+                        <a href="{{ route('post.view', $head->slug_en) }}">
+                        @if(session()->get('lang') === 'english')
+                        {{ $head->title_en }}
+                        @else
+                        {{ $head->title_ban }}
+                        @endif    
+                        </a> 
+                        <span class="dot"></span> 
+                        @endforeach
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breaking News Tricker -->
+
+
     <div class="container">
        <div class="row">
           <div class="col-lg-3">
@@ -368,25 +398,6 @@
                 </div>
              </div>
 
-                     {{-- <!-- Add Section -->
-        @php
-            $adds_third = DB::table('ads')->where('type', 2)->skip(2)->first();
-        @endphp
-
-            @if($adds_third == NULL)
-
-            @else
-            <div class="top-header-area bg-ffffff top_add">
-                <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12 text-center">
-                        <a target="_blank" href="{{ $$adds_third->link }}"><img src="{{ $$adds_third->ads }}" alt=""></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            @endif --}}
-
              @php
 
                 $secondCategory = DB::table('categories')->skip(1)->first();
@@ -439,26 +450,6 @@
 
                 </div>
              </div>
-
-
-                                <!-- Add Section -->
-        {{-- @php
-            $adds_four = DB::table('ads')->where('type', 2)->skip(4)->first();
-        @endphp
-
-            @if($adds_four == NULL)
-
-            @else
-            <div class="top-header-area bg-ffffff top_add">
-                <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12 text-center">
-                        <a target="_blank" href="{{ $$adds_four->link }}"><img src="{{ $$adds_four->ads }}" alt=""></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            @endif --}}
 
 
              @php
