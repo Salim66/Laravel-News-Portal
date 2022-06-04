@@ -42,13 +42,13 @@
                       <div class="row">
                         <div class="form-group col-md-12">
                                 <label for="exampleTextarea1">Answer English</label>
-                                <textarea class="form-control" name="answer_en" id="summernote" rows="4">{{ $data->answer_en }}</textarea>
+                                <textarea class="form-control" name="answer_en" rows="4">{{ $data->answer_en }}</textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label for="exampleTextarea1">Answer Bangla</label>
-                                <textarea class="form-control" name="answer_ban" id="summernote1" rows="4">{{ $data->answer_ban }}</textarea>
+                                <textarea class="form-control" name="answer_ban" rows="4">{{ $data->answer_ban }}</textarea>
                             </div>
                         </div>
 

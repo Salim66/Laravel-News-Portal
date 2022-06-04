@@ -121,12 +121,14 @@
         <div class="container">
            <div class="row align-items-center">
               <div class="col-lg-12 text-center">
-                <a target="_blank" href="{{ $adds_first->link }}"><img src="{{ $adds_first->ads }}" alt=""></a>
+                <a target="_blank" href="{{ $adds_first->link }}"><img src="{{ URL::to($adds_first->ads) }}" alt="" class="popular_post_ads_img"></a>
               </div>
            </div>
         </div>
      </div>
     @endif
+
+<!-- End Add Section -->
 
 
 @php
@@ -258,24 +260,23 @@
              </div>
 
 
-        <!-- Add Section -->
-        @php
-            $adds_second = DB::table('ads')->where('type', 2)->skip(1)->first();
-        @endphp
+            <!-- Add Section -->
+            @php
+                $adds_second = DB::table('ads')->where('type', 2)->skip(1)->first();
+            @endphp
 
             @if($adds_second == NULL)
 
             @else
-            <div class="top-header-area bg-ffffff top_add">
-                <div class="container">
-                <div class="row align-items-center">
+            <div class="default-news-area">
+                <div class="row">
                     <div class="col-lg-12 text-center">
-                        <a target="_blank" href="{{ $adds_second->link }}"><img src="{{ $adds_second->ads }}" alt=""></a>
+                        <a target="_blank" href="{{ $adds_second->link }}"><img src="{{ URL::to($adds_second->ads) }}" alt="" class="antorjatik_ads_img"></a>
                     </div>
-                </div>
                 </div>
             </div>
             @endif
+            <!-- End Add Section -->
 
 
              @php
@@ -367,7 +368,7 @@
                 </div>
              </div>
 
-                     <!-- Add Section -->
+                     {{-- <!-- Add Section -->
         @php
             $adds_third = DB::table('ads')->where('type', 2)->skip(2)->first();
         @endphp
@@ -384,7 +385,7 @@
                 </div>
                 </div>
             </div>
-            @endif
+            @endif --}}
 
              @php
 
@@ -441,8 +442,8 @@
 
 
                                 <!-- Add Section -->
-        @php
-            $adds_four = DB::table('ads')->where('type', 2)->skip(3)->first();
+        {{-- @php
+            $adds_four = DB::table('ads')->where('type', 2)->skip(4)->first();
         @endphp
 
             @if($adds_four == NULL)
@@ -457,7 +458,7 @@
                 </div>
                 </div>
             </div>
-            @endif
+            @endif --}}
 
 
              @php
@@ -699,6 +700,25 @@
                 </div>
              </div>
 
+             <!-- Add Section -->
+            @php
+                $adds_ban = DB::table('ads')->where('type', 2)->skip(2)->first();
+            @endphp
+
+            @if($adds_ban == NULL)
+
+            @else
+            <div class="default-news-area">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <a target="_blank" href="{{ $adds_ban->link }}"><img src="{{ URL::to($adds_ban->ads) }}" alt="" class="antorjatik_ads_img"></a>
+                    </div>
+                </div>
+            </div>
+            @endif
+            <!-- End Add Section -->
+
+
              @php
 
                 $sixCategory = DB::table('categories')->skip(5)->first();
@@ -895,9 +915,36 @@
                    @endforeach
                 </section>
 
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+                <!-- Ads Section -->
+                @php
+                $adds_v_one = DB::table('ads')->where('type', 1)->first();
+                @endphp
+
+                @if($adds_v_one == NULL)
+
+                @else
+                <section class="widget widget_most_shared">
+                <div class="single-most-shared">
+                <div class="most-shared-image">
+                    <a target="_blank" href="{{ $adds_v_one->link }}">
+                    <img src="{{ URL::to($adds_v_one->ads) }}" alt="image" class="sidebar_ads_image">
+                    </a>
+                </div>
+                </div>
+                </section>
+                @endif
+                <!-- End Ads Section -->
+
+
                 @php
                     $district = DB::table('districts')->get();
                 @endphp
+
+
 
                 <section class="widget widget_newsletter">
                    <div class="newsletter-content">
@@ -923,6 +970,12 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
+                                <br>
+                                <div class="form-group">
+                                    <select name="subdistrict_id" class="form-control district_sub">
+
+                                    </select>
+                                </div>
                            </div>
                            <div class="col-md-12">
                                 <div class="form-group">
@@ -932,24 +985,40 @@
                        </div>
                    </form>
                 </section>
-                <!-- Ads Section -->
-                @php
-                    $adds_v_one = DB::table('ads')->where('type', 1)->first();
-                @endphp
 
-                @if($adds_v_one == NULL)
-
-                @else
-                <section class="widget widget_most_shared">
-                   <div class="single-most-shared">
-                      <div class="most-shared-image">
-                         <a target="_blank" href="{{ $adds_v_one->link }}">
-                         <img src="{{ URL::to($adds_v_one->ads) }}" alt="image">
-                         </a>
-                      </div>
+                <!-- Date Wise Search -->
+                <section class="widget widget_newsletter">
+                   <div class="newsletter-content">
+                       @if(session()->get('lang') == 'english')
+                      <h3>Search By Date</h3>
+                      @else
+                      <h3>তারিখ দ্বারা অনুসন্ধান</h3>
+                      @endif
                    </div>
+                   <form action="{{ route('date-search') }}" method="POST">
+                       @csrf
+                       <div class="row">
+                           <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">@if(session()->get('lang') == 'english') Start Date @else শুরুর তারিখ @endif</label>
+                                    <input type="date" name="start_date" class="form-control">
+                                </div>
+                           </div><br>
+                           <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">@if(session()->get('lang') == 'english') End Date @else শেষ তারিখ @endif</label>
+                                    <input type="date" name="end_date" class="form-control">
+                                </div>
+                           </div>
+                           <div class="col-md-12">
+                                <div class="form-group">
+                                    <button class="district_button" type="submit">Search</button>
+                                </div>
+                           </div>
+                       </div>
+                   </form>
                 </section>
-                @endif
+
 
                 @php
                     $prayer = DB::table('prayers')->first();
@@ -1055,21 +1124,27 @@
                    </article>
                    @endforeach
                 </section>
+                @php
+                    $tags = DB::table('tags')->get();
+                @endphp
+
                 <section class="widget widget_tag_cloud">
-                   <h3 class="widget-title">Tags</h3>
-                   <div class="tagcloud">
-                      <a href="#">News</a>
-                      <a href="#">Business</a>
-                      <a href="#">Health</a>
-                      <a href="#">Politics</a>
-                      <a href="#">Magazine</a>
-                      <a href="#">Sport</a>
-                      <a href="#">Tech</a>
-                      <a href="#">Video</a>
-                      <a href="#">Global</a>
-                      <a href="#">Culture</a>
-                      <a href="#">Fashion</a>
-                   </div>
+                    @if(session()->get('lang') == 'english')
+                <h3 class="widget-title">Tags</h3>
+                @else
+                <h3 class="widget-title">ট্যাগ</h3>
+                @endif
+                <div class="tagcloud">
+                    @foreach($tags as $tag)
+                    <a href="{{ url('/tag/' . $tag->id .'/' . $tag->tag_en) }}">
+                        @if(session()->get('lang') == 'english')
+                        {{ $tag->tag_en }}
+                        @else
+                        {{ $tag->tag_ban }}
+                        @endif
+                    </a>
+                    @endforeach
+                </div>
                 </section>
 
                 <!-- Ads Section -->
@@ -1084,7 +1159,7 @@
                     <div class="single-most-shared">
                     <div class="most-shared-image">
                         <a target="_blank" href="{{ $adds_v_two->link }}">
-                        <img src="{{ URL::to($adds_v_two->ads) }}" alt="image">
+                        <img src="{{ URL::to($adds_v_two->ads) }}" alt="image" class="sidebar_ads_image">
                         </a>
                     </div>
                     </div>
@@ -1163,33 +1238,5 @@
     </div>
  </section>
 
- {{-- <script type="text/javascript">
-    $(document).ready(function () {
-
-        // SubDistrict get by district
-        $('select[name="district_id"]').change(function(){
-            let district_id = $(this).val();
-            // alert(district_id);
-            if(district_id){
-                $.ajax({
-                    url: '/get/subdistrict/frontend/' + district_id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data){
-                        $('select #subdistrict_id').empty();
-                        $.each(data, function(key,value){
-                            $('select #subdistrict_id').append(`
-                            <option value='${value.id}'>${value.subdistrict_en} | ${value.subdistrict_ban}</option>
-                            `);
-                        });
-                    }
-                });
-            }else {
-                alert('danger');
-            }
-
-        })
-    });
-</script> --}}
 
 @endsection

@@ -105,9 +105,9 @@
                      </a>
 
                         @if(session()->get('lang') == 'english')
-                        <p class="accordion-content show">{!!  htmlspecialchars_decode($data->answer_en)  !!}  </p>
+                        <p class="accordion-content show">{{ $data->answer_en  }}  </p>
                         @else
-                        <p class="accordion-content show">{!!  htmlspecialchars_decode($data->answer_ban)  !!}  </p>
+                        <p class="accordion-content show">{{ $data->answer_ban }}  </p>
                         @endif
 
                   </li>

@@ -10,27 +10,15 @@ use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\PrivacyController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SettingsController;
-use App\Http\Controllers\Backend\SocialSettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\TermsController;
 use App\Http\Controllers\Backend\WebsiteSetting;
-use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\ExtraController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 // Frontend Routes
 
@@ -40,7 +28,7 @@ Route::get('/lang/english', [ExtraController::class, 'langEnglish'])->name('lang
 
 Route::get('/', function () {
     return view('main.home');
-});
+})->middleware('cache.headers:private;max_age=3600');
 
 Route::get('/post/view/{slug_en}', [ExtraController::class, 'postView'])->name('post.view');
 Route::get('/category/{slug_en}', [ExtraController::class, 'categoryWisePostView'])->name('category.wise.post');
@@ -56,15 +44,7 @@ Route::post('/search', [ExtraController::class, 'searchWiseProduct'])->name('sea
 Route::post('/contact-store', [ExtraController::class, 'contactStore'])->name('store.contact');
 Route::post('/subscriber-store', [ExtraController::class, 'subscriberStore'])->name('subscriber.store');
 
-// // Commnet Routes
-// Route::post('/commnet/user/store', [CommentController::class, 'commentUserStore'])->name('comment.user.register');
-
-// Route::post('/comment/store', [CommentController::class, 'commentStore'])->name('comment.store');
-// Route::get('/comment/all_data/{id}', [CommentController::class, 'commentShowAll'])->name('comment.show.all');
-// Route::post('/comment/reply/store', [CommentController::class, 'commentReplyStore'])->name('comment.reply.store');
-
-
-
+Route::post('/search-date-post', [ExtraController::class, 'dateWiseSearch'])->name('date-search');
 
 
 // Backend Routes

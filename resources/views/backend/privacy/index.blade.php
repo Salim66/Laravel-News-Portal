@@ -48,7 +48,7 @@
                       <tr>
                         <td> {{ $loop->index+1 }} </td>
                         <td> {{ $data->question_en }} </td>
-                        <td>{!! $data->answer_en !!}</td>
+                        <td>{{ $data->answer_en }}</td>
                         <td>
                             <a href="{{ route('edit.privacy', $data->id) }}" class="btn btn-info">Edit</a>
                             <a id="delete" href="{{ route('delete.privacy', $data->id) }}" class="btn btn-danger">Delete</a>

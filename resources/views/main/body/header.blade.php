@@ -32,7 +32,7 @@
                       </a>
                    </li>
 @php
-    $categories = DB::table('categories')->orderBy('id', 'ASC')->limit(6)->get();
+    $categories = DB::table('categories')->orderBy('id', 'ASC')->limit(7)->get();
 @endphp
 
                    @foreach($categories as $cat)
@@ -43,7 +43,8 @@
                         @else
                         {{ $cat->category_ban }}
                         @endif
-                      <i class='bx bx-chevron-down'></i>
+
+                      {{-- <i class='bx bx-chevron-down'></i> --}}
                       </a>
                       <ul class="dropdown-menu">
 

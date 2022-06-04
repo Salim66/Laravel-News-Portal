@@ -103,9 +103,33 @@ class ExtraController extends Controller
         ]);
 
         $district = DB::table('districts')->where('id', $request->district_id)->first();
-        $all_data = DB::table('posts')->where('district_id', $request->district_id)->orderBy('id', 'desc')->paginate(10);
+        $subdistrict = DB::table('subdistricts')->where('id', $request->subdistrict_id)->first();
+        $all_data = DB::table('posts')->where('district_id', $request->district_id)->orWhere('subdistrict_id', $request->subdistrict_id)->orderBy('id', 'desc')->paginate(10);
 
-        return view('main.district_wise_post', compact('all_data', 'district'));
+        return view('main.district_wise_post', compact('all_data', 'district', 'subdistrict'));
+    }
+
+    /**
+     * Date Wise Search
+     */
+    public function dateWiseSearch(Request $request){
+
+        $this->validate($request, [
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
+        $start_date = date('d-m-Y', strtotime($request->start_date));
+        $end_date = date('d-m-Y', strtotime($request->end_date));
+
+        // return $start_date . '  ' . $end_date;
+
+        // $all_data = DB::table('posts')->where('post_date', $select_date)->orderBy('id', 'desc')->get();
+
+        $all_data = DB::table('posts')->whereBetween('post_date', [$start_date, $end_date])->get();
+
+        return view('main.date_wise_post', compact('all_data', 'start_date', 'end_date'));
+
     }
 
     /**
@@ -137,7 +161,7 @@ class ExtraController extends Controller
      */
     public function searchWiseProduct(Request $request){
         $search = $request->search;
-       $all_data = DB::table('posts')->where('title_en', 'LIKE', '%'.$search.'%')->orWhere('title_ban', 'LIKE', '%'.$search.'%')->orWhere('details_en', 'LIKE', '%'.$search.'%')->orWhere('details_ban', 'LIKE', '%'.$search.'%')->paginate(10);
+       $all_data = DB::table('posts')->where('title_en', 'LIKE', '%'.$search.'%')->orWhere('title_ban', 'LIKE', '%'.$search.'%')->latest()->paginate(10);
        return view('main.search', [
            'all_data' => $all_data,
            'search' => $search,

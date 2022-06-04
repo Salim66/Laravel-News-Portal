@@ -165,6 +165,23 @@
                    </form>
                 </div>
              </div>
+
+             <!-- Ads Section -->
+            @php
+                $adds_v_one = DB::table('ads')->where('type', 1)->skip(2)->first();
+            @endphp
+
+            @if($adds_v_one == NULL)
+
+            @else
+                <div class="single-footer-widget">
+                <a target="_blank" href="{{ $adds_v_one->link }}">
+                    <img src="{{ URL::to($adds_v_one->ads) }}" alt="image" class="sidebar_ads_image">
+                </a>
+            </div>
+            @endif
+            <!-- End Ads Section -->
+
           </div>
        </div>
     </div>

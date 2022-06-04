@@ -13,6 +13,7 @@
 
 
           @foreach ($elements as $element)
+            @if(is_array($element))
             @foreach ($element as $page => $url)
                 @if($paginator->currentPage() == $page)
                     <a href="{{ $url }}" class="page-numbers current">{{ $page }}</a>
@@ -20,6 +21,7 @@
                     <a href="{{ $url }}" class="page-numbers active">{{ $page }}</a>
                 @endif
             @endforeach
+            @endif
           @endforeach
 
           @if($paginator->hasMorePages())

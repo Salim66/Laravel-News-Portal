@@ -79,3 +79,37 @@
     outline: 0;
     color: #09101f;
 }
+
+.details_post {
+    text-align: justify;
+}
+
+
+select[name="subdistrict_id"] {
+    display: block !important;
+}
+
+
+.nice-select.district_sub {
+    display: none !important;
+}
+
+.popular_post_ads_img {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+.middle_add {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.antorjatik_ads_img,
+.sidebar_ads_image {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+

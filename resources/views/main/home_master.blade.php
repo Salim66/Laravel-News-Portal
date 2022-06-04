@@ -36,6 +36,8 @@
       <title>{{ $seo->meta_title }}</title>
       <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
       <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" >
+
+      <script src="{{ asset('frontend/') }}/assets/js/jquery.min.js"></script>
    </head>
    <body>
       <div class="preloader">
@@ -105,7 +107,7 @@
       <div class="go-top">
          <i class='bx bx-up-arrow-alt'></i>
       </div>
-      <script src="{{ asset('frontend/') }}/assets/js/jquery.min.js"></script>
+
       <script src="{{ asset('frontend/') }}/assets/js/popper.min.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/bootstrap.min.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/jquery.meanmenu.js"></script>
@@ -117,5 +119,6 @@
       <script src="{{ asset('frontend/') }}/assets/js/contact-form-script.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/wow.min.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/main.js"></script>
+      <script src="{{ asset('frontend/') }}/assets/js/custom.js"></script>
    </body>
 </html>

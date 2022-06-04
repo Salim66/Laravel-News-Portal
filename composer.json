@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
+        "renatomarinho/laravel-page-speed": "^2.1",
         "yajra/laravel-disqus": "^1.2"
     },
     "require-dev": {

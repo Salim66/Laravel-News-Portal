@@ -1,5 +1,6 @@
 @php
     $seo = DB::table('seos')->first();
+    $websetting = DB::table('websitesettings')->first();
 @endphp
 <!doctype html>
 <html lang="zxx">
@@ -24,6 +25,34 @@
         <script>
           {!! $seo->alexa_analytics !!}
         </script>
+
+        <!-- Share Button  -->
+       <meta property="og:title"
+        @if(session()->get('lang') == 'english')
+        content="{{ $data->title_en }}" />
+        @else
+        content="{{ $data->title_ban }}"
+        @endif
+
+       <meta property="og:url" content="http://www.chandleenews.com" />
+       <meta property="og:image" content="{{ URL::to($data->image) }}" />
+
+       @php
+        $title_en = htmlspecialchars_decode($data->details_en);
+        $title_ban = htmlspecialchars_decode($data->details_ban);
+       @endphp
+
+       <meta property="og:description"
+        @if(session()->get('lang') == 'english')
+        content="{{ htmlspecialchars_decode($title_en) }}"
+        @else
+        content="{{ htmlspecialchars_decode($title_ban) }}"
+        @endif
+         />
+       <meta property="og:site_name" content="chandleenews" />
+       <!-- !Share Button  -->
+
+
         <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/animate.min.css">
         <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/meanmenu.css">
@@ -43,6 +72,8 @@
         <link rel="icon" type="image/png" href="{{ asset('frontend/') }}/assets/img/facicon_news.png">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" >
         <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=621cb8f8b846610019d3dc86&product=inline-share-buttons" async="async"></script>
+
+        <script src="{{ asset('frontend/') }}/assets/js/jquery.min.js"></script>
     </head>
    <body>
       <div class="preloader">
@@ -137,14 +168,33 @@
                         @else
                         <h3>{{ $data->title_ban }}</h3>
                         @endif
-                        <div>
+                        <div class="details_post">
                             @if(session()->get('lang') == 'english')
                             {!! htmlspecialchars_decode($data->details_en) !!}
                             @else
                             {!! htmlspecialchars_decode($data->details_ban) !!}
                             @endif
                         </div>
+                        <br>
+                        <br>
 
+                          <!-- Add Section -->
+                                @php
+                                $adds_ban = DB::table('ads')->where('type', 2)->skip(3)->first();
+                            @endphp
+
+                            @if($adds_ban == NULL)
+
+                            @else
+                            <div class="default-news-area">
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <a target="_blank" href="{{ $adds_ban->link }}"><img src="{{ URL::to($adds_ban->ads) }}" alt="" class="antorjatik_ads_img"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            <!-- End Add Section -->
                      </div>
                      <div class="article-footer">
                         <div class="article-share">
@@ -155,31 +205,25 @@
 
                      </div>
 
-                      <!-- Facebook Comment Plugin -->
-                      {{-- <div id="fb-root"></div>
-                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1 version=v8.0" nonce="ClFC86MV"></script>
-                     <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="8"></div> --}}
-                      <!-- ! Facebook Comment Plugin -->
-
-                      <div id="disqus_thread"></div>
-                      <script>
-                          /**
-                          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                          /*
-                          var disqus_config = function () {
-                          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                          };
-                          */
-                          (function() { // DON'T EDIT BELOW THIS LINE
-                          var d = document, s = d.createElement('script');
-                          s.src = 'https://blog-codehacking.disqus.com/embed.js';
-                          s.setAttribute('data-timestamp', +new Date());
-                          (d.head || d.body).appendChild(s);
-                          })();
-                      </script>
-                      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                     <div id="disqus_thread"></div>
+                     <script>
+                         /**
+                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                         /*
+                         var disqus_config = function () {
+                         this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                         };
+                         */
+                         (function() { // DON'T EDIT BELOW THIS LINE
+                         var d = document, s = d.createElement('script');
+                         s.src = 'https://chandleenews.disqus.com/embed.js';
+                         s.setAttribute('data-timestamp', +new Date());
+                         (d.head || d.body).appendChild(s);
+                         })();
+                     </script>
+                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                   </div>
                </div>
 
@@ -187,6 +231,27 @@
 
                <div class="col-lg-4">
                   <aside class="widget-area">
+
+                    <!--- Ads Section -->
+                    @php
+                        $adds_v_two = DB::table('ads')->where('type', 1)->skip(3)->first();
+                    @endphp
+
+                    @if($adds_v_two == NULL)
+
+                    @else
+                    <section class="widget widget_most_shared">
+                        <div class="">
+                        <div class="most-shared-image">
+                            <a target="_blank" href="{{ $adds_v_two->link }}">
+                            <img src="{{ URL::to($adds_v_two->ads) }}" alt="image" class="sidebar_ads_image">
+                            </a>
+                        </div>
+                        </div>
+                    </section>
+                    @endif
+                    <!--- End Ads Section -->
+
                      <div class="widget widget_search">
                         <form class="search-form" action="{{ route('search') }}" method="POST">
                             @csrf
@@ -229,6 +294,27 @@
                     </article>
                     @endforeach
                     </section>
+
+                    <!--- Ads Section -->
+                    @php
+                        $adds_f_two = DB::table('ads')->where('type', 1)->skip(4)->first();
+                    @endphp
+
+                    @if($adds_f_two == NULL)
+
+                    @else
+                    <section class="widget widget_most_shared">
+                        <div class="">
+                        <div class="most-shared-image">
+                            <a target="_blank" href="{{ $adds_f_two->link }}">
+                            <img src="{{ URL::to($adds_f_two->ads) }}" alt="image" class="sidebar_ads_image">
+                            </a>
+                        </div>
+                        </div>
+                    </section>
+                    @endif
+                    <!--- End Ads Section -->
+
                     @php
                         $popular_post = DB::table('posts')->orderBy('id', 'asc')->inRandomOrder()->limit(5)->get();
                     @endphp
@@ -273,42 +359,7 @@
 
 
                      </section>
-                     <!-- Ads Section -->
-                    @php
-                        $adds_v_two = DB::table('ads')->where('type', 1)->skip(2)->first();
-                    @endphp
 
-                    @if($adds_v_two == NULL)
-
-                    @else
-                    <section class="widget widget_most_shared">
-                        <div class="single-most-shared">
-                        <div class="most-shared-image">
-                            <a target="_blank" href="{{ $adds_v_two->link }}">
-                            <img src="{{ URL::to($adds_v_two->ads) }}" alt="image">
-                            </a>
-                        </div>
-                        </div>
-                    </section>
-                    @endif
-                     <!-- Ads Section -->
-                    @php
-                        $adds_v_two = DB::table('ads')->where('type', 1)->skip(3)->first();
-                    @endphp
-
-                    @if($adds_v_two == NULL)
-
-                    @else
-                    <section class="widget widget_most_shared">
-                        <div class="single-most-shared">
-                        <div class="most-shared-image">
-                            <a target="_blank" href="{{ $adds_v_two->link }}">
-                            <img src="{{ URL::to($adds_v_two->ads) }}" alt="image">
-                            </a>
-                        </div>
-                        </div>
-                    </section>
-                    @endif
 
                      @php
                          $tags = DB::table('tags')->get();
@@ -332,53 +383,6 @@
                            @endforeach
                         </div>
                      </section>
-                     {{-- <section class="widget widget_instagram">
-                        <h3 class="widget-title">Instagram</h3>
-                        <ul>
-                           <li>
-                              <div class="box">
-                                 <img src="assets/img/latest-news/latest-news-1.jpg" alt="image">
-                                 <i class="bx bxl-instagram"></i>
-                                 <a href="#" target="_blank" class="link-btn"></a>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="box">
-                                 <img src="assets/img/latest-news/latest-news-2.jpg" alt="image">
-                                 <i class="bx bxl-instagram"></i>
-                                 <a href="#" target="_blank" class="link-btn"></a>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="box">
-                                 <img src="assets/img/latest-news/latest-news-3.jpg" alt="image">
-                                 <i class="bx bxl-instagram"></i>
-                                 <a href="#" target="_blank" class="link-btn"></a>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="box">
-                                 <img src="assets/img/latest-news/latest-news-4.jpg" alt="image">
-                                 <i class="bx bxl-instagram"></i>
-                                 <a href="#" target="_blank" class="link-btn"></a>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="box">
-                                 <img src="assets/img/latest-news/latest-news-5.jpg" alt="image">
-                                 <i class="bx bxl-instagram"></i>
-                                 <a href="#" target="_blank" class="link-btn"></a>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="box">
-                                 <img src="assets/img/latest-news/latest-news-6.jpg" alt="image">
-                                 <i class="bx bxl-instagram"></i>
-                                 <a href="#" target="_blank" class="link-btn"></a>
-                              </div>
-                           </li>
-                        </ul>
-                     </section> --}}
                   </aside>
                </div>
             </div>
@@ -389,7 +393,7 @@
       <div class="go-top">
          <i class='bx bx-up-arrow-alt'></i>
       </div>
-      <script src="{{ asset('frontend/') }}/assets/js/jquery.min.js"></script>
+
       <script src="{{ asset('frontend/') }}/assets/js/popper.min.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/bootstrap.min.js"></script>
       <script src="{{ asset('frontend/') }}/assets/js/jquery.meanmenu.js"></script>
