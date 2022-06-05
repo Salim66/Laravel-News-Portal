@@ -40,8 +40,25 @@ class ExtraController extends Controller
             ->select('posts.*', 'users.name')
             ->first();
 
+        // single post views count method
+        $this->viewCount($data->id);
+
         return view('main.details', compact('data'));
     }
+
+    /**
+     * Signle post count method
+     */
+    private function viewCount($post_id){
+        $data = DB::table('posts')->where('id', $post_id)->first();
+        $old_view = $data->views;
+        $data->views = $old_view + 1;
+        $new = $data->views;
+        DB::table('posts')->where('id', $data->id)->update([
+            'views' => $new
+        ]);
+    }
+
 
     /**
      * Category Wise Post Search

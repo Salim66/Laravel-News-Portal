@@ -41,6 +41,7 @@
                         <th> Category </th>
                         <th> Image </th>
                         <th> Post Date </th>
+                        <th> Views </th>
                         <th> Action </th>
                       </tr>
                     </thead>
@@ -53,6 +54,7 @@
                         <td> {{ $data->category_en }} </td>
                         <td class="text-center"> <img src="{{ $data->image }}" height="70px" width="70px" alt=""> </td>
                         <td> {{ $data->post_date }} </td>
+                        <td> {{ $data->views }} </td>
                         <td>
                             <a href="{{ route('edit.post', $data->id) }}" class="btn btn-info">Edit</a>
                             <a id="delete" href="{{ route('delete.post', $data->id) }}" class="btn btn-danger">Delete</a>

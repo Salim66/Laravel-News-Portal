@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="d-flex justify-content-between align-items-center breaking-news bg-white_c">
-                    <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-danger_c py-2 text-white px-1 news"><span class="d-flex align-items-center">&nbsp;CN News</span></div>
+                    <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-danger_c py-2 text-white px-1 news"><span class="d-flex align-items-center">@if(session()->get('lang') == 'english') Latest News  @else সর্বশেষ নিঊজ @endif</span></div>
                     <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"> 
                         @foreach($headline as $head)
                         <a href="{{ route('post.view', $head->slug_en) }}">
