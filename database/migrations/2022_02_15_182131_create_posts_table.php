@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('image');
             $table->longText('details_en')->nullable();
             $table->longText('details_ban')->nullable();
+            $table->longText('short_details_en')->nullable();
+            $table->longText('short_details_ban')->nullable();
             $table->integer('headline')->nullable();
             $table->integer('first_section')->nullable();
             $table->integer('first_section_thumbnail')->nullable();

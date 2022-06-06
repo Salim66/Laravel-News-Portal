@@ -114,6 +114,12 @@
         $('#summernote1').summernote({
             height: 200
         });
+        $('#summernote2').summernote({
+            height: 100
+        });
+        $('#summernote3').summernote({
+            height: 100
+        });
     </script>
 
     <!-- Datatable -->

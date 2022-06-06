@@ -63,6 +63,8 @@ class PostController extends Controller
         $data['tag_id'] = $request->tag_id;
         $data['details_en'] = $request->details_en;
         $data['details_ban'] = $request->details_ban;
+        $data['short_details_en'] = $request->short_details_en;
+        $data['short_details_ban'] = $request->short_details_ban;
         $data['headline'] = $request->headline;
         $data['bigthumbnail'] = $request->bigthumbnail;
         $data['first_section'] = $request->first_section;
@@ -137,6 +139,8 @@ class PostController extends Controller
         $data['tag_id'] = $request->tag_id;
         $data['details_en'] = $request->details_en;
         $data['details_ban'] = $request->details_ban;
+        $data['short_details_en'] = $request->short_details_en;
+        $data['short_details_ban'] = $request->short_details_ban;
         $data['headline'] = $request->headline;
         $data['bigthumbnail'] = $request->bigthumbnail;
         $data['first_section'] = $request->first_section;

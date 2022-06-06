@@ -70,6 +70,13 @@
                                     @endif
                                 </a>
                             </h3>
+                            <p class="post_short_description">
+                                @if(session()->get('lang') == 'english')
+                                {!! htmlspecialchars_decode($first->short_details_en) !!}
+                                @else
+                                {!! htmlspecialchars_decode($first->short_details_ban) !!}
+                                @endif
+                            </p>
                             <p>{{ date('d F Y', strtotime($first->post_date)) }}</p>
                         </div>
                         </div>
@@ -99,6 +106,13 @@
                             @endif
                         </a>
                       </h3>
+                      <p class="post_short_description">
+                        @if(session()->get('lang') == 'english')
+                        {!! htmlspecialchars_decode($firstBigThumb->short_details_en) !!}
+                        @else
+                        {!! htmlspecialchars_decode($firstBigThumb->short_details_ban) !!}
+                        @endif
+                      </p>
                       <p>{{ date('d F Y', strtotime($firstBigThumb->post_date)) }}</p>
                    </div>
                 </div>
@@ -128,6 +142,13 @@
                                 @endif
                             </a>
                         </h3>
+                        <p class="post_short_description">
+                            @if(session()->get('lang') == 'english')
+                            {!! htmlspecialchars_decode($first->short_details_en) !!}
+                            @else
+                            {!! htmlspecialchars_decode($first->short_details_ban) !!}
+                            @endif
+                        </p>
                         <p>{{ date('d F Y', strtotime($first->post_date)) }}</p>
                     </div>
                     </div>
@@ -210,6 +231,13 @@
                                     @endif
                                 </a>
                             </h3>
+                            <p class="post_short_description">
+                                @if(session()->get('lang') == 'english')
+                                {!! htmlspecialchars_decode($mp->short_details_en) !!}
+                                @else
+                                {!! htmlspecialchars_decode($mp->short_details_ban) !!}
+                                @endif
+                            </p>
                             <p>{{ date('d F, Y', strtotime($mp->post_date)) }}</p>
                          </div>
                       </div>
@@ -248,6 +276,13 @@
                                             @endif
                                         </a>
                                     </h3>
+                                    <p class="post_short_description">
+                                        @if(session()->get('lang') == 'english')
+                                        {!! htmlspecialchars_decode($mp->short_details_en) !!}
+                                        @else
+                                        {!! htmlspecialchars_decode($mp->short_details_ban) !!}
+                                        @endif
+                                    </p>
                                     <p>{{ date('d F, Y', strtotime($mp->post_date)) }}</p>
                                </div>
                             </div>
@@ -360,6 +395,13 @@
                                         @endif
                                     </a>
                                   </h3>
+                                  <p class="post_short_description">
+                                    @if(session()->get('lang') == 'english')
+                                    {!! htmlspecialchars_decode($fcsd->short_details_en) !!}
+                                    @else
+                                    {!! htmlspecialchars_decode($fcsd->short_details_ban) !!}
+                                    @endif
+                                  </p>
                                   <p>{{ date('d F, Y', strtotime($fcsd->post_date)) }}</p>
                                </div>
                             </div>
@@ -390,6 +432,13 @@
                                     @endif
                                 </a>
                             </h3>
+                            <p class="post_short_description">
+                                @if(session()->get('lang') == 'english')
+                                {!! htmlspecialchars_decode($first_cat_big_data->short_details_en) !!}
+                                @else
+                                {!! htmlspecialchars_decode($first_cat_big_data->short_details_ban) !!}
+                                @endif
+                            </p>
                             <p><a href="#">{{ $first_cat_big_data->name }}</a> / {{ date('d F, Y', strtotime($first_cat_big_data->post_date)) }}</p>
                          </div>
                       </div>
@@ -443,6 +492,13 @@
                                 @endif
                             </a>
                          </h3>
+                         <p class="post_short_description">
+                            @if(session()->get('lang') == 'english')
+                            {!! htmlspecialchars_decode($scsd->short_details_en) !!}
+                            @else
+                            {!! htmlspecialchars_decode($scsd->short_details_ban) !!}
+                            @endif
+                         </p>
                          <p><a href="#">{{ $scsd->name }}</a> / {{ date('d F, Y', strtotime($scsd->post_date)) }}</p>
                       </div>
                    </div>
@@ -504,6 +560,13 @@
                                          @endif
                                      </a>
                                    </h3>
+                                   <p class="post_short_description">
+                                    @if(session()->get('lang') == 'english')
+                                    {!! htmlspecialchars_decode($tcsd->short_details_en) !!}
+                                    @else
+                                    {!! htmlspecialchars_decode($tcsd->short_details_ban) !!}
+                                    @endif
+                                   </p>
                                    <p>{{ date('d F, Y', strtotime($tcsd->post_date)) }}</p>
                                 </div>
                              </div>
@@ -534,6 +597,13 @@
                                      @endif
                                  </a>
                              </h3>
+                             <p class="post_short_description">
+                                @if(session()->get('lang') == 'english')
+                                {!! htmlspecialchars_decode($third_cat_big_data->short_details_en) !!}
+                                @else
+                                {!! htmlspecialchars_decode($third_cat_big_data->short_details_ban) !!}
+                                @endif
+                             </p>
                              <p><a href="#">{{ $third_cat_big_data->name }}</a> / {{ date('d F, Y', strtotime($third_cat_big_data->post_date)) }}</p>
                           </div>
                        </div>
@@ -590,6 +660,13 @@
                                             @endif
                                         </a>
                                      </h3>
+                                     <p class="post_short_description">
+                                        @if(session()->get('lang') == 'english')
+                                        {!! htmlspecialchars_decode($fcsd->short_details_en) !!}
+                                        @else
+                                        {!! htmlspecialchars_decode($fcsd->short_details_ban) !!}
+                                        @endif
+                                     </p>
                                      <p>{{ date('d F Y', strtotime($fcsd->post_date)) }}</p>
                                   </div>
                                </div>
@@ -648,6 +725,13 @@
                                            @endif
                                        </a>
                                     </h3>
+                                    <p class="post_short_description">
+                                        @if(session()->get('lang') == 'english')
+                                        {!! htmlspecialchars_decode($fivcsd->short_details_en) !!}
+                                        @else
+                                        {!! htmlspecialchars_decode($fivcsd->short_details_ban) !!}
+                                        @endif
+                                    </p>
                                     <p>{{ date('d F Y', strtotime($fivcsd->post_date)) }}</p>
                                  </div>
                               </div>
@@ -679,6 +763,13 @@
                                            @endif
                                        </a>
                                     </h3>
+                                    <p class="post_short_description">
+                                        @if(session()->get('lang') == 'english')
+                                        {!! htmlspecialchars_decode($fivcsd->short_details_en) !!}
+                                        @else
+                                        {!! htmlspecialchars_decode($fivcsd->short_details_ban) !!}
+                                        @endif
+                                    </p>
                                     <p>{{ date('d F Y', strtotime($fivcsd->post_date)) }}</p>
                                  </div>
                               </div>
@@ -754,6 +845,13 @@
                                 @endif
                             </a>
                          </h3>
+                         <p class="post_short_description">
+                            @if(session()->get('lang') == 'english')
+                            {!! htmlspecialchars_decode($sixcsd->short_details_en) !!}
+                            @else
+                            {!! htmlspecialchars_decode($sixcsd->short_details_ban) !!}
+                            @endif
+                         </p>
                          <p><a href="#">{{ $sixcsd->name }}</a> / {{ date('d F, Y', strtotime($sixcsd->post_date)) }}</p>
                       </div>
                    </div>
@@ -876,7 +974,9 @@
                 @endif
 
                 @php
-                    $latest_post = DB::table('posts')->orderBy('id', 'desc')->limit(10)->get();
+                    $date = \Carbon\Carbon::now()->format('d-m-Y');
+                    $latest_post = DB::table('posts')->where('post_date', $date)->orderBy('id', 'desc')->limit(10)->get();
+                    // dd($latest_post);
                 @endphp
 
                 <section class="widget widget_latest_news_thumb">

@@ -108,6 +108,18 @@
                             <textarea class="form-control" name="details_ban" id="summernote1" rows="4"></textarea>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="exampleTextarea1">Short Details English<small class="text-danger"> ( Optional )</small></label>
+                            <textarea class="form-control" name="short_details_en" id="summernote2" rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="exampleTextarea1">Short Details Bangla<small class="text-danger"> ( Optional )</small></label>
+                            <textarea class="form-control" name="short_details_ban" id="summernote3" rows="2"></textarea>
+                        </div>
+                    </div>
                     <hr>
                     <h4 class="text-center">Extra Options</h4><br>
                     <div class="row">
